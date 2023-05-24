@@ -124,9 +124,15 @@ div.container{
 
 button.btn-cadastro {
     background-color:
-    #143c14 ;
+    green ;
     color:white;
-}
+} 
+
+button.btn-fornecedores {
+    background-color:
+    #40e0d0;
+    color:white;
+} 
 
 body.imagem{
 background-image:url(imagemdefundo.jpg);
