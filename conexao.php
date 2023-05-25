@@ -1,5 +1,3 @@
 <?php
-
-try{
-    $conexao = new PDO("mysql:localhost;dbname=MorningFlower" )
-}
+    $conexao = new PDO("mysql:localhost;dbname=morningFlower",$root,$aluno01 );
+?>
