@@ -20,8 +20,8 @@
           <div class="line3"></div>
         </div>
         <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="cadastro.html">Cadastrar</a></li>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="cadastro.php">Cadastrar</a></li>
           <li><a href="#">Funcionários</a></li>
           <li><a href="#">Produtos</a></li>
           <li><a href="#">Fornecedores</a></li>

@@ -14,6 +14,9 @@
 </head>
 <div class="container">
 <body class="imagem">
+  <?php
+    include_once("conexao.php");
+  ?>
 <form class="cadastro">
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -88,7 +91,7 @@
       
     </div>
     <button type="submit" class="btn btn-cadastro">cadastrar</button>
-    <button type="submit" class="btn btn-danger"><a href="index.html">Cancelar</a></button>
+    <button type="submit" class="btn btn-danger"><a href="index.php">Cancelar</a></button>
   </form>
   </div>
 </body>
