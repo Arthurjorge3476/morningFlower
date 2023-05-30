@@ -17,14 +17,17 @@
 </head>
 <body>
     <section class="area-login" >
+    <i class="fa-brands fa-facebook"></i>
         <div class="login">
         <div>
             <img src="logo.png.png">
         </div>
-        <form method="POST">
-            <input type="text" name="nome" placeholder="Nome de usuario" autofocus>
+        <form method="POST" >
+            <input type="text" name="nome" placeholder="Nome de usuario" autofocus >
             <input type="password" name="senha" placeholder="Sua senha">
             <input type="submit" class="botao" value="Entrar">
+            <i class="icon fas fa-lock"></i>
+            <i class="error error-icon fas fa-exclamation-circle"></i>
         </form>
         </div>
     </section>

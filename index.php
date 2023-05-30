@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Morning-Flower</title>
+    <title>Morning Flower</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -23,8 +23,8 @@
           <li><a href="index.php">Home</a></li>
           <li><a href="cadastro.php">Cadastrar</a></li>
           <li><a href="#">Funcionários</a></li>
-          <li><a href="#">Produtos</a></li>
-          <li><a href="#">Fornecedores</a></li>
+          <li><a href="produtos.php">Produtos</a></li>
+          <li><a href="fornecedores.php">Fornecedores</a></li>
         </ul>
       </nav>
     </header>

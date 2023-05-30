@@ -48,8 +48,7 @@
       
     </div>
     <button type="submit" class="btn btn-cadastro">Entrar</button>
-    <button type="submit" class="btn btn-danger"><a href="index.html">Cancelar</a></button>
-    <button type="submit" class="btn btn-cadastro"><a href="fornecedores.html">Fornecedores</button></a>
+    <button type="submit" class="btn btn-danger"><a href="index.php">Cancelar</a></button>
   </form>
   </div>
 </body>
