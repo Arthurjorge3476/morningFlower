@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered  table-hover">
   <thead  class="table-dark">
     <tr>
       <th scope="col">#</th>
@@ -20,15 +20,21 @@
       <th scope="col">nome</th>
       <th scope="col">gmail</th>
       <th scope="col">telefone</th>
+      <th scope="col"></th>
+
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr class="">
       <th scope="row">1</th>
       <td>478689867</td>
       <td>paulo</td>
       <td>paulo1@gmail.com</td>
       <td>9912141516</td>
+      <td>
+        <button type="submit" class="btn btn-cadastro">editar</button>
+        <button type="submit" class="btn btn-danger">excluir</button>
+      </td>
     </tr>
     <tr>
       <th scope="row">2</th>
@@ -36,6 +42,10 @@
       <td>Sergio</td>
       <td>Sergio2@gmail.com</td>
       <td>9912141516</td>
+      <td>
+        <button type="submit" class="btn btn-cadastro">editar</button>
+        <button type="submit" class="btn btn-danger">excluir</button>
+      </td>
     </tr>
     <tr>
       <th scope="row">3</th>
@@ -43,6 +53,10 @@
       <td>Roberto</td>
       <td>Roberto3@gmail.com</td>
       <td>9912141516</td>
+      <td>
+        <button type="submit" class="btn btn-cadastro">editar</button>
+        <button type="submit" class="btn btn-danger">excluir</button>
+      </td>
     </tr>
 
     <tr>
@@ -51,10 +65,12 @@
       <td>João</td>
       <td>João4@gmail.com</td>
       <td>9912141516</td>
-    </tr>
-
+      <td>
+        <button type="submit" class="btn btn-cadastro">editar</button>
+        <button type="submit" class="btn btn-danger">excluir</button>
+      </td>
   </tbody>
 </table>
-<button type="submit" class="btn btn-danger"><a href="funcionarios.php">Cadastrar</a></button>
+<button type="submit" class="btn btn-danger" onclick="location.href='Funcionarios.php'">Novo</button>
 </body>
 </html>

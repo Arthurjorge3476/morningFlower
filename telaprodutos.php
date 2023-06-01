@@ -12,13 +12,14 @@
 </head>
 
 <body>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-hover">
   <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">id</th>
       <th scope="col">nome</th>
       <th scope="col">fornecedor</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -27,22 +28,33 @@
       <td>478689867</td>
       <td>arroz</td>
       <td>paulo</td>
+      <td>
+        <button type="submit" class="btn btn-cadastro">editar</button>
+        <button type="submit" class="btn btn-danger">excluir</button>
+      </td>
     </tr>
     <tr>
       <th scope="row">2</th>
       <td>3241412</td>
       <td>farinha</td>
       <td>sergio</td>
+      <td>
+        <button type="submit" class="btn btn-cadastro">editar</button>
+        <button type="submit" class="btn btn-danger">excluir</button>
+      </td>
     </tr>
     <tr>
       <th scope="row">3</th>
       <td>2341312</td>
       <td>batata</td>
       <td>roberto</td>
-     
+      <td>
+        <button type="submit" class="btn btn-cadastro">editar</button>
+        <button type="submit" class="btn btn-danger">excluir</button>
+      </td>
     </tr>
   </tbody>
 </table>
-<button type="submit" class="btn btn-danger"><a href="produtos.php">Cadastrar</a></button>
+<button type="submit" class="btn btn-danger" id="novo" onclick="location.href='produtos.php'">Novo</button>
 </body>
 </html>

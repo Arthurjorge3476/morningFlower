@@ -21,7 +21,7 @@
         </div>
         <ul class="nav-list">
           <li><a href="index.php">Home</a></li>
-          <li><a href="cadastro.php">Cadastrar</a></li>
+          <li><a href="">Presentes</a></li>
           <li><a href="telafuncionarios.php">Funcionários</a></li>
           <li><a href="telaprodutos.php">Produtos</a></li>
           <li><a href="telafornecedores.php">Fornecedores</a></li>
