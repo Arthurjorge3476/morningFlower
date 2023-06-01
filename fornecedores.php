@@ -18,7 +18,7 @@
     include_once("conexao.php");
   ?>
 <form class="cadastro">
-<h3>Cadastrar Fornecedor</h3>
+<h3>Cadastrar fornecedor</h3>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputnome4">Nome</label>
