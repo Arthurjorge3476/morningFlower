@@ -71,6 +71,6 @@
       </td>
   </tbody>
 </table>
-<button type="submit" class="btn btn-danger" onclick="location.href='Funcionarios.php'">Novo</button>
+<button type="submit" class="btn btn-danger" onclick="location.href='funcionarios.php'">Novo</button>
 </body>
 </html>
