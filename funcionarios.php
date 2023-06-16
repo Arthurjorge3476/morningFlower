@@ -17,7 +17,7 @@
   <?php
     include_once("conexao.php");
   ?>
-<form class="cadastro">
+<form class="cadastro"  method="POST">
 <h3>Cadastrar  Funcionario</h3>
     <div class="form-row">
       <div class="form-group col-md-6">
