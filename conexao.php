@@ -3,16 +3,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recuperar os valores do formulário
     
    
-  $nome = $_POST["nome"];
-    
-    $
-  $sobrenome = $_POST["sobrenome"];
+    $nome = $_POST["nome"];
+    $sobrenome = $_POST["sobrenome"];
     $cidade = $_POST["cidade"];
     $email = $_POST["email"];
     $telefone = $_POST["telefone"];
-    
-   
-  $cpf = $_POST["cpf"];
+    $cpf = $_POST["cpf"];
   
     
   
@@ -54,10 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Preparar a consulta SQL
       
      
-  $sql = "INSERT INTO funcionarios (Nome, Sobrenome, Cidade, Email, Telefone, CPF)
-              VALUES (:nome, :sobrenome, :cidade, :email, :telefone, :cpf)";
-      
-      $
+  $sql = "INSERT INTO funcionarios (Nome, Sobrenome, Cidade, Email, Telefone, CPF) VALUES (:nome, :sobrenome, :cidade, :email, :telefone, :cpf)";
   
      
   $stmt = $conexao->prepare($sql);
@@ -78,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      
   $stmt->bindParam(':cidade', $cidade);
       
-      $
+
   
      
   $stmt->bindParam(':email', $email);
@@ -86,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      
   $stmt->bindParam(':telefone', $telefone);
       
-      $
+      
   $stmt->bindParam(':cpf', $cpf);
   
       

@@ -15,7 +15,28 @@
 <div class="container">
 <body class="imagem">
   <?php
-    include_once("conexao.php");
+     include_once("conexao.php");
+
+     // Verificar se o formulário foi enviado
+     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+         $nome = $_POST["inputnome4"];
+         $sobrenome = $_POST["inputsobrenome4"];
+         $cidade = $_POST["inputPassword4"];
+         $email = $_POST["inputAddress2"];
+         $telefone = $_POST["inputtelefone2"];
+         $cpf = $_POST["inputcpf2"];
+ 
+         // Preparar a consulta SQL
+         $sql = "INSERT INTO tabela (nome, sobrenome, cidade, email, telefone, cpf) VALUES ('$nome', '$sobrenome', '$cidade', '$email', '$telefone', '$cpf')";
+ 
+         // Executar a consulta
+         if ($conn->query($sql) === TRUE) {
+             echo "Dados inseridos com sucesso!";
+         } else {
+             echo "Erro ao inserir dados: " . $conn->error;
+         }
+     }
+   ?>
   ?>
 <form class="cadastro"  method="POST">
 <h3>Cadastrar  Funcionario</h3>
