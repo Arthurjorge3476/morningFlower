@@ -13,68 +13,48 @@
 
 <body>
 <table class="table table-bordered table-hover">
-  <thead  class="table-dark">
+  <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">id</th>
       <th scope="col">nome</th>
-      <th scope="col">gmail</th>
-      <th scope="col">telefone</th>
+      <th scope="col">fornecedor</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-
     <tr>
       <th scope="row">1</th>
       <td>478689867</td>
+      <td>arroz</td>
       <td>paulo</td>
-      <td>paulo1@gmail.com</td>
-      <td>9912141516</td>
       <td>
         <button type="submit" class="btn btn-cadastro">editar</button>
         <button type="submit" class="btn btn-danger">excluir</button>
       </td>
     </tr>
-
     <tr>
       <th scope="row">2</th>
       <td>3241412</td>
-      <td>Sergio</td>
-      <td>Sergio2@gmail.com</td>
-      <td>9912141516</td>
+      <td>farinha</td>
+      <td>sergio</td>
       <td>
         <button type="submit" class="btn btn-cadastro">editar</button>
         <button type="submit" class="btn btn-danger">excluir</button>
       </td>
     </tr>
-
     <tr>
       <th scope="row">3</th>
       <td>2341312</td>
-      <td>Roberto</td>
-      <td>Roberto3@gmail.com</td>
-      <td>9912141516</td>
+      <td>batata</td>
+      <td>roberto</td>
       <td>
         <button type="submit" class="btn btn-cadastro">editar</button>
         <button type="submit" class="btn btn-danger">excluir</button>
       </td>
     </tr>
-
-    <tr>
-      <th scope="row">4</th>
-      <td>2341312</td>
-      <td>João</td>
-      <td>João4@gmail.com</td>
-      <td>9912141516</td>
-      <td>
-        <button type="submit" class="btn btn-cadastro">editar</button>
-        <button type="submit" class="btn btn-danger">excluir</button>
-      </td>
-    </tr>
-
   </tbody>
 </table>
-<button type="submit" class="btn btn-danger" onclick="location.href='fornecedores.php'">Novo</button>
+<button type="submit" class="btn btn-danger" id="novo" onclick="location.href='cadastroProdutos.php'">Novo</button>
 </body>
 </html>

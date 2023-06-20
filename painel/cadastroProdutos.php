@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos</title>
-    <link rel="stylesheet" href="telainicial.css">
+    <link rel="stylesheet" href="../css/telainicial.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -19,7 +19,7 @@
     <h3>Cadastrar Produto</h3>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputnome4">Cod:</label>
+        <label for="codigo">Cod:</label>
         <input type="number" class="form-control" id="codigo">
       </div>
       
@@ -28,38 +28,38 @@
         <input type="text" class="form-control" id="inputprodutos">
       </div>
       <div class="form-group col-md-3">
-        <label for="inputquantidade">Quantidade</label>
-        <input type="number" class="form-control" id="inputquantidade">
+        <label for="quantidade">Quantidade</label>
+        <input type="number" class="form-control" id="quantidade">
       </div>
     </div>
     <div class="form-row">
     <div class="form-group col-md-3">
-      <label for="inputcompra">Preço de Compra</label>
-      <input type="text" class="form-control" id="inputcompra" >
+      <label for="compra">Preço de Compra</label>
+      <input type="text" class="form-control" id="compra" >
     </div>
     <div class="form-group col-md-3">
-      <label for="inputvenda">Preço de Venda</label>
-      <input type="text" class="form-control" id="inputvenda" >
+      <label for="venda">Preço de Venda</label>
+      <input type="text" class="form-control" id="venda" >
     </div>
     <div class="form-group col-md-3">
-      <label for="inputfornecedor">Fornecedor</label>
-      <select class="form-control"  aria-label=".form-select-lg example" id="inputfornecedor">
+      <label for="fornecedor">Fornecedor</label>
+      <select class="form-control"  aria-label=".form-select-lg example" id="fornecedor">
             <option selected> </option>
             <option value="fornecedor">Rodrigo Silva</option>
             <option value="fornecedor">Carlos Daniel</option>
           </select>
     </div>
     <div class="form-group col-md-3">
-      <label for="inputvalidade">Validade</label>
-      <input type="date" class="form-control" id="inputvalidade" >
+      <label for="validade">Validade</label>
+      <input type="date" class="form-control" id="validade" >
     </div>
     <div class="form-group col-md-6">
-    <form method="post" action="cadastro.php" enctype="multipart/form-data">
+    <form method="post" action="cadastroProdutos.php" enctype="multipart/form-data">
     <input type="file" name="imagem">
     </div>
     <div class="form-group col-md-6">
       <label for="inputobs">Observação do Produto:</label>
-      <textarea id="story" name="story"
+      <textarea id="produtossalvos" name="produtos"
           rows="8" cols="50">
       </textarea>
     </div>
