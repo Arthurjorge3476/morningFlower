@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -30,3 +31,26 @@
     </section>
 </body>
 </html>
+
+<?php
+require_once('conexao.php');
+
+// Verifica se o formulário de login foi submetido
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Consulta SQL para verificar as credenciais do usuário
+    $query = "SELECT * FROM funcionarios WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($query);
+
+    // Verifica se o usuário foi encontrado no banco de dados
+    if ($result->num_rows > 0) {
+        // Login bem-sucedido
+        echo 'Login bem-sucedido';
+    } else {
+        // Credenciais inválidas
+        echo 'Credenciais inválidas';
+    }
+}
+?>
