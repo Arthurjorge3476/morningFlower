@@ -22,8 +22,8 @@
         <div>
             <img src="img/logo.png.png">
         </div>
-        <form method="POST" >
-            <input type="text" name="nome" placeholder="Nome de usuario" autofocus >
+        <form method="POST" action="autenticar.php">
+            <input type="text" name="email" placeholder="Nome de usuario" autofocus >
             <input type="password" name="senha" placeholder="Sua senha">
             <input type="submit" class="botao" value="Entrar">
         </form>
@@ -32,25 +32,3 @@
 </body>
 </html>
 
-<?php
-require_once('conexao.php');
-
-// Verifica se o formulário de login foi submetido
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Consulta SQL para verificar as credenciais do usuário
-    $query = "SELECT * FROM funcionarios WHERE username = '$username' AND password = '$password'";
-    $result = $conn->query($query);
-
-    // Verifica se o usuário foi encontrado no banco de dados
-    if ($result->num_rows > 0) {
-        // Login bem-sucedido
-        echo 'Login bem-sucedido';
-    } else {
-        // Credenciais inválidas
-        echo 'Credenciais inválidas';
-    }
-}
-?>
