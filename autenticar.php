@@ -1,8 +1,6 @@
 <?php
 require_once('conexao.php');
 
-// Verifica se o formulário de login foi submetido
-
     $username = $_POST['email'];
     $password = $_POST['senha'];
 
@@ -11,7 +9,7 @@ require_once('conexao.php');
     $result = $conexao->query($query);
 
     // Verifica se o usuário foi encontrado no banco de dados
-    if ($result->num_rows > 0 &&  < 2 ) {
+    if ($result > 0 && $result < 2){
         // Login bem-sucedido
         echo 'Login bem-sucedido';
     } else {
