@@ -32,8 +32,10 @@ CREATE TABLE `funcionarios` (
   `Email` varchar(60) NOT NULL,
   `Telefone` char(14) NOT NULL,
   `CPF` varchar(14) NOT NULL,
+  `Senha` varchar(100) DEFAULT NULL,
+  `Nivel` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +44,7 @@ CREATE TABLE `funcionarios` (
 
 LOCK TABLES `funcionarios` WRITE;
 /*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
-INSERT INTO `funcionarios` VALUES (1,'Luís','Bonito','Torres','luis@gmail.com','(51) 9999-9999','00000000');
+INSERT INTO `funcionarios` VALUES (1,'Luís','Bonito','Torres','luis@gmail.com','(51) 9999-9999','00000000',NULL,NULL),(2,'Raissa','Bonita','Torres','raissa@gmail.com','(51) 9999-9999','00000000','12345678',NULL),(3,'Mateus','bonitu','Torres','mateus@gmail.com','(51) 9999-9999','00000000','09876543',NULL),(4,'Arthur','Bonite','Torres','arthur@gmail.com','(51) 9999-9999','00000000','234567890','1');
 /*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-15 15:34:15
+-- Dump completed on 2023-07-03 15:23:01

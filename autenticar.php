@@ -11,7 +11,7 @@ require_once('conexao.php');
     // Verifica se o usuário foi encontrado no banco de dados
     if ($result > 0 && $result < 2){
         // Login bem-sucedido
-        echo 'Login bem-sucedido';
+        header ('Location: ./painel/home.php');
     } else {
         // Credenciais inválidas
         echo 'Credenciais inválidas';
