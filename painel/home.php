@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <header>
+    <header >
   
       <nav>
         <div class="logo"> <img src="../img/logo.png.png"> </div>

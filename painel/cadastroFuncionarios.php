@@ -13,7 +13,7 @@
     <script> function funcao1(){alert("Você tem certeza?");} </script>
 </head>
 <div class="container">
-<body class="imagem">
+<body class="area-login">
   <?php
      include_once("conexao.php");
   ?>

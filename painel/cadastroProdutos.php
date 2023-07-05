@@ -14,7 +14,7 @@
 
 </head>
 <div class="container">
-<body class="imagem">
+<body class="area-login">
 <form class="cadastro">
     <h3>Cadastrar Produto</h3>
     <div class="form-row">
