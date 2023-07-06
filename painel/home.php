@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Morning Flower</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/telainicial.css" />
   </head>
 
   <body>
-    <header >
+    <header>
   
       <nav>
         <div class="logo"> <img src="../img/logo.png.png"> </div>
@@ -28,7 +28,8 @@
         </ul>
       </nav>
     </header>
-    <main></main>
-    <script src="mobile-navbar.js"></script>
+    <div class="area-login">
+
+    </div>
   </body>
 </html>
