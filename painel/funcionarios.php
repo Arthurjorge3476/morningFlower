@@ -71,6 +71,6 @@
       </td>
   </tbody>
 </table>
-<button type="submit" class="btn btn-danger" onclick="location.href='cadastroFuncionarios.php'">Novo</button>
+<button type="submit" class="btn btn-danger" onclick="location.href='cadastroFuncionarios.php'"  data-toggle="modal" data-target=".bd-example-modal-lg">Novo</button>
 </body>
 </html>
