@@ -6,7 +6,7 @@ body{
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 92vh;
+      height: 92px; 
       justify-content: center;
       align-items: center;
       background-image: url("../img/imagemdefundo.jpg");

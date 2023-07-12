@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -97,72 +97,71 @@
           <form class="cadastro">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="inputnome4">Nome</label>
-                <input type="nome" class="form-control" id="inputnome4" placeholder="Gabriela...">
+                <label for="nomedofornecedor">Nome</label>
+                <input type="nome" class="form-control" id="nomedofornecedor">
               </div>
               <div class="form-group col-md-6">
-                <label for="inputsobrenome4">Sobrenome</label>
-                <input type="sobrenome" class="form-control" id="inputsorenome4" placeholder="Matos...">
+                <label for="cpfdofornecedor">CPF</label>
+                <input type="text" class="form-control" id="cpfdofornecedor">
               </div>
-              <div class="form-group col-md-6">
-                <label for="inputPassword4">Cidade</label>
-                <input type="texto" class="form-control" id="inputPassword4" placeholder="Local em qual se localiza a empresa">
-              </div>
-
-              <div class="form-group col-md-6">
-                <label for="inputEstado4">Estado</label>
-                <select class="form-control" placeholder="Estado" aria-label=".form-select-lg example" id="inputEstado4">
-                  <option selected> </option>
-                  <option value="AC">AC</option>
-                  <option value="AL">AL</option>
-                  <option value="AP">AP</option>
-                  <option value="AM">AM</option>
-                  <option value="BA">BA</option>
-                  <option value="CE">CE</option>
-                  <option value="DF">DF</option>
-                  <option value="ES">ES</option>
-                  <option value="CO">CO</option>
-                  <option value="MA">MA</option>
-                  <option value="MT">MT</option>
-                  <option value="MS">MS</option>
-                  <option value="MG">MG</option>
-                  <option value="PA">PA</option>
-                  <option value="PB">PB</option>
-                  <option value="PR">PR</option>
-                  <option value="PE">PE</option>
-                  <option value="PI">PI</option>
-                  <option value="RJ">RJ</option>
-                  <option value="RN">RN</option>
-                  <option value="RS">RS</option>
-                  <option value="RO">RO</option>
-                  <option value="RR">RR</option>
-                  <option value="SC">SC</option>
-                  <option value="SP">SP</option>
-                  <option value="SE">SE</option>
-                  <option value="TO">TO</option>
-
-
-                </select>
-              </div>
-
               <div class="form-group col-md-12">
-                <label for="inputusuario4">Empresa</label>
-                <input type="text" class="form-control" id="inputusuario4" placeholder="Nome da Empresa">
+                <label for="emaildofornecedor">Email</label>
+                <input type="email" class="form-control" id="emaildofornecedor">
               </div>
-            </div>
-            <div class="form-group">
-              <label for="inputAddress2">Email</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="gabrielamatos2gmail.com.">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputtelefone2">Telefone</label>
-                <input type="text" class="form-control" id="inputtelefone2" placeholder="(48)*****-****">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="telefonedofornecedor">Telefone</label>
+                  <input type="text" class="form-control" id="telefonedofornecedor">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="cidadedofornecedor">Cidade</label>
+                  <input type="texto" class="form-control" id="cidadedofornecedor">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="estadodofornecedor">Estado</label>
+                  <select class="form-control" aria-label=".form-select-lg example" id="estadodofornecedor">
+                    <option selected> </option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="CO">CO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+
+
+                  </select>
+                </div>
+
+                <div class="form-group col-md-12">
+                  <label for="empresadofornecedor">Empresa</label>
+                  <input type="text" class="form-control" id="empresadofornecedor">
+                </div>
               </div>
-              <div class="form-group col-md-6">
-                <label for="inputcpf2">CPF</label>
-                <input type="text" class="form-control" id="inputcpf2" placeholder="***.***.***-**">
-              </div>
+
+
+
             </div>
             <div class="form-group col-md-6">
 
@@ -170,8 +169,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary">Cadastrar</button>
         </div>
       </div>
     </div>

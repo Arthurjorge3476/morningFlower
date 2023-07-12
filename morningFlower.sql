@@ -1,10 +1,21 @@
+
+/*Banco de dados de funcionarios,produtos e fornecedores*/
+
 CREATE DATABASE  IF NOT EXISTS `morningflower`;
 USE `morningflower`;
 
+CREATE TABLE `fornecedores` (
+  `nome` varchar(225) NOT NULL,
+  `sorenome` varchar(225) NOT NULL,
+  `cidade` varchar(25) NOT NULL,
+  `estado` varchar(25) NOT NULL,
+  `empresa` varchar(20) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `telefone` varchar(100) NOT NULL,
+  `cpf` char(8) NOT NULL,
+  UNIQUE KEY `cpf_UNIQUE` (`cpf`)
+) ;
 
-
-
-DROP TABLE IF EXISTS `funcionarios`;
 
 CREATE TABLE `funcionarios` (
   `codigo` int NOT NULL AUTO_INCREMENT,
@@ -29,21 +40,9 @@ CREATE TABLE `funcionarios` (
   UNIQUE KEY `grupo_de_acesso_UNIQUE` (`grupo_de_acesso`)
 );
 
-CREATE TABLE `fornecedores` (
- 
-  `nome` varchar(225) NOT NULL,
-  `sorenome` varchar(225) NOT NULL,
-  `cidade` varchar(25) NOT NULL,
-  `estado` varchar(25) NOT NULL,
-  `empresa` varchar(20) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `telefone` varchar(100) NOT NULL,
-  `cpf` char(8) NOT NULL,
-  UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-);
 
 CREATE TABLE `produtos` (
-  `codigo`  varchar(225) NOT NULL,
+  `codigo` varchar(225) NOT NULL,
   `produto` varchar(225) NOT NULL,
   `quantidade` varchar(10) NOT NULL,
   `preco de compra` varchar(14) NOT NULL,
@@ -52,8 +51,6 @@ CREATE TABLE `produtos` (
   `validade` varchar(100) NOT NULL,
   `obs do produto` varchar(225) NOT NULL,
   UNIQUE KEY `codigo_UNIQUE` (`codigo`)
-  );
-
-
+);
 
 

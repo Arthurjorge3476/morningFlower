@@ -90,20 +90,16 @@
         </div>
         <div class="modal-body">
 
-          <form class="cadastro" method="POST">
+          <form class="cadastro"  method="POST">
 
             <div class="form-row">
-              <div class="form-group col-md-3">
-                <label for="codigoFuncionario">Código</label>
-                <input type="text" class="form-control" id="codigoFuncionario">
-              </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-9">
                 <label for="nomeFuncionario">Nome</label>
                 <input type="text" class="form-control" id="nomeFuncionario">
               </div>
               <div class="form-group col-md-3">
                 <label for="datadenascimento">Data de Nascimento</label>
-                <input type="text" class="form-control" id="datadenascimento">
+                <input type="date" class="form-control" id="datadenascimento">
               </div>
               <div class="form-group col-md-4">
                 <label for="rgdoFuncionario">RG</label>
@@ -131,7 +127,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="emailFuncionario">Email</label>
-                <input type="email" class="form-control" id="emailFuncionario">
+                <input type="e-mail" class="form-control" id="emailFuncionario">
               </div>
               <div class="form-group col-md-4">
                 <label for="telefoneFuncionario">Telefone</label>
@@ -139,7 +135,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="senhaFuncionario">Senha</label>
-                <input type="text" class="form-control" id="senhaFuncionario">
+                <input type="password" class="form-control" id="senhaFuncionario">
               </div>
               <div class="form-group col-md-3">
                 <label for="grupoFuncionario">Grupo de Acesso</label>
@@ -149,8 +145,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
       </div>
     </div>
   </div>
