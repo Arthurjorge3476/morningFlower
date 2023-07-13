@@ -90,7 +90,7 @@
         </div>
         <div class="modal-body">
 
-          <form class="cadastro"  method="POST">
+          <form class="cadastro"  method="POST" action="autenticarfuncionarios.php">
 
             <div class="form-row">
               <div class="form-group col-md-9">

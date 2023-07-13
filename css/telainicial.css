@@ -289,3 +289,15 @@ body::-webkit-scrollbar {
     color: #999;
     cursor: pointer;
   }
+
+  .check{
+    background-color: 
+    #244c24;
+    width: 355px;
+    height: 320px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
