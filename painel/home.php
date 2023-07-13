@@ -71,18 +71,26 @@ if ($content !== '') {
     <title>Bloco de Anotações</title>
     <style>
         body {
-            background-image: url('notebook-paper.jpg');
             background-size: cover;
             font-family: Arial, sans-serif;
+
         }
 
         #notepad {
-            width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ccc;
+            background-image: url('../img/folha_de_caderno.avif');
+            background-repeat: no-repeat;
+            width: 355px;
+            height: 320px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            font-family: 'Helvetica', sans-serif;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
         }
 
         ul {
@@ -91,12 +99,51 @@ if ($content !== '') {
         }
 
         li {
-            margin-bottom: 10px;
+            margin-bottom: 25px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+
         }
+        h1 {
+            width: 300px;
+            height: 10px;
+            padding: 25px;
+            right: 100px;
+            margin-left: auto;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+
+        button {
+        padding: 8px 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        button:hover {
+        background-color: #45a049;
+        }
+
+        .add-note-btn {
+        display: flex;
+        align-items: center;
+        }
+
+        .add-note-btn i {
+        margin-right: 4px;
+        }
+
+
     </style>
 </head>
 <body>
-    <div id="notepad">
+    <div id="notepad" >
         <h1>Bloco de Anotações</h1>
         <form method="POST">
             <ul id="notes-list">
