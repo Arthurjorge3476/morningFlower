@@ -1,29 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `morningflower` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `morningflower`;
 USE `morningflower`;
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
---
--- Host: localhost    Database: morningflower
--- ------------------------------------------------------
--- Server version	8.0.33
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `fornecedores`
---
 
 DROP TABLE IF EXISTS `fornecedores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `fornecedores` (
   `nome` varchar(225) NOT NULL,
   `sorenome` varchar(225) NOT NULL,
@@ -34,25 +13,10 @@ CREATE TABLE `fornecedores` (
   `telefone` varchar(100) NOT NULL,
   `cpf` char(8) NOT NULL,
   UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fornecedores`
---
-
-LOCK TABLES `fornecedores` WRITE;
-/*!40000 ALTER TABLE `fornecedores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fornecedores` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `funcionarios`
---
+);
 
 DROP TABLE IF EXISTS `funcionarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `funcionarios` (
   `codigo` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(225) NOT NULL,
@@ -74,25 +38,10 @@ CREATE TABLE `funcionarios` (
   UNIQUE KEY `ctps_UNIQUE` (`ctps`),
   UNIQUE KEY `senha_UNIQUE` (`senha`),
   UNIQUE KEY `grupo_de_acesso_UNIQUE` (`grupo_de_acesso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `funcionarios`
---
-
-LOCK TABLES `funcionarios` WRITE;
-/*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `produtos`
---
+); 
+select * from funcionarios;
 
 DROP TABLE IF EXISTS `produtos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `produtos` (
   `codigo` varchar(225) NOT NULL,
   `produto` varchar(225) NOT NULL,
@@ -103,25 +52,6 @@ CREATE TABLE `produtos` (
   `validade` varchar(100) NOT NULL,
   `obs do produto` varchar(225) NOT NULL,
   UNIQUE KEY `codigo_UNIQUE` (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+);
 
---
--- Dumping data for table `produtos`
---
-
-LOCK TABLES `produtos` WRITE;
-/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2023-07-13 21:43:03
+INSERT INTO `morningflower`.`funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `cidade`, `endereco`, `cep`, `email`, `telefone`, `senha`, `grupo_de_acesso`) VALUES ('raissa', '03/04/2006', '13131313131', '3131313131313', '311313131313', 'santa rosa', 'rua zeli da rocha silveira', '88902312', 'raissa@gmail', '13131313131', '12345678', '1');
