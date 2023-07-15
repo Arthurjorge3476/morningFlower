@@ -245,7 +245,7 @@ button.btn-fornecedores {
 } 
 
 body.imagem{
-background-image:url(imagemdefundo.jpg);
+background-image:url(../img/imagemdefundo.jpg);
 background-size: cover;
 }
 
