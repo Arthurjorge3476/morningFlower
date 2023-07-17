@@ -61,13 +61,7 @@ if ($content !== '') {
             overflow: auto;
         }
 
-        ul {
-            padding-left:5px;
-            list-style-type: number;
-            border-radius: 10px;
-        }
-
-        li {
+        li.bloco {
             margin-bottom: 25px;
             padding: 8px 20px;
             border-radius: 10px;
@@ -153,7 +147,7 @@ if ($content !== '') {
         <form method="POST">
             <ul id="notes-list">
                 <?php foreach ($notes as $index => $note): ?>
-                    <li>
+                    <li class="bloco">
                         <input type="checkbox" name="notes[<?php echo $index; ?>][checked]" <?php echo $note['checked'] ? 'checked' : ''; ?>>
                         <input type="text" name="notes[<?php echo $index; ?>][content]" value="<?php echo $note['content']; ?>">
                         <button type="button" class="delete-note-btn" onclick="deleteNote(this)">X</button>

@@ -90,7 +90,7 @@
         </div>
         <div class="modal-body">
 
-          <form class="cadastro"  method="POST" action="autenticarfuncionarios.php">
+          <form class="cadastro"  method="POST" action="../autenticarfuncionarios.php">
 
             <div class="form-row">
               <div class="form-group col-md-9">
@@ -141,11 +141,11 @@
                 <label for="grupoFuncionario">Grupo de Acesso</label>
                 <input type="text" class="form-control" id="grupoFuncionario">
               </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Cadastrar</button>
+              </div>
           </form>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
       </div>
     </div>
   </div>

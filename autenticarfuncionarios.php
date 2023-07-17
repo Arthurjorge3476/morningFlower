@@ -17,12 +17,14 @@ $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
 try{
 // Preparar a consulta SQL para inserção dos dados na tabela
-$sql = "INSERT INTO funcionarios (codigo,nome,data_de_nascimento,rg,cpf,ctps,cidade,endereco,cep, email,telefone,senha,grupo_de_acesso) VALUES ('$nome','$data_de_nascimento','$rg','$cpf','$ctps','$cidade','$endereco','$cep','$email','$telefone','$senha','$grupo_de_acesso')";
-$stmt = $conn->prepare($sql);
+
+$sql = "INSERT INTO funcionarios (codigo, nome, data_de_nascimento, rg, cpf, ctps, cidade, endereco, cep, email, telefone, senha, grupo_de_acesso) VALUES (:codigo, :nome, :data_de_nascimento, :rg, :cpf, :ctps, :cidade, :endereco, :cep, :email, :telefone, :senha, :grupo_de_acesso)";
+$stmt = $conexao->prepare($sql);
 
 
 
 //Executar a consulta SQL com os valores do formulário
+
 
 $stmt->bindParam(':codigo', $codigo);
 $stmt->bindParam(':nome', $nome);
