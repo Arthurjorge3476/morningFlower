@@ -95,51 +95,51 @@
             <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="nomeFuncionario">Nome</label>
-                <input type="text" class="form-control" id="nomeFuncionario">
+                <input type="text" class="form-control" id="nomeFuncionario" name="nome">
               </div>
               <div class="form-group col-md-3">
                 <label for="datadenascimento">Data de Nascimento</label>
-                <input type="date" class="form-control" id="datadenascimento">
+                <input type="date" class="form-control" id="datadenascimento" name="data_de_nascimento">
               </div>
               <div class="form-group col-md-4">
                 <label for="rgdoFuncionario">RG</label>
-                <input type="text" class="form-control" id="rgdofuncionario">
+                <input type="text" class="form-control" id="rgdofuncionario" name="rg">
               </div>
               <div class="form-group col-md-4">
                 <label for="cpfFuncionario">CPF</label>
-                <input type="text" class="form-control" id="cpfFuncionario">
+                <input type="text" class="form-control" id="cpfFuncionario" name="cpf">
               </div>
               <div class="form-group col-md-4">
                 <label for="ctpsFuncionario">CTPS</label>
-                <input type="text" class="form-control" id="ctpsFuncionario">
+                <input type="text" class="form-control" id="ctpsFuncionario" name="ctps">
               </div>
               <div class="form-group col-md-4">
                 <label for="cidadeFuncionario">Cidade</label>
-                <input type="text" class="form-control" id="cidadeFuncionario">
+                <input type="text" class="form-control" id="cidadeFuncionario" name="cidade">
               </div>
               <div class="form-group col-md-4">
                 <label for="enderecoFuncionario">Endereço</label>
-                <input type="text" class="form-control" id="enderecoFuncionario">
+                <input type="text" class="form-control" id="enderecoFuncionario" name="endereco">
               </div>
               <div class="form-group col-md-4">
                 <label for="cepFuncionario">CEP</label>
-                <input type="text" class="form-control" id="cepFuncionario">
+                <input type="text" class="form-control" id="cepFuncionario" name="cep">
               </div>
               <div class="form-group col-md-4">
                 <label for="emailFuncionario">Email</label>
-                <input type="e-mail" class="form-control" id="emailFuncionario">
+                <input type="e-mail" class="form-control" id="emailFuncionario" name="email">
               </div>
               <div class="form-group col-md-4">
                 <label for="telefoneFuncionario">Telefone</label>
-                <input type="text" class="form-control" id="telefoneFuncionario">
+                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone">
               </div>
               <div class="form-group col-md-4">
                 <label for="senhaFuncionario">Senha</label>
-                <input type="password" class="form-control" id="senhaFuncionario">
+                <input type="password" class="form-control" id="senhaFuncionario" name="senha">
               </div>
               <div class="form-group col-md-3">
                 <label for="grupoFuncionario">Grupo de Acesso</label>
-                <input type="text" class="form-control" id="grupoFuncionario">
+                <input type="text" class="form-control" id="grupoFuncionario" name="grupo_de_acesso">
               </div>
               <div class="modal-footer">
                   <button type="submit" class="btn btn-primary">Cadastrar</button>
