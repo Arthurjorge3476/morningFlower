@@ -25,15 +25,32 @@ DROP TABLE IF EXISTS `fornecedores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fornecedores` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(255) NOT NULL,
   `nome` varchar(225) NOT NULL,
-  `sorenome` varchar(225) NOT NULL,
-  `cidade` varchar(25) NOT NULL,
-  `estado` varchar(25) NOT NULL,
-  `empresa` varchar(20) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `telefone` varchar(100) NOT NULL,
-  `cpf` char(8) NOT NULL,
-  UNIQUE KEY `cpf_UNIQUE` (`cpf`)
+  `endereco` varchar(100) NOT NULL,
+  `cidade` varchar(225) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
+  `estado` varchar(45) NOT NULL,
+  `cep` varchar(10) NOT NULL,
+  `telefone1` varchar(16) NOT NULL,
+  `telefone2` varchar(16) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `cnpj` varchar(30) NOT NULL,
+  `vendedor` varchar(225) NOT NULL,
+  `telefonevendedor1` varchar(16) NOT NULL,
+  `telefonevendedor2` varchar(16) DEFAULT NULL,
+  `condicaodavenda` varchar(225) DEFAULT NULL,
+  `atividade` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`,`codigo`,`cnpj`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `codigo_UNIQUE` (`codigo`),
+  UNIQUE KEY `cnpj_UNIQUE` (`cnpj`),
+  UNIQUE KEY `telefone1_UNIQUE` (`telefone1`),
+  UNIQUE KEY `telefonevendedor1_UNIQUE` (`telefonevendedor1`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `telefone2_UNIQUE` (`telefone2`),
+  UNIQUE KEY `telefonevendedor2_UNIQUE` (`telefonevendedor2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -74,7 +91,7 @@ CREATE TABLE `funcionarios` (
   UNIQUE KEY `ctps_UNIQUE` (`ctps`),
   UNIQUE KEY `senha_UNIQUE` (`senha`),
   UNIQUE KEY `grupo_de_acesso_UNIQUE` (`grupo_de_acesso`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,4 +142,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-16 21:55:50
+-- Dump completed on 2023-07-19 21:30:41

@@ -94,33 +94,36 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="cadastro">
+          <form class="cadastro" method="POST" action="../autenticarfornecedores.php">
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="nomedofornecedor">Nome</label>
-                <input type="nome" class="form-control" id="nomedofornecedor">
+              <div class="form-group col-md-2">
+                <label for="codigodofornecedor">Código</label>
+                <input type="text" class="form-control" id="codigodofornecedor" name="codigo">
               </div>
-              <div class="form-group col-md-6">
-                <label for="cpfdofornecedor">CPF</label>
-                <input type="text" class="form-control" id="cpfdofornecedor">
-              </div>
+
               <div class="form-group col-md-12">
-                <label for="emaildofornecedor">Email</label>
-                <input type="email" class="form-control" id="emaildofornecedor">
+                <label for="nomedofornecedor">Nome da Empresa</label>
+                <input type="text" class="form-control" id="nomedofornecedor" name="nome">
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="telefonedofornecedor">Telefone</label>
-                  <input type="text" class="form-control" id="telefonedofornecedor">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="cidadedofornecedor">Cidade</label>
-                  <input type="texto" class="form-control" id="cidadedofornecedor">
+
+              <div class="form-group col-md-6">
+                  <label for="enderecodofornecedor">Endereço</label>
+                  <input type="texto" class="form-control" id="enderecodofornecedor" name="endereco">
                 </div>
 
-                <div class="form-group col-md-6">
+               <div class="form-group col-md-6">
+                  <label for="cidadedofornecedor">Cidade</label>
+                  <input type="texto" class="form-control" id="cidadedofornecedor" name="cidade">
+                </div>
+
+                <div class="form-group col-md-2">
+                  <label for="bairrodofornecedor">Bairro</label>
+                  <input type="texto" class="form-control" id="bairrodofornecedor" name="bairro">
+                </div>
+
+               <div class="form-group col-md-2">
                   <label for="estadodofornecedor">Estado</label>
-                  <select class="form-control" aria-label=".form-select-lg example" id="estadodofornecedor">
+                  <select class="form-control" aria-label=".form-select-lg example" id="estadodofornecedor" name="estado">
                     <option selected> </option>
                     <option value="AC">AC</option>
                     <option value="AL">AL</option>
@@ -154,24 +157,64 @@
                   </select>
                 </div>
 
-                <div class="form-group col-md-12">
-                  <label for="empresadofornecedor">Empresa</label>
-                  <input type="text" class="form-control" id="empresadofornecedor">
+                <div class="form-group col-md-2">
+                  <label for="cepdofornecedor">CEP</label>
+                  <input type="texto" class="form-control" id="cepdofornecedor" name="cep">
                 </div>
+
+                <div class="form-group col-md-3">
+                  <label for="telefone1dofornecedor">Telefone 1</label>
+                  <input type="texto" class="form-control" id="telefone1dofornecedor" name="telefone1">
+                </div>
+
+                <div class="form-group col-md-3">
+                  <label for="telefone2dofornecedor">Telefone 2</label>
+                  <input type="texto" class="form-control" id="telefone2dofornecedor" name="telefone2">
+                </div>
+
+              <div class="form-group col-md-6">
+                <label for="emaildofornecedor">Email</label>
+                <input type="email" class="form-control" id="emaildofornecedor" name="email">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="cnpjdofornecedor">CNPJ</label>
+                <input type="text" class="form-control" id="cnpjdofornecedor" name="cnpj">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="vendedordofornecedor">Vendedor</label>
+                <input type="text" class="form-control" id="vendedordofornecedor" name="vendedor">
+              </div>
+
+              <div class="form-group col-md-3">
+                <label for="telefonedofornecedor">Telefone 1</label>
+                <input type="text" class="form-control" id="telefonedofornecedor" name="telefonevendedor1">
+              </div>
+
+              <div class="form-group col-md-3">
+                <label for="telefonedovendedor">Telefone 2</label>
+                <input type="text" class="form-control" id="telefonedovendedor" name="telefonevendedor2">
+              </div>
+              
+              <div class="form-group col-md-6">
+                <label for="codicaodavenda">Condição da venda</label>
+                <input type="text" class="form-control" id="codicaodavenda" name="condicaodavenda">
               </div>
 
 
+              <div class="form-group col-md-6">
+                <label for="atividadedavenda">Atividade</label>
+                <input type="text" class="form-control" id="atividadedavenda" name="atividade">
+              </div>
 
-            </div>
-            <div class="form-group col-md-6">
 
-            </div>
+              <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-primary">Cadastrar</button>
-        </div>
+        
       </div>
     </div>
   </div>
