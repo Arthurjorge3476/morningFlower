@@ -78,59 +78,73 @@
           <div class="container">
 
             <body class="area-login">
-              <form class="cadastro">
+              <form class="cadastro" method="POST" action="../autenticarprodutos.php">
                 <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="codigo">Cod:</label>
-                    <input type="number" class="form-control" id="codigo">
+                  <div class="form-group col-md-3">
+                    <label for="codigo">Código:</label>
+                    <input type="text" class="form-control" id="codigo">
                   </div>
 
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-12">
                     <label for="inputprodutos">Produto</label>
-                    <input type="text" class="form-control" id="inputprodutos">
+                    <input type="text" class="form-control" id="inputprodutos"  name="produto">
                   </div>
-                  <div class="form-group col-md-3">
-                    <label for="quantidade">Quantidade</label>
-                    <input type="number" class="form-control" id="quantidade">
+                  <div class="form-group col-md-6">
+                    <label for="categoria">Categoria</label>
+                    <input type="text" class="form-control" id="categoria" name="categoria">
                   </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-3">
-                    <label for="compra">Preço de Compra</label>
-                    <input type="text" class="form-control" id="compra">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label for="venda">Preço de Venda</label>
-                    <input type="text" class="form-control" id="venda">
-                  </div>
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-6">
                     <label for="fornecedor">Fornecedor</label>
-                    <select class="form-control" aria-label=".form-select-lg example" id="fornecedor">
+                    <select class="form-control" aria-label=".form-select-lg example" id="fornecedor" name="fornecedor">
                       <option selected> </option>
                       <option value="fornecedor">Rodrigo Silva</option>
                       <option value="fornecedor">Carlos Daniel</option>
                     </select>
                   </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="precodecusto">Preço de Custo</label>
+                    <input type="text" class="form-control" id="precodecusto" name="precodecusto">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="venda">Preço de Venda</label>
+                    <input type="text" class="form-control" id="venda" name="precodevenda">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="margemdelucro">Margem de lucro[%]</label>
+                    <input type="text" class="form-control" id="margemdelucro" name="margemdelucro">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="lucroanterior">Lucro anterior[%]</label>
+                    <input type="text" class="form-control" id="lucroanterior" name="lucroanterior">
+                  </div>
+                 
+                  <div class="form-group col-md-3">
+                    <label for="estoque">Estoque</label>
+                    <input type="text" class="form-control" id="estoque" name="estoque">
+                  </div>
                   <div class="form-group col-md-3">
                     <label for="validade">Validade</label>
-                    <input type="date" class="form-control" id="validade">
+                    <input type="date" class="form-control" id="validade" name="validade">
                   </div>
                   <div class="form-group col-md-6">
                     <form method="post" action="cadastroProdutos.php" enctype="multipart/form-data">
-                      <input type="file" name="imagem">
+                      <input type="file" name="fotodoproduto">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputobs">Observação do Produto:</label>
-                    <textarea id="produtossalvos" name="produtos" class="form-control" rows="8" cols="50"></textarea>
+                    <textarea id="produtossalvos" name="observacao" class="form-control" rows="8" cols="50"></textarea>
                   </div>
                 </div>
+                <div class="modal-footer">
+          
+          <button type="button" class="btn btn-primary">Cadastrar</button>
+        </div>
               </form>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="funcao1()" value="Você tem certeza?">Fechar</button>
-          <button type="button" class="btn btn-primary">Cadastrar</button>
-        </div>
+        
       </div>
     </div>
   </div>

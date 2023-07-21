@@ -1,7 +1,6 @@
 <?php
 require_once('conexao.php');
 
-$codigo = $_POST['codigo'];
 $nome = $_POST['nome'];
 $endereco = $_POST['endereco'];
 $cidade = $_POST['cidade'];
@@ -21,14 +20,13 @@ $atividade = $_POST['atividade'];
 try{
 // Preparar a consulta SQL para inserção dos dados na tabela
 
-$sql = "INSERT INTO funcionarios (codigo, nome,endereco , cidade,bairro , estado, cep, telefone1,telefone2 , email,cnpj,vendedor,telefonevendedor1, telefonevendedor2,condicaodavenda ,atividade ) VALUES ( :codigo, :nome,:endereco , :cidade,:bairro , :estado, :cep, :telefone1,:telefone2 , :email,:cnpj,:vendedor,:telefonevendedor1, :telefonevendedor2,:condicaodavenda ,:atividade )";
+$sql = "INSERT INTO funcionarios ( nome,endereco , cidade,bairro , estado, cep, telefone1,telefone2 , email,cnpj,vendedor,telefonevendedor1, telefonevendedor2,condicaodavenda ,atividade ) VALUES (  :nome,:endereco , :cidade,:bairro , :estado, :cep, :telefone1,:telefone2 , :email,:cnpj,:vendedor,:telefonevendedor1, :telefonevendedor2,:condicaodavenda ,:atividade )";
 $stmt = $conexao->prepare($sql);
 
 
 
 //Executar a consulta SQL com os valores do formulário
 
-$stmt->bindParam(':codigo', $codigo);
 $stmt->bindParam(':nome', $nome);
 $stmt->bindParam(':endereco', $endereco);
 $stmt->bindParam(':cidade', $cidade);
