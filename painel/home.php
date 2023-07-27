@@ -178,8 +178,11 @@ if ($content !== '') {
             li.parentNode.removeChild(li);
         }
     </script>
-// pesquisa
 
+
+
+<!--
+// pesquisa
 <input type="text" id="termo-pesquisa" placeholder="Digite o termo de pesquisa">
     <button onclick="pesquisar()">Pesquisar</button>
     <ul id="resultado-pesquisa"></ul>
@@ -212,6 +215,7 @@ if ($content !== '') {
         }
     </script>
 
+    -->
 
 </body>
 </html>

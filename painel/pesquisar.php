@@ -1,10 +1,14 @@
+
+
+
 <?php
+/*
 // Configuração do banco de dados
 $dbConfig = array(  
   $host = "localhost";
   $dbname = "morningflower";
   $username = "root";
-  $password = "";
+  $password = "aluno01";
 );
 
 // Conexão com o banco de dados
@@ -38,3 +42,4 @@ $connection->close();
 header('Content-Type: application/json');
 echo json_encode($resultados);
 ?>
+*/
