@@ -119,6 +119,9 @@ if ($content !== '') {
     </style>
 </head>
 <body>
+
+
+
     <header>
         <nav>
             <div class="logo">
@@ -175,5 +178,40 @@ if ($content !== '') {
             li.parentNode.removeChild(li);
         }
     </script>
+// pesquisa
+
+<input type="text" id="termo-pesquisa" placeholder="Digite o termo de pesquisa">
+    <button onclick="pesquisar()">Pesquisar</button>
+    <ul id="resultado-pesquisa"></ul>
+
+    <script>
+        function pesquisar() {
+            const termoPesquisa = document.getElementById('termo-pesquisa').value;
+
+            // Faz a requisição AJAX para o servidor PHP
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/pesquisar.php?termo=${encodeURIComponent(termoPesquisa)}`, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    const resultados = JSON.parse(xhr.responseText);
+                    exibirResultados(resultados);
+                }
+            };
+            xhr.send();
+        }
+
+        function exibirResultados(resultados) {
+            const ulResultado = document.getElementById('resultado-pesquisa');
+            ulResultado.innerHTML = '';
+
+            resultados.forEach(resultado => {
+                const li = document.createElement('li');
+                li.textContent = resultado.nome;
+                ulResultado.appendChild(li);
+            });
+        }
+    </script>
+
+
 </body>
 </html>
