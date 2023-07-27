@@ -143,7 +143,7 @@ if ($content !== '') {
         </nav>
     </header>
 
-    <div class="area-login"></div>
+    <div class="area-login">
 
     <div id="notepad">
         <h1>Bloco de Anotações</h1>
@@ -177,6 +177,7 @@ if ($content !== '') {
             var li = button.parentNode;
             li.parentNode.removeChild(li);
         }
+    
     </script>
 
 

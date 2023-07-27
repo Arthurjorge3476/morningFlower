@@ -2,32 +2,26 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.area-login{
-      display: flex;
-      justify-content: center;
-      height: 92px; 
-      align-items: center;
-      background-image: url("../img/imagemdefundo.jpg");
-      background-size: cover;
+/*imagem de fundo da tela index*/
+
+body.login {
+  background-image: url("../img/imagemdefundo.jpg");
+  display: flex;
+  justify-content: center;
+  background-size: cover;
 
 }
 
 
-.login{
-    background-color: 
-    #244c24;
-    width: 355px;
-    height: 320px;
-    padding: 35px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
+/*corpo da página do index*/
+div.container{
+
+
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: #f0f0f0;
 }
-* {
-    margin: 0;
-    padding: 0;
-  }
   
   a {
     color: #fff;
@@ -40,14 +34,7 @@ body{
   }
   
   
-  
-  div.logo img {
-         width: 5em;
-         position: absolute;
-         margin-top: -40px;
-  
-  
-  }
+
   
   nav {
     display: flex;
@@ -59,7 +46,7 @@ body{
   }
   
   main {
-    background: url("imagemdefundo.jpg") no-repeat center center;
+    background: url("../img/imagemdefundo.jpg") no-repeat center center;
     opacity: 0.6;
     background-size: cover;
     height: 92vh;
@@ -166,6 +153,9 @@ input.botao{
     background-color: #4CAF50;
 }
 
+
+/*logo da tela index*/
+
 .login img{
     width: 80px;
     height: auto;
@@ -259,9 +249,7 @@ form.cadastro label{
     text-align: center;
 }
 
-
-
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 12px;               
   }
   
