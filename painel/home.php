@@ -39,137 +39,74 @@ if ($content !== '') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Morning Flower</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/telainicial.css" />
-    
-    <style>
-        #notepad {
-            background-image:url('../img/folha_de_caderno.avif');
-            background-repeat: no-repeat;
-            width: 355px;
-            height: 320px;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-size: cover;
-            font-family: 'Helvetica', sans-serif;
-            justify-content: center;
-            align-items: center;
-            margin: 20px;
-            line-height: 1.0;
-            overflow: auto;
-        }
-
-        li.bloco {
-            margin-bottom: 25px;
-            padding: 8px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-        }
-
-        h1 {
-            width: 300px;
-            height: 10px;
-            padding: 25px;
-            right: 100px;
-            margin-left: auto;
-            text-align: center;
-            font-size: 24px;
-            color: #333;
-        }
-
-        button {
-            padding: 8px 16px;
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .add-note-btn {
-            display: flex;
-            align-items: center;
-        }
-
-        .add-note-btn i {
-            margin-right: 4px;
-        }
-
-        .delete-note-btn {
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 14px;
-            cursor: pointer;
-            margin-left: 4px;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-
-
     <header>
-        <nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="logo">
                 <img src="../img/logo.png.png">
             </div>
-      
-            <div class="mobile-menu">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+            <button class="navbar-toggler mobile-menu" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Presentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="funcionarios.php">Funcionários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.php">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fornecedores.php">Fornecedores</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav-list">
-                <li><a href="home.php">Home</a></li>
-                <li><a href="">Presentes</a></li>
-                <li><a href="funcionarios.php">Funcionários</a></li>
-                <li><a href="produtos.php">Produtos</a></li>
-                <li><a href="fornecedores.php">Fornecedores</a></li>
-            </ul>
         </nav>
     </header>
 
     <div class="area-login">
-
-    <div id="notepad">
-        <h1>Bloco de Anotações</h1>
-        <form method="POST">
-            <ul id="notes-list">
-                <?php foreach ($notes as $index => $note): ?>
-                    <li class="bloco">
-                        <input type="checkbox" name="notes[<?php echo $index; ?>][checked]" <?php echo $note['checked'] ? 'checked' : ''; ?>>
-                        <input type="text" name="notes[<?php echo $index; ?>][content]" value="<?php echo $note['content']; ?>">
-                        <button type="button" class="delete-note-btn" onclick="deleteNote(this)">X</button>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            <div class="add-note-btn">
-                <button type="button" onclick="addNote()"><i>+</i>Adicionar Anotação</button>
-                <button type="submit" name="save-btn">Salvar</button>
-            </div>
-            
-        </form>
+        <div id="notepad">
+            <h1 class="mt-3">Bloco de Anotações</h1>
+            <form method="POST">
+                <ul id="notes-list" class="list-unstyled">
+                    <?php foreach ($notes as $index => $note): ?>
+                        <li class="bloco d-flex align-items-center mb-2">
+                            <input type="checkbox" name="notes[<?php echo $index; ?>][checked]" <?php echo $note['checked'] ? 'checked' : ''; ?> class="mr-2">
+                            <input type="text" name="notes[<?php echo $index; ?>][content]" value="<?php echo $note['content']; ?>" class="form-control mr-2">
+                            <button type="button" class="btn btn-danger delete-note-btn" onclick="deleteNote(this)">X</button>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <div class="add-note-btn mt-3">
+                    <button type="button" class="btn btn-primary" onclick="addNote()"><i>+</i>Adicionar Anotação</button>
+                    <button type="submit" name="save-btn" class="btn btn-success">Salvar</button>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <!-- Add Bootstrap JS (jQuery is required for Bootstrap JS to work) -->
+    
 
     <script>
         function addNote() {
             var notesList = document.getElementById('notes-list');
             var li = document.createElement('li');
-            li.innerHTML = '<input type="checkbox" name="notes[checked][]" value="1"><input type="text" name="notes[content][]" value=""><button type="button" class="delete-note-btn" onclick="deleteNote(this)">X</button>';
+            li.className = 'bloco d-flex align-items-center mb-2';
+            li.innerHTML = '<input type="checkbox" name="notes[checked][]" value="1" class="mr-2"><input type="text" name="notes[content][]" value="" class="form-control mr-2"><button type="button" class="btn btn-danger delete-note-btn" onclick="deleteNote(this)">X</button>';
             notesList.appendChild(li);
         }
 
@@ -177,8 +114,14 @@ if ($content !== '') {
             var li = button.parentNode;
             li.parentNode.removeChild(li);
         }
-    
     </script>
+
+    
+</body>
+</html>
+
+
+
 
 
 
@@ -217,6 +160,3 @@ if ($content !== '') {
     </script>
 
     -->
-
-</body>
-</html>

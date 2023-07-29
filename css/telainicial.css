@@ -1,19 +1,19 @@
 
 
-/* Reset some default styles to ensure consistent rendering */
+/* estilo da página */
 body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Set the background image for the login page */
+/* Definição da imagem de fundo da tela de login(index) */
 body.login {
   background-image: url("../img/imagemdefundo.jpg");
   background-size: cover;
 }
 
-/* Center the login form vertically and horizontally */
+/* centralização do formulário da tela de login(index) */
 section {
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@ section {
   height: 100vh;
 }
 
-/* Style the form container */
+/* Estilizar o contêiner de formulário login(index) */
 div.container {
   max-width: 300px;
   padding: 40px;
@@ -35,15 +35,15 @@ div.container {
   
 }
 
-/* Style the logo image */
+/* Estilize a imagem do logotipo do login(index) */
 div.logo img {
   max-width: 50%;
   height: auto;
-  margin: 0 auto 15px; /* Center the logo image horizontally */
+  margin: 0 auto 15px; /* Centralize a imagem do logotipo horizontalmente */
   display: block;
 }
 
-/* Style the form input fields */
+/* Estilizar os campos de entrada do formulário do login(index) */
 input.form-control {
   width: 100%;
   padding: 20px;
@@ -52,7 +52,7 @@ input.form-control {
   border-radius: 20px;
 }
 
-/* Style the login button */
+/* Estilize o botão de login(index) */
 button.btn-success {
   width: 100%;
   padding: 12px;
@@ -62,10 +62,52 @@ button.btn-success {
   border: none;
 }
 
-/* Center the form horizontally within the container */
+/* Centralize o formulário horizontalmente dentro do contêiner do login(index) */
 div.container form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+
+
+
+
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.header {
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../img/imagemdefundo.jpg") no-repeat center center;
+  background-size: cover;
+  opacity: 0.6;
+}
+
+.area-login {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+}
+
+#notepad {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
