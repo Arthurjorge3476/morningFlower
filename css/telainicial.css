@@ -75,39 +75,75 @@ div.container form {
 
 
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+
+
+/* Header styles */
+header.corpo {
+  padding: 0px;
+  box-shadow: 10 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header {
-  flex-shrink: 0;
-}
 
-.main-content {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url("../img/imagemdefundo.jpg") no-repeat center center;
-  background-size: cover;
-  opacity: 0.6;
-}
 
+/* Main content area styles */
 .area-login {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  background-color: #fff;
+  width: 30%;
   padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#notepad {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+/* Notepad styles */
+
+
+#notepad h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
+
+/* Note styles */
+.bloco {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.bloco input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.bloco input[type="text"] {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Button styles */add-note-btn {
+  margin-top: 20px;
+}
+
+.add-note-btn button {
+  margin-right: 10px;
+}
+
+/* Adjust the mobile menu icon color */
+.navbar-toggler-icon {
+  color: #000; /* Change to the desired color */
+}
+
+
+/*
+nav.navbar{
+  width: 100000px;
+  padding: 12px;
+  display: flex;
+  border-radius: 15px;
+  align-items: center;
+  background-color: #23232e;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  height: 8vh;
+}*/

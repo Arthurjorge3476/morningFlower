@@ -46,8 +46,8 @@ if ($content !== '') {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
-    <header>
+<body class="login">
+    <header class="corpo">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="logo">
                 <img src="../img/logo.png.png">
@@ -79,7 +79,7 @@ if ($content !== '') {
 
     <div class="area-login">
         <div id="notepad">
-            <h1 class="mt-3">Bloco de Anotações</h1>
+            <h1 class="mt-1">Bloco de Anotações</h1>
             <form method="POST">
                 <ul id="notes-list" class="list-unstyled">
                     <?php foreach ($notes as $index => $note): ?>
@@ -90,7 +90,7 @@ if ($content !== '') {
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <div class="add-note-btn mt-3">
+                <div class="add-note-btn mt-1">
                     <button type="button" class="btn btn-primary" onclick="addNote()"><i>+</i>Adicionar Anotação</button>
                     <button type="submit" name="save-btn" class="btn btn-success">Salvar</button>
                 </div>
