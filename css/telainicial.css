@@ -76,14 +76,18 @@ div.container form {
 
 
 
-
 /* Header styles */
 header.corpo {
   padding: 0px;
   box-shadow: 10 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
+div.iconelogo img {
+  max-width: 50px;
+  height: auto;
+  margin: 0 auto 15px; /* Centralize a imagem do logotipo horizontalmente */
+  display: block;
+}
 
 /* Main content area styles */
 .area-login {
@@ -133,15 +137,24 @@ header.corpo {
 }
 
 
+.a{
+  color: black;
+    text-decoration: underline;
+}
+
+navbar-brand{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
 /*
 nav.navbar{
-  width: 100000px;
+  width: 10px;
   padding: 12px;
   display: flex;
   border-radius: 15px;
   align-items: center;
   background-color: #23232e;
-  display: flex;
   justify-content: space-around;
   align-items: center;
   font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
