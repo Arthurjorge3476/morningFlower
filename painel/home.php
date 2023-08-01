@@ -94,6 +94,10 @@ if ($content !== '') {
                     <button type="button" class="btn btn-primary" onclick="addNote()"><i>+</i>Adicionar Anotação</button>
                     <button type="submit" name="save-btn" class="btn btn-success">Salvar</button>
                 </div>
+                <div class="save-note-btn mt-1">
+                <button type="submit" name="save-btn" class="btn btn-success">Salvar</button>
+                    </div>
+
             </form>
         </div>
     </div>
