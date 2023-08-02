@@ -32,7 +32,7 @@
                     <a class="nav-item nav-link " href="index.php?acao=funcionarios">Funcionários</a>
                     <a class="nav-item nav-link " href="index.php?acao=produtos">Produtos</a>
                     <a class="nav-item nav-link  " href="index.php?acao=fornecedores">Fornecedores</a>
-
+                    <a class="nav-item nav-link  " href="index.php?acao=formulario_comprovante">Comprovante</a>
                 </div>
             </div>
         </nav>
@@ -52,6 +52,9 @@
             }
             elseif($acao == 'fornecedores'){
                 include('fornecedores.php');
+            }
+             elseif($acao == 'comprovante'){
+                include('formulario_comprovante.php');
             }
         } else {
             include('home.php');
