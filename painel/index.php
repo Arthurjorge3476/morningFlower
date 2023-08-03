@@ -1,3 +1,4 @@
+
 <?php
 
 ?>
@@ -33,6 +34,7 @@
                     <a class="nav-item nav-link " href="index.php?acao=produtos">Produtos</a>
                     <a class="nav-item nav-link  " href="index.php?acao=fornecedores">Fornecedores</a>
                     <a class="nav-item nav-link  " href="index.php?acao=formulario_comprovante">Comprovante</a>
+                    
                 </div>
             </div>
         </nav>
@@ -61,47 +63,18 @@
         }
     ?>
 </div>
+<h2>Área de Pesquisa</h2>
+    <form action="consulta.SQL.php" method="get">
+        <label for="pesquisa">Digite sua pesquisa:</label>
+        <input type="text" name="pesquisa" id="pesquisa" required>
+        <br>
+        <input type="submit" value="Pesquisar">
+    </form>
+    <?php  include('consulta.SQL.php'); 
+    
+    ?>
 </body>
 
 </html>
 
 
-
-
-
-
-<!--
-// pesquisa
-<input type="text" id="termo-pesquisa" placeholder="Digite o termo de pesquisa">
-    <button onclick="pesquisar()">Pesquisar</button>
-    <ul id="resultado-pesquisa"></ul>
-
-    <script>
-        function pesquisar() {
-            const termoPesquisa = document.getElementById('termo-pesquisa').value;
-
-            // Faz a requisição AJAX para o servidor PHP
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', `/pesquisar.php?termo=${encodeURIComponent(termoPesquisa)}`, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    const resultados = JSON.parse(xhr.responseText);
-                    exibirResultados(resultados);
-                }
-            };
-            xhr.send();
-        }
-
-        function exibirResultados(resultados) {
-            const ulResultado = document.getElementById('resultado-pesquisa');
-            ulResultado.innerHTML = '';
-
-            resultados.forEach(resultado => {
-                const li = document.createElement('li');
-                li.textContent = resultado.nome;
-                ulResultado.appendChild(li);
-            });
-        }
-    </script>
-
-    -->

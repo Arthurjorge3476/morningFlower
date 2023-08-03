@@ -130,6 +130,7 @@
               </div>
               <div class="modal-footer">
                   <button type="submit" class="btn btn-primary">Cadastrar</button>
+                  
               </div>
           </form>
         </div>
