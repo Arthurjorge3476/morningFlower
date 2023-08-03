@@ -1,5 +1,5 @@
 <?php
-require_once('conexao.php');
+require_once('consulta.SQL.php');
 
 $nome = $_POST['nome'];
 $endereco = $_POST['endereco'];
@@ -16,6 +16,11 @@ $telefonevendedor = $_POST['telefonevendedor1'];
 $telefonevendedor2 = $_POST['telefonevendedor2'];
 $condicaodavenda = $_POST['condicaodavenda'];
 $atividade = $_POST['atividade'];
+
+$campos = array('nome',);
+$valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
+
+inserir('funcionarios', $campos, $valores);
 
 try{
 // Preparar a consulta SQL para inserção dos dados na tabela

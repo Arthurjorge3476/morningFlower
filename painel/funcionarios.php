@@ -1,3 +1,13 @@
+<?php
+
+$listaFuncionarios = select ('funcionarios');
+print_r($listaFuncionarios);
+
+
+?>
+
+
+
 <div> 
             <h2>Área de Pesquisa</h2>
     <form action="consulta.SQL.php" method="POST">
@@ -86,7 +96,7 @@
         </div>
         <div class="modal-body">
 
-          <form class="cadastro"  method="POST" action="../autenticarfuncionarios.php">
+          <form class="cadastro"  method="POST" action="index.php?acao=funcionarios">
 
             <div class="form-row">
               <div class="form-group col-md-9">
@@ -135,10 +145,10 @@
               </div>
               <div class="form-group col-md-3">
                 <label for="grupoFuncionario">Grupo de Acesso</label>
-                <input type="text" class="form-control" id="grupoFuncionario" name="grupo_de_acesso">
+                <input type="text" class="form-control" id="grupoFuncionario" max='1' name="grupo_de_acesso">
               </div>
               <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Cadastrar</button>
+                  <button type="submit" class="btn btn-primary" name="cadastrarFuncionarios">Cadastrar</button>
                   
               </div>
           </form>
