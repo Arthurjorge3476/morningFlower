@@ -82,7 +82,6 @@ inserir('produtos',$campos,$valores);
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Morning Flower</title>
-    <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/telainicial.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -93,7 +92,7 @@ inserir('produtos',$campos,$valores);
 <body class="login">
     <header class="corpo">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-            <img src="../img/logo.png.png"  >
+            
             <a class="navbar-brand" href="index.php">Morning Flower</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
@@ -105,11 +104,11 @@ inserir('produtos',$campos,$valores);
                     <a class="nav-item nav-link " href="index.php?acao=funcionarios">Funcionários</a>
                     <a class="nav-item nav-link " href="index.php?acao=produtos">Produtos</a>
                     <a class="nav-item nav-link  " href="index.php?acao=fornecedores">Fornecedores</a>
+                    <a class="nav-item nav-link" href="index.php?acao=comprovante">Comprovante</a>
 
                 </div>
             </div>
         </nav>
-                    <a class="nav-item nav-link  " href="index.php?acao=formulario_comprovante">Comprovante</a>
                     
                 </div>
             </div>
