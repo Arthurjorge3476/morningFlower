@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+=======
+<div> 
+            <h2>Área de Pesquisa</h2>
+    <form action="consulta.SQL.php" method="POST">
+        <label for="pesquisa">Digite sua pesquisa:</label>
+        <input type="text" name="pesquisa" id="pesquisa" required>
+        <br>
+        <input type="submit" value="Pesquisar">
+    </form>  
+ </div>
+ 
+>>>>>>> f773c1a74b4bc450c36c72f5f301f78980f2003c
 <table class="table table-bordered table-hover">
   <thead class="table-dark">
     <tr>
@@ -115,7 +128,11 @@
 
             <div class="form-group col-md-6">
               <label for="validade">Validade</label>
+<<<<<<< HEAD
               <input type="email" class="form-control" id="validade" name="validade">
+=======
+              <input type="text" class="form-control" id="validade" name="validade">
+>>>>>>> f773c1a74b4bc450c36c72f5f301f78980f2003c
             </div>
 
             <div class="form-group col-md-6">

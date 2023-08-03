@@ -1,5 +1,57 @@
+
 <?php
 
+
+include_once ('../consulta.SQL.php');
+
+if(isset($_POST['cadastrarFuncionarios'])) {
+
+$nome = $_POST['nome'];
+$data_de_nascimento = $_POST['data_de_nascimento'];
+$rg = $_POST['rg'];
+$cpf = $_POST['cpf'];
+$ctps = $_POST['ctps'];
+$cidade = $_POST['cidade'];
+$endereco = $_POST['endereco'];
+$cep = $_POST['cep'];
+$email = $_POST['email'];
+$telefone = $_POST['telefone'];
+$senha = $_POST['senha'];
+$grupo_de_acesso = $_POST['grupo_de_acesso'];
+
+
+
+$campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
+$valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
+
+inserir('funcionarios', $campos, $valores);
+
+}
+
+if(isset($_POST['cadastrarFornecedores'])){
+
+$nome = $_POST['nome'];
+$endereco = $_POST['endereco'];
+$cidade = $_POST['cidade'];
+$bairro = $_POST['bairro'];
+$estado = $_POST['estado'];
+$cep = $_POST['cep'];
+$telefone1 = $_POST['telefone1'];
+$telefone2 = $_POST['telefone2'];
+$email = $_POST['email'];
+$cnpj = $_POST['cnpj'];
+$vendedor = $_POST['vendedor'];
+$telefonevendedor = $_POST['telefonevendedor1'];
+$telefonevendedor2 = $_POST['telefonevendedor2'];
+$condicaodavenda = $_POST['condicaodavenda'];
+$atividade = $_POST['atividade'];
+
+$campos = array('nome', 'endereco', 'cidade','bairro','estado','cep','telefone1','telefone2','email','cnpj','vendedor','telefonevendedor1','telefonevendedor2','condicaodavenda','atividade');
+$valores = array($nome, $endereco, $cidade,$bairro,$estado,$cep,$teleone1,$teleone2,$email,$cnpj,$vendedor,$teleonevendedor1,$teleonevendedor2,$condicaodavenda,$atividade);
+
+inserir('fornecedores', $campos, $valores);
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +88,13 @@
                 </div>
             </div>
         </nav>
+                    <a class="nav-item nav-link  " href="index.php?acao=formulario_comprovante">Comprovante</a>
+                    
+                </div>
+            </div>
+        </nav>
+     
+
 </header>
 
 <div>
@@ -53,6 +112,9 @@
             elseif($acao == 'fornecedores'){
                 include('fornecedores.php');
             }
+             elseif($acao == 'comprovante'){
+                include('formulario_comprovante.php');
+             }
         } else {
             include('home.php');
         }
@@ -61,44 +123,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-<!--
-// pesquisa
-<input type="text" id="termo-pesquisa" placeholder="Digite o termo de pesquisa">
-    <button onclick="pesquisar()">Pesquisar</button>
-    <ul id="resultado-pesquisa"></ul>
-
-    <script>
-        function pesquisar() {
-            const termoPesquisa = document.getElementById('termo-pesquisa').value;
-
-            // Faz a requisição AJAX para o servidor PHP
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', `/pesquisar.php?termo=${encodeURIComponent(termoPesquisa)}`, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    const resultados = JSON.parse(xhr.responseText);
-                    exibirResultados(resultados);
-                }
-            };
-            xhr.send();
-        }
-
-        function exibirResultados(resultados) {
-            const ulResultado = document.getElementById('resultado-pesquisa');
-            ulResultado.innerHTML = '';
-
-            resultados.forEach(resultado => {
-                const li = document.createElement('li');
-                li.textContent = resultado.nome;
-                ulResultado.appendChild(li);
-            });
-        }
-    </script>
-
-    -->

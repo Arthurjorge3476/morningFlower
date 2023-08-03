@@ -1,5 +1,8 @@
 <?php
-require_once('conexao.php');
+
+//require_once('conexao.php');
+include_once ('consulta.SQL.php');
+
 
 $nome = $_POST['nome'];
 $data_de_nascimento = $_POST['data_de_nascimento'];
@@ -14,36 +17,11 @@ $telefone = $_POST['telefone'];
 $senha = $_POST['senha'];
 $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
-try{
-// Preparar a consulta SQL para inserção dos dados na tabela
-
-$sql = "INSERT INTO funcionarios ( nome, data_de_nascimento, rg, cpf, ctps, cidade, endereco, cep, email, telefone, senha, grupo_de_acesso) VALUES ( :nome, :data_de_nascimento, :rg, :cpf, :ctps, :cidade, :endereco, :cep, :email, :telefone, :senha, :grupo_de_acesso)";
-$stmt = $conexao->prepare($sql);
 
 
+$campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
+$valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
 
-//Executar a consulta SQL com os valores do formulário
+inserir('funcionarios', $campos, $valores);
 
-
-$stmt->bindParam(':nome', $nome);
-$stmt->bindParam(':data_de_nascimento', $data_de_nascimento);
-$stmt->bindParam(':rg', $rg);
-$stmt->bindParam(':cpf', $cpf);
-$stmt->bindParam(':ctps', $ctps);
-$stmt->bindParam(':cidade', $cidade);
-$stmt->bindParam(':endereco', $endereco);
-$stmt->bindParam(':cep', $cep);
-$stmt->bindParam(':email', $email);
-$stmt->bindParam(':telefone', $telefone);
-$stmt->bindParam(':senha', $senha);
-$stmt->bindParam(':grupo_de_acesso', $grupo_de_acesso);
-$stmt->execute();
-
-
-
-echo "Dados cadastrados com sucesso!";
-}
-catch (PDOException $e) {
-echo "Erro ao cadastrar os dados: " . $e->getMessage();
-}
 ?>

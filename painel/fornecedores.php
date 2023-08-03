@@ -1,5 +1,22 @@
+<?php
 
-  <table class="table table-bordered table-hover">
+$listaFornecedores = select ('fornecedores');
+print_r($listaFornecedores);
+
+
+?>
+<div> 
+            <h2>Área de Pesquisa</h2>
+    <form action="consulta.SQL.php" method="POST">
+        <label for="pesquisa">Digite sua pesquisa:</label>
+        <input type="text" name="pesquisa" id="pesquisa" required>
+        <br>
+        <input type="submit" value="Pesquisar">
+    </form>  
+ </div>
+>>>>>>> f773c1a74b4bc450c36c72f5f301f78980f2003c
+  
+<table class="table table-bordered table-hover">
     <thead class="table-dark">
       <tr>
         <th scope="col">#</th>
@@ -80,7 +97,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="cadastro" method="POST" action="../autenticarfornecedores.php">
+          <form class="cadastro" method="POST" action="index.php">
             <div class="form-row">
               <div class="form-group col-md-2">
                 <label for="codigodofornecedor">Código</label>
@@ -196,7 +213,7 @@
 
 
               <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
+          <button type="submit" class="btn btn-primary" name="cadastrarFornecedores">Cadastrar</button>
         </div>
           </form>
         </div>
