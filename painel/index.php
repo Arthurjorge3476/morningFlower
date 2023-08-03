@@ -52,6 +52,26 @@ $valores = array($nome, $endereco, $cidade,$bairro,$estado,$cep,$teleone1,$teleo
 inserir('fornecedores', $campos, $valores);
 
 }
+
+if(isset($_POST['cadastrarProdutos'])){
+    
+$produto = $_POST['produto'];
+$categoria = $_POST['categoria'];
+$fornecedor = $_POST['fornecedor'];
+$precodecusto = $_POST['precodecusto'];
+$precodevenda = $_POST['precodevenda'];
+$margemdelucro = $_POST['margemdelucro'];
+$lucroanterior = $_POST['lucroanterior'];
+$estoque = $_POST['estoque'];
+$validade = $_POST['validade'];
+$observacao = $_POST['observacao'];
+$fotodoproduto = $_POST['fotodoproduto'];
+
+$campos = array('produto','categoria','fornecedor','precodecusto','precodevenda','margemdelucro','lucroanterior','estoque','validade','observacao','fotodoproduto');
+$valores = array($produto,$categoria,$fornecedor,$precodecusto,$precodevenda,$margemdelucro,$lucroanterior,$estoque,$validade,$observacao,$fotodoproduto);
+
+inserir('produtos',$campos,$valores);
+}
 ?>
 
 <!DOCTYPE html>

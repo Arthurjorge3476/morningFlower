@@ -1,5 +1,10 @@
-<<<<<<< HEAD
-=======
+<?php
+
+$listaProdutos = select ('produtos');
+print_r($listaProdutos);
+
+
+?>
 <div> 
             <h2>Área de Pesquisa</h2>
     <form action="consulta.SQL.php" method="POST">
@@ -75,7 +80,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="cadastro" method="POST" action="../autenticarprodutos.php">
+        <form class="cadastro" method="POST" action="index.php">
           <div class="form-row">
             <div class="form-group col-md-2">
               <label for="codigodoprodutos">Código</label>
@@ -148,7 +153,7 @@
 
 
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Cadastrar</button>
+              <button type="submit" class="btn btn-primary" name="cadastrarProdutos">Cadastrar</button>
             </div>
         </form>
       </div>
