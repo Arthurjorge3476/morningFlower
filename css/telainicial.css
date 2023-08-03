@@ -74,9 +74,6 @@ div.container form {
 
 
 
-
-
-<<<<<<< HEAD
 /* Header styles */
 header.corpo {
   padding: 0px;
@@ -145,8 +142,17 @@ div.iconelogo img {
 
 navbar-brand{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ 
 }
 
+nav.navbar.img{
+  width: 80px;
+  height: auto;
+}
+
+nav.navbar{
+  background-color: #23232e; 
+}
 
 /*
 nav.navbar{
@@ -161,5 +167,4 @@ nav.navbar{
   font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
   height: 8vh;
 }*/
-=======
->>>>>>> f773c1a74b4bc450c36c72f5f301f78980f2003c
+

@@ -1,7 +1,7 @@
 <?php
 
 $listaFornecedores = select ('fornecedores');
-print_r($listaFornecedores);
+
 
 
 ?>
@@ -14,7 +14,7 @@ print_r($listaFornecedores);
         <input type="submit" value="Pesquisar">
     </form>  
  </div>
->>>>>>> f773c1a74b4bc450c36c72f5f301f78980f2003c
+
   
 <table class="table table-bordered table-hover">
     <thead class="table-dark">
