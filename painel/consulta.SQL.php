@@ -60,6 +60,7 @@ $sql .= ") VALUES (";
 $sql .= implode(', ', array_fill(0, count($valores), '?'));
 $sql .= ")";
 
+
 // Preparar a declaração
 $stmt = $conexao->prepare($sql);
 

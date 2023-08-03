@@ -1,3 +1,9 @@
+<?php    
+
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +33,7 @@
             justify-content: center;
             align-items: center;
             overflow-y: auto; /* Adicionado para criar uma barra de rolagem vertical */
-            max-height: 400px; /* Altura máxima da área de imagens */
+            max-height: 300px; /* Altura máxima da área de imagens */
         }
 
         .image {
@@ -55,7 +61,7 @@
 <body>
     <div class="produtos">
         <h2>Galeria de Imagens</h2>
-        <form action="pagina_de_resultados.php" method="post">
+        <form action="autenticarprodutos.php" method="post">
             <div class="imagensprodutos">
                 <div class="image">
                     <img src="../img/flor3.png" alt="Imagem 1">
@@ -81,23 +87,7 @@
                     <img src="../img/rosas.png" alt="Imagem 3">
                     <input type="checkbox" class="checkbox" name="selecionadas[]" value="rosas.png">
                 </div>
-                <div class="image">
-                    <img src="../img/rosas.png" alt="Imagem 3">
-                    <input type="checkbox" class="checkbox" name="selecionadas[]" value="rosas.png">
-                </div>
-                <div class="image">
-                    <img src="../img/rosas.png" alt="Imagem 3">
-                    <input type="checkbox" class="checkbox" name="selecionadas[]" value="rosas.png">
-                </div>
-                <div class="image">
-                    <img src="../img/rosas.png" alt="Imagem 3">
-                    <input type="checkbox" class="checkbox" name="selecionadas[]" value="rosas.png">
-                </div>
-                <div class="image">
-                    <img src="../img/rosas.png" alt="Imagem 3">
-                    <input type="checkbox" class="checkbox" name="selecionadas[]" value="rosas.png">
-                </div>
-              
+            
             </div>
             <input type="submit" value="Enviar Selecionadas">
         </form>

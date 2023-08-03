@@ -38,6 +38,7 @@
                 </div>
             </div>
         </nav>
+     
 </header>
 
 <div>
@@ -63,13 +64,7 @@
         }
     ?>
 </div>
-<h2>Área de Pesquisa</h2>
-    <form action="consulta.SQL.php" method="get">
-        <label for="pesquisa">Digite sua pesquisa:</label>
-        <input type="text" name="pesquisa" id="pesquisa" required>
-        <br>
-        <input type="submit" value="Pesquisar">
-    </form>
+
     <?php  include('consulta.SQL.php'); 
     
     ?>

@@ -22,6 +22,7 @@ $stmt = $conexao->prepare($sql);
 
 
 
+
 //Executar a consulta SQL com os valores do formulário
 
 
