@@ -84,7 +84,7 @@ $listaProdutos = select ('produtos');
         </button>
       </div>
       <div class="modal-body">
-        <form class="cadastro" method="POST" action="index.php">
+        <form class="cadastro" method="POST" action="index.php?acao=produtos">
           <div class="form-row">
             <div class="form-group col-md-2">
               <label for="codigodoprodutos">Código</label>
@@ -111,8 +111,8 @@ $listaProdutos = select ('produtos');
             </div>
 
             <div class="form-group col-md-3">
-              <label for="precodecusto">Preço de Custo</label>
-              <input type="texto" class="form-control" id="precodecusto" name="precodecusto">
+              <label for="precodecompra">Preço de Compra</label>
+              <input type="texto" class="form-control" id="precodecompra" name="precodecompra">
             </div>
 
             <div class="form-group col-md-3">
@@ -137,15 +137,13 @@ $listaProdutos = select ('produtos');
 
             <div class="form-group col-md-6">
               <label for="validade">Validade</label>
-<<<<<<< HEAD
-              <input type="email" class="form-control" id="validade" name="validade">
-=======
+
               <input type="text" class="form-control" id="validade" name="validade">
->>>>>>> f773c1a74b4bc450c36c72f5f301f78980f2003c
+
             </div>
 
             <div class="form-group col-md-6">
-              <form method="post" action="cadastroProdutos.php" enctype="multipart/form-data">
+              <form method="post"  enctype="multipart/form-data">
                 <input type="file" name="fotodoproduto">
             </div>
 
