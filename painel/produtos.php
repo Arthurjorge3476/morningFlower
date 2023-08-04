@@ -5,19 +5,19 @@ $listaProdutos = select ('produtos');
 
 
 ?>
-<div> 
-            <h2>Área de Pesquisa</h2>
-    <form action="consulta.SQL.php" method="POST">
-        <label for="pesquisa">Digite sua pesquisa:</label>
-        <input type="text" name="pesquisa" id="pesquisa" required>
-        <br>
-        <input type="submit" value="Pesquisar">
-    </form>  
+ <div class="search-container">
+ <div class="search-wrapper">
+    <input type="text" id="searchInput"  placeholder="Pesquisar...">
+    <button type="button" id="searchButton">
+    <i class="fas fa-search"></i> 
+  </button>
+  </div>
  </div>
  
 
-<table class="table table-bordered table-hover">
-  <thead class="table-dark">
+<div class="tabela">
+<table class="table table-bordered table-hover mt-3">
+  <thead class="table-dark cordatabela">
     <tr>
       <th scope="col">#</th>
       <th scope="col">id</th>
@@ -57,13 +57,17 @@ $listaProdutos = select ('produtos');
         <button type="submit" class="btn btn-danger">excluir</button>
       </td>
     </tr>
+    <td scope="row">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter ">+ Novo </button>
+    </td>
   </tbody>
 </table>
-
+</div>
+<div class="tabela">
 <!--modal de cadastro para produtos -->
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter ">+ Novo </button>
+
 <script>
   function funcao1() {
     alert("Você tem certeza?");

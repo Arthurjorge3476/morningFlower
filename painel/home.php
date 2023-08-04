@@ -1,5 +1,9 @@
 <?php
+$listabloco = select ('blocodenotas');
+
+
 $filename = 'notepad.txt'; // Nome do arquivo de anotações
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $notes = $_POST['notes']; // Obtém as anotações enviadas pelo formulário
@@ -40,15 +44,15 @@ if ($content !== '') {
                 <ul id="notes-list" class="list-unstyled">
                     <?php foreach ($notes as $index => $note) : ?>
                         <li class="bloco d-flex align-items-center mb-2">
-                            <input type="checkbox" name="notes[<?php echo $index; ?>][checked]" <?php echo $note['checked'] ? 'checked' : ''; ?> class="mr-2">
+                            <input type="checkbox" name="notas[<?php echo $index; ?>][checked]" <?php echo $note['checked'] ? 'checked' : ''; ?> class="mr-2">
                             <input type="text" name="notes[<?php echo $index; ?>][content]" value="<?php echo $note['content']; ?>" class="form-control mr-2">
                             <button type="button" class="btn btn-danger delete-note-btn" onclick="deleteNote(this)">X</button>
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <div class="add-note-btn mt-1">
-                    <button type="button" class="btn btn-primary" onclick="addNote()"><i>+</i>Adicionar Anotação</button>
-                    <button type="submit" name="save-btn" class="btn btn-success">Salvar</button>
+                <div class="add-note-btn mt-3">
+                    <button type="button" class="btn btn-primary "name="notas" onclick="addNote()"><i> + </i>Adicionar Anotação</button>
+                    <button type="submit" name="blocodeanotacao" class="btn btn-success mt-3">Salvar</button>
                 </div>
             </form>
         </div>
@@ -70,4 +74,5 @@ if ($content !== '') {
             var li = button.parentNode;
             li.parentNode.removeChild(li);
         }
+        
     </script>

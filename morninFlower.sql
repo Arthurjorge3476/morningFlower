@@ -4,7 +4,7 @@ USE `morningflower`;
 --
 -- Host: localhost    Database: morningflower
 -- ------------------------------------------------------
--- Server version	8.0.33
+-- Server version	8.0.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +16,28 @@ USE `morningflower`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `blocodenotas`
+--
+
+DROP TABLE IF EXISTS `blocodenotas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blocodenotas` (
+  `notas` int NOT NULL,
+  PRIMARY KEY (`notas`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blocodenotas`
+--
+
+LOCK TABLES `blocodenotas` WRITE;
+/*!40000 ALTER TABLE `blocodenotas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blocodenotas` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `fornecedores`
@@ -84,13 +106,12 @@ CREATE TABLE `funcionarios` (
   `telefone` varchar(16) NOT NULL,
   `senha` varchar(10) NOT NULL,
   `grupo_de_acesso` varchar(1) NOT NULL,
-  PRIMARY KEY (`codigo`,`grupo_de_acesso`),
+  PRIMARY KEY (`codigo`),
   UNIQUE KEY `codigo_UNIQUE` (`codigo`),
   UNIQUE KEY `rg_UNIQUE` (`rg`),
   UNIQUE KEY `cpf_UNIQUE` (`cpf`),
   UNIQUE KEY `ctps_UNIQUE` (`ctps`),
-  UNIQUE KEY `senha_UNIQUE` (`senha`),
-  UNIQUE KEY `grupo_de_acesso_UNIQUE` (`grupo_de_acesso`)
+  UNIQUE KEY `senha_UNIQUE` (`senha`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,4 +163,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-19 21:30:41
+-- Dump completed on 2023-08-03 22:56:55

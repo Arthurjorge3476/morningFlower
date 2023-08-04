@@ -1,0 +1,39 @@
+/* Estilos para a caixa de pesquisa e o ícone */
+.search-container {
+    margin: 20px auto;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .search-wrapper {
+    position: relative;
+  }
+  
+  #searchInput {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* Aumentamos o padding à direita para dar espaço ao ícone */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Valor ajustável para aumentar ou diminuir o arredondamento */
+  }
+  
+  #searchButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 0 25px 25px 0; /* Valor ajustável para arredondar somente a borda direita */
+    cursor: pointer;
+  }
+  
+  /* Estilos para o ícone */
+  #searchButton i {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  

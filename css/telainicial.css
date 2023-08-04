@@ -85,11 +85,12 @@ div.iconelogo img {
   height: auto;
   margin: 0 auto 15px; /* Centralize a imagem do logotipo horizontalmente */
   display: block;
+
 }
 
 /* Main content area styles */
 .area-login {
-  background-color: #fff;
+  background-image: url("../img/folha_de_caderno.avif");
   width: 30%;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -151,8 +152,27 @@ nav.navbar.img{
 }
 
 nav.navbar{
-  background-color: #23232e; 
+  background-color: #23232e !important; 
 }
+
+
+table.table-bordered{
+  background-color: white !important; 
+  width: 60%;
+  color: #143c14 !important;
+}
+
+thead.cordatabela{
+  background-color: #143c14 !important;
+  color: #ddd;
+}
+
+div.tabela{
+  display: flex;
+  justify-content: center;
+}
+
+
 
 /*
 nav.navbar{
