@@ -9,7 +9,8 @@ body, html {
 
 /* Definição da imagem de fundo da tela de login(index) */
 body.login {
-  background-image: url("../img/imagemdefundo.jpg");
+  background-image: url("../img/imagemdefundo.jpg") ;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -90,7 +91,7 @@ div.iconelogo img {
 
 /* Main content area styles */
 .area-login {
-  background-image: url("../img/folha_de_caderno.avif");
+  background-color: #fff;
   width: 30%;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -138,7 +139,7 @@ div.iconelogo img {
 
 .a{
   color: black;
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 navbar-brand{
@@ -172,7 +173,10 @@ div.tabela{
   justify-content: center;
 }
 
-
+div.blocodenotas{
+  display: flex; 
+  justify-content: center;
+}
 
 /*
 nav.navbar{

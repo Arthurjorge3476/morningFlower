@@ -36,8 +36,8 @@ if ($content !== '') {
 }
 ?>
 
-
-<div class="area-login">
+<div class="blocodenotas ">
+<div class="area-login" >
         <div id="notepad">
             <h1 class="mt-1">Bloco de Anotações</h1>
             <form method="POST">
@@ -57,6 +57,7 @@ if ($content !== '') {
             </form>
         </div>
     </div>
+</div>
 
     <!-- Add Bootstrap JS (jQuery is required for Bootstrap JS to work) -->
 
