@@ -105,7 +105,7 @@ if(isset($_POST['blocodeanotacao'])){
 <body class="login">
     <header class="corpo">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-                    <div class="iconelogo">
+                    <div class="iconelogo" >
                         <img src="../img/logo.png.png" class="img-fluid">
                     </div>
             <a class="navbar-brand" href="index.php" style="font-family: lucida handwriting;">Morning Flower</a>

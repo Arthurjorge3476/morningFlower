@@ -15,7 +15,7 @@
             padding: 20px;
             background-color: #fff;
             background-size: cover;
-
+            background-attachment: fixed;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -65,7 +65,7 @@
     </style>
 
 
-    <div class="produtos" style="width: 90%;height: 840px;">
+    <div class="produtos" style="width: 90%;height: 840px;background-attachment: fixed;background-size: cover;">
         <h2>Galeria de Imagens</h2>
         <form action="index.php" method="post" class="form-with-button">
             <div class="imagensprodutos">

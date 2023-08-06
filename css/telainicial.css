@@ -13,6 +13,7 @@ body.login {
   background-image: url("../img/imagemdefundo.jpg") ;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 /* centralização do formulário da tela de login(index) */
@@ -39,7 +40,7 @@ div.container {
 
 /* Estilize a imagem do logotipo do login(index) */
 div.logo img {
-  max-width: 50%;
+  max-width: 70px;
   height: auto;
   margin: 0 auto 15px; /* Centralize a imagem do logotipo horizontalmente */
   display: block;
