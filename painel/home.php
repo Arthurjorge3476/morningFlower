@@ -36,10 +36,10 @@ if ($content !== '') {
 }
 ?>
 
-<div class="blocodenotas ">
-<div class="area-login" >
+<div class="blocodenotas " >
+<div class="area-login mt-5" style="width: 70%;height: 100%;border-radius: 10px;">
         <div id="notepad">
-            <h1 class="mt-1">Bloco de Anotações</h1>
+            <h1 class="mt-1" style="justify-content: center;display: flex; font-weight: bold;font-family: arial; ">Bloco de Anotações</h1>
             <form method="POST">
                 <ul id="notes-list" class="list-unstyled">
                     <?php foreach ($notes as $index => $note) : ?>
@@ -52,12 +52,19 @@ if ($content !== '') {
                 </ul>
                 <div class="add-note-btn mt-3">
                     <button type="button" class="btn btn-primary "name="notas" onclick="addNote()"><i> + </i>Adicionar Anotação</button>
-                    <button type="submit" name="blocodeanotacao" class="btn btn-success mt-3">Salvar</button>
+                    <button type="button" class="btn btn-primary">
+                        Notificações <span class="badge badge-light">4</span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ><i> + </i>Editar</button>
+                    <button type="submit" name="blocodeanotacao" class="btn btn-primary">Salvar</button>
+                    
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
 
     <!-- Add Bootstrap JS (jQuery is required for Bootstrap JS to work) -->
 

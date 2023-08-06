@@ -108,7 +108,7 @@ if(isset($_POST['blocodeanotacao'])){
                     <div class="iconelogo">
                         <img src="../img/logo.png.png" class="img-fluid">
                     </div>
-            <a class="navbar-brand" href="index.php">Morning Flower</a>
+            <a class="navbar-brand" href="index.php" style="font-family: lucida handwriting;">Morning Flower</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
