@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `morningflower` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `morningflower`;
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Linux (x86_64)
 --
 -- Host: localhost    Database: morningflower
 -- ------------------------------------------------------
--- Server version	8.0.34
+-- Server version	8.0.33-0ubuntu0.20.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -101,7 +101,7 @@ CREATE TABLE `funcionarios` (
   `ctps` varchar(20) NOT NULL,
   `cidade` varchar(150) NOT NULL,
   `endereco` varchar(100) NOT NULL,
-  `cep` char(8) NOT NULL,
+  `cep` varchar(9) NOT NULL,
   `email` varchar(100) NOT NULL,
   `telefone` varchar(16) NOT NULL,
   `senha` varchar(10) NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE `funcionarios` (
   UNIQUE KEY `cpf_UNIQUE` (`cpf`),
   UNIQUE KEY `ctps_UNIQUE` (`ctps`),
   UNIQUE KEY `senha_UNIQUE` (`senha`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `funcionarios` (
 
 LOCK TABLES `funcionarios` WRITE;
 /*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
-INSERT INTO `funcionarios` VALUES (1,'raissa','2006-01-23','1253256','12584697586','12584785','santa rosa','avenida','88965000','raissafraga@gmail.com','48996518770','12345678','1');
+INSERT INTO `funcionarios` VALUES (1,'raissa','2006-01-23','1253256','12584697586','12584785','santa rosa','avenida','88965000','raissafraga@gmail.com','48996518770','12345678','1'),(3,'Raissa Fraga Goulart','2006-01-23','6.969.717','105.580.659-88','','Santa Rosa do Sul','Avenida','88965000','raissafraga2017@gmail.com','48996518770','23012006','1');
 /*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,12 +135,15 @@ DROP TABLE IF EXISTS `produtos`;
 CREATE TABLE `produtos` (
   `codigo` varchar(225) NOT NULL,
   `produto` varchar(225) NOT NULL,
-  `quantidade` varchar(10) NOT NULL,
-  `preco de compra` varchar(14) NOT NULL,
-  `preco de venda` varchar(20) NOT NULL,
+  `estoque` varchar(10) NOT NULL,
+  `precodecompra` varchar(14) NOT NULL,
+  `precodevenda` varchar(20) NOT NULL,
   `fornecedor` varchar(225) NOT NULL,
   `validade` varchar(100) NOT NULL,
-  `obs do produto` varchar(225) NOT NULL,
+  `observacao` varchar(225) DEFAULT NULL,
+  `categoria` varchar(45) DEFAULT NULL,
+  `margemdelucro` varchar(45) NOT NULL,
+  `lucroanterior` varchar(45) NOT NULL,
   UNIQUE KEY `codigo_UNIQUE` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -151,6 +154,7 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+INSERT INTO `produtos` VALUES ('12','Girasol','50','200,00','15,00','fornecedor','20/09/2023','','Flor','10%','8%'),('13','rosas','50','200,00','15,00','fornecedor','20/09/2023','','Flor','10%','8%');
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -163,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-03 22:56:55
+-- Dump completed on 2023-08-07 13:25:51
