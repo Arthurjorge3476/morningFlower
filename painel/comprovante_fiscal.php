@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Comprovante Fiscal</title>
+
+<?php  
+
+$listaProdutos = select ('produtos');
+
+?>
+    <title>vendas</title>
     <style>
         /* Estilos CSS para formatar o comprovante */
         body {
@@ -20,11 +26,11 @@
 </head>
 <body>
     <div class="comprovante">
-        <h2>Comprovante Fiscal</h2>
+        <h2>Comprovante de Venda</h2>
         <p><strong>Data:</strong> <?php echo date('d/m/Y'); ?></p>
         <p><strong>Nome do cliente:</strong> <?php echo $_POST['nome_cliente']; ?></p>
-        <p><strong>CPF/CNPJ do cliente:</strong> <?php echo $_POST['cpf_cnpj_cliente']; ?></p>
-        <p><strong>Descrição do produto:</strong> <?php echo $_POST['descricao_produto']; ?></p>
+        <p><strong>CPF:</strong> <?php echo $_POST['cpf_cnpj_cliente']; ?></p>
+        <p><strong>Produto retirado:</strong> <?php echo $_POST['produto_retirado']; ?></p>
         <?php
             // Remova o caractere "R$" e quaisquer espaços antes de converter o valor para float
             $valor = floatval(str_replace(['R$', ' '], '', $_POST['valor']));

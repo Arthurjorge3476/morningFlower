@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<?php 
+
+$listaProdutos = select ('produtos');
+
+?>
+
     <title>Formulário Comprovante Fiscal</title>
     <style>
         body {
@@ -63,11 +70,11 @@
         <label for="nome_cliente">Nome do cliente:</label>
         <input type="text" name="nome_cliente" required>
         <br>
-        <label for="cpf_cnpj_cliente">CPF/CNPJ do cliente:</label>
+        <label for="cpf_cnpj_cliente">CPF:</label>
         <input type="text" name="cpf_cnpj_cliente" required>
         <br>
-        <label for="descricao_produto">Descrição do produto:</label>
-        <input type="text" name="descricao_produto" required>
+        <label for="produto_retirado">Produto:</label>
+        <input type="text" name="produto_retirado" required>
         <br>
         <label for="valor">Valor:</label>
         <input type="text" name="valor" required>
