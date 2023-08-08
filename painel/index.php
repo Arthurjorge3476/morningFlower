@@ -2,7 +2,7 @@
 <?php
 
 
-include_once ('../consulta.SQL.php');
+include_once ('../consultaSQL.php');
 
 if(isset($_POST['cadastrarFuncionarios'])) {
 

@@ -66,7 +66,7 @@ $listaProdutos = select ('produtos');
 </head>
 <body>
     <h1>Formulário Comprovante Fiscal</h1>
-    <form action="comprovante_fiscal.php" method="post">
+    <form action="comprovante_fiscal.php" method="post" target="_blank">
         <label for="nome_cliente">Nome do cliente:</label>
         <input type="text" name="nome_cliente" required>
         <br>

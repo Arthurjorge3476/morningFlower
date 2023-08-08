@@ -2,14 +2,9 @@
 <html>
 <head>
 
-<?php  
-
-$listaProdutos = select ('produtos');
-
-?>
     <title>vendas</title>
     <style>
-        /* Estilos CSS para formatar o comprovante */
+   
         body {
             font-family: Arial, sans-serif;
         }
@@ -25,6 +20,9 @@ $listaProdutos = select ('produtos');
     </style>
 </head>
 <body>
+<script>
+    window.print();
+</script>
     <div class="comprovante">
         <h2>Comprovante de Venda</h2>
         <p><strong>Data:</strong> <?php echo date('d/m/Y'); ?></p>
