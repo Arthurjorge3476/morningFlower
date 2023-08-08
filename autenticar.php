@@ -1,5 +1,8 @@
 <?php
-require_once('conexao.php');
+require('./consultaSQL.php');
+
+
+$conexao = conectar();
 
     $username = $_POST['email'];
     $password = $_POST['senha'];
@@ -11,7 +14,7 @@ require_once('conexao.php');
     // Verifica se o usuário foi encontrado no banco de dados
     if ($result > 0 && $result < 2){
         // Login bem-sucedido
-        header ('Location: ./painel/home.php');
+        header ('Location: ./painel/index.php');
     } else {
         // Credenciais inválidas
         echo 'Credenciais inválidas';

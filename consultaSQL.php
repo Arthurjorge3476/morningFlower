@@ -10,18 +10,12 @@ $password = 'aluno01'; // Senha do usuário do banco de dados
 try {
     // Criando uma instância do objeto PDO
     $conexao = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-
-    // Configurando o modo de erro para PDOException
-    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Definindo o charset para UTF-8 (opcional)
-    $conexao->exec("SET NAMES utf8");
     return $conexao;
 
     // Agora você pode executar consultas no banco de dados usando a variável $conexao
 } catch (PDOException $e) {
     // Em caso de erro na conexão, trata a exceção aqui
-    die("Erro na conexão com o banco de dados: " . $e->getMessage());
+    die("Erro na conexão com o banco de dados: " . $e);
 }
 }
 

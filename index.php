@@ -16,7 +16,7 @@
     <section>
         
         <div class="container mt-5 justify-content-center ">
-        <form>
+        <form action="autenticar.php" method="POST">
             <div class="row " >
                 <div class="col">
                     <div class="logo">
