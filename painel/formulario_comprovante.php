@@ -66,7 +66,7 @@ $listaProdutos = select ('produtos');
 </head>
 <body>
     <h1>Formulário Comprovante Fiscal</h1>
-    <form action="comprovante_fiscal.php" method="post" target="_blank">
+    <form action="comprovante_fiscal.php" method="post">
         <label for="nome_cliente">Nome do cliente:</label>
         <input type="text" name="nome_cliente" required>
         <br>
@@ -79,7 +79,15 @@ $listaProdutos = select ('produtos');
         <label for="valor">Valor:</label>
         <input type="text" name="valor" required>
         <br>
-        <input type="submit" value="Gerar Comprovante">
+    <input type="submit" value="Gerar Comprovante"  onclick="DoPrinting()">
     </form>
+
+    <script language="JavaScript">
+function DoPrinting()
+{
+   window.print()
+}
+</script>
+
 </body>
 </html>
