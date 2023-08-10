@@ -20,9 +20,7 @@
     </style>
 </head>
 <body>
-<script>
-    window.print();
-</script>
+
     <div class="comprovante">
         <h2>Comprovante de Venda</h2>
         <p><strong>Data:</strong> <?php echo date('d/m/Y'); ?></p>
@@ -34,6 +32,22 @@
             $valor = floatval(str_replace(['R$', ' '], '', $_POST['valor']));
         ?>
         <p><strong>Valor:</strong> R$ <?php echo number_format($valor, 2, ',', '.'); ?></p>
+
+
+        <form action="comprovante_fiscal.php" method="post">
+            
+        <input type="submit" value="Gerar Comprovante"  onclick="DoPrinting()">
+ 
+
+    <script language="JavaScript">
+function DoPrinting()
+{
+   window.print()
+}
+</script>
+
+</form> 
     </div>
+ 
 </body>
 </html>

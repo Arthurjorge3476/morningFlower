@@ -20,6 +20,8 @@ try {
 }
 
 
+
+
 function select($tabela, $where = null) {
     $conexao = conectar();
 
@@ -40,6 +42,10 @@ function select($tabela, $where = null) {
         echo "Erro: " . $e->getMessage();
     }
 }
+
+
+
+    
 
 
 

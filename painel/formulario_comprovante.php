@@ -79,15 +79,10 @@ $listaProdutos = select ('produtos');
         <label for="valor">Valor:</label>
         <input type="text" name="valor" required>
         <br>
-    <input type="submit" value="Gerar Comprovante"  onclick="DoPrinting()">
+    <input type="submit" value="Gerar Comprovante">
     </form>
 
-    <script language="JavaScript">
-function DoPrinting()
-{
-   window.print()
-}
-</script>
+ >
 
 </body>
 </html>

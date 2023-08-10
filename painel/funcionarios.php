@@ -1,7 +1,7 @@
 
 <?php
 
-$listaFuncionarios = select ('funcionarios');
+$listaFuncionarios = select('funcionarios');
 
 ?>
 
@@ -15,66 +15,43 @@ $listaFuncionarios = select ('funcionarios');
   </button>
   </div>
  </div>
+
+
+ 
+
  
   <div class="tabela">
   <table class="table table-bordered  table-hover mt-3">
     <thead class="table-dark cordatabela">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">id</th>
-        <th scope="col">nome</th>
-        <th scope="col">gmail</th>
-        <th scope="col">telefone</th>
+        <th scope="col"></th>
+        <th scope="col">Código</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefone</th>
         <th scope="col"></th>
 
       </tr>
     </thead>
     <tbody>
-      <tr class="">
-        <th scope="row">1</th>
-        <td>478689867</td>
-        <td>paulo</td>
-        <td>paulo1@gmail.com</td>
-        <td>9912141516</td>
-        <td>
-          <button type="submit" class="btn btn-cadastro">editar</button>
-          <button type="submit" class="btn btn-danger">excluir</button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>3241412</td>
-        <td>Sergio</td>
-        <td>Sergio2@gmail.com</td>
-        <td>9912141516</td>
-        <td>
-          <button type="submit" class="btn btn-cadastro">editar</button>
-          <button type="submit" class="btn btn-danger">excluir</button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>2341312</td>
-        <td>Roberto</td>
-        <td>Roberto3@gmail.com</td>
-        <td>9912141516</td>
-        <td>
-          <button type="submit" class="btn btn-cadastro">editar</button>
-          <button type="submit" class="btn btn-danger">excluir</button>
-        </td>
-      </tr>
+    <?php
+      foreach ($listaFuncionarios as $indice => $linha) { ?>
 
-      <tr>
-        <th scope="row">4</th>
-        <td>2341312</td>
-        <td>João</td>
-        <td>João4@gmail.com</td>
-        <td>9912141516</td>
+<tr class="">
+        <th scope="row"><?php echo $indice +1; ?></th>
+        <td><?php echo $linha['codigo']; ?></td>
+        <td><?php echo $linha['nome']; ?></td>
+        <td><?php echo $linha['email']; ?></td>
+        <td><?php echo $linha['telefone']; ?></td>
         <td>
           <button type="submit" class="btn btn-cadastro">editar</button>
           <button type="submit" class="btn btn-danger">excluir</button>
         </td>
       </tr>
+      <?php };
+      ?>
+
+    
         <td scope="row">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter ">+ Novo </button>
         </td>
