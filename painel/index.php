@@ -30,6 +30,7 @@ inserir('funcionarios', $campos, $valores);
 
 if(isset($_POST['cadastrarFornecedores'])){
 
+
 $codigo = $_POST['codigo'];
 $nome = $_POST['nome'];
 $endereco = $_POST['endereco'];

@@ -3,8 +3,15 @@
 
 $listaFuncionarios = select('funcionarios');
 
-?>
+if (isset($_GET['excluir'])) {
+  $idParaExcluir = $_GET['excluir'];
+  echo "ID para excluir: " . $idParaExcluir; // Verifique se o ID está sendo passado corretamente
+  deletar('funcionarios', $idParaExcluir);
+}
 
+
+
+?>
 
 
  <div class="search-container">
@@ -35,17 +42,22 @@ $listaFuncionarios = select('funcionarios');
     </thead>
     <tbody>
     <?php
-      foreach ($listaFuncionarios as $indice => $linha) { ?>
+      
+      foreach ($listaFuncionarios as $indice => $linha){ ?>
+
+
 
 <tr class="">
         <th scope="row"><?php echo $indice +1; ?></th>
+
         <td><?php echo $linha['codigo']; ?></td>
         <td><?php echo $linha['nome']; ?></td>
         <td><?php echo $linha['email']; ?></td>
         <td><?php echo $linha['telefone']; ?></td>
         <td>
+        
           <button type="submit" class="btn btn-cadastro">editar</button>
-          <button type="submit" class="btn btn-danger">excluir</button>
+          <a href="index.php?acao=funcionarios.php&excluir=<?php echo $linha['id']; ?>" class="btn btn-danger">excluir</a>
         </td>
       </tr>
       <?php };

@@ -2,9 +2,8 @@
 
 $listaProdutos = select ('produtos');
 
-
-
 ?>
+
  <div class="search-container">
  <div class="search-wrapper">
     <input type="text" id="searchInput"  placeholder="Pesquisar...">
@@ -18,45 +17,36 @@ $listaProdutos = select ('produtos');
 <div class="tabela">
 <table class="table table-bordered table-hover mt-3">
   <thead class="table-dark cordatabela">
+
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">id</th>
-      <th scope="col">nome</th>
-      <th scope="col">fornecedor</th>
       <th scope="col"></th>
+      <th scope="col">Código</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Fornecedor</th>
+      <th scope="col">Estoque</th>
+      <th scope="col"> </th>
+
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>478689867</td>
-      <td>arroz</td>
-      <td>paulo</td>
-      <td>
-        <button type="submit" class="btn btn-cadastro">editar</button>
-        <button type="submit" class="btn btn-danger">excluir</button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>3241412</td>
-      <td>farinha</td>
-      <td>sergio</td>
-      <td>
-        <button type="submit" class="btn btn-cadastro">editar</button>
-        <button type="submit" class="btn btn-danger">excluir</button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>2341312</td>
-      <td>batata</td>
-      <td>roberto</td>
-      <td>
-        <button type="submit" class="btn btn-cadastro">editar</button>
-        <button type="submit" class="btn btn-danger">excluir</button>
-      </td>
-    </tr>
+  <?php
+      foreach ($listaProdutos as $indice => $linha) { ?>
+
+<tr class="">
+        <th scope="row"><?php echo $indice +1; ?></th>
+        <td><?php echo $linha['codigo']; ?></td>
+        <td><?php echo $linha['produto']; ?></td>
+        <td><?php echo $linha['fornecedor']; ?></td>
+        <td><?php echo $linha['estoque']; ?></td>
+        <td>
+          <button type="submit" class="btn btn-cadastro">editar</button>
+          <button type="submit" class="btn btn-danger" name="excluir">excluir</button>
+        </td>
+      </tr>
+      <?php };
+      ?>
+
+
     <td scope="row">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter ">+ Novo </button>
     </td>
