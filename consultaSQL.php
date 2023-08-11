@@ -5,7 +5,7 @@ function conectar() {
 $hostname = 'localhost'; // Host do banco de dados
 $database = 'morningflower'; // Nome do banco de dados
 $username = 'root'; // Nome do usuário do banco de dados
-$password = 'aluno01'; // Senha do usuário do banco de dados
+$password = ''; // Senha do usuário do banco de dados
 
 try {
     // Criando uma instância do objeto PDO

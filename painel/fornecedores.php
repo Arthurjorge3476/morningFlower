@@ -35,10 +35,10 @@ $listaFornecedores = select('fornecedores');
         <td><?php echo $linha['codigo']; ?></td>
         <td><?php echo $linha['nome']; ?></td>
         <td><?php echo $linha['email']; ?></td>
-        <td><?php echo $linha['telefone']; ?></td>
+        <td><?php echo $linha['telefone1']; ?></td>
         <td>
           <button type="submit" class="btn btn-cadastro">editar</button>
-          <button type="submit" class="btn btn-danger">excluir</button>
+          <button type="submit" class="btn btn-danger" name="excluir">excluir</button>
         </td>
       </tr>
       <?php };
