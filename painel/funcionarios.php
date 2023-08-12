@@ -3,10 +3,15 @@
 
 $listaFuncionarios = select('funcionarios');
 
+
+
 if (isset($_GET['excluir'])) {
   $idParaExcluir = $_GET['excluir'];
-  echo "ID para excluir: " . $idParaExcluir; // Verifique se o ID está sendo passado corretamente
   deletar('funcionarios', $idParaExcluir);
+
+  // Redirecionar para a página após a exclusão
+  header("Location: index.php?acao=funcionarios");
+  exit; // Certifique-se de sair do script após o redirecionamento
 }
 
 
@@ -57,7 +62,7 @@ if (isset($_GET['excluir'])) {
         <td>
         
           <button type="submit" class="btn btn-cadastro">editar</button>
-          <a href="index.php?acao=funcionarios.php&excluir=<?php echo $linha['id']; ?>" class="btn btn-danger">excluir</a>
+          <a href="index.php?acao=funcionarios&excluir=<?php echo $linha['id']; ?>" class="btn btn-danger">excluir</a>
         </td>
       </tr>
       <?php };
