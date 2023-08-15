@@ -5,7 +5,7 @@ require('./consultaSQL.php');
 $conexao = conectar();
 
     $username = $_POST['email'];
-    $password = $_POST['senha'];
+    $password = md5($_POST['senha']);
 
     // Consulta SQL para verificar as credenciais do usuário
     $query = "SELECT * FROM funcionarios WHERE Email = '$username' AND Senha = '$password'";

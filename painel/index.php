@@ -16,7 +16,7 @@ $endereco = $_POST['endereco'];
 $cep = $_POST['cep'];
 $email = $_POST['email'];
 $telefone = $_POST['telefone'];
-$senha = $_POST['senha'];
+$senha = md5($_POST['senha']) ;
 $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
 
@@ -26,6 +26,8 @@ $valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $enderec
 
 inserir('funcionarios', $campos, $valores);
 
+header("Location: index.php?acao=funcionarios");
+  exit; // Certifique-se de sair do script após o redirecionamento
 }
 
 if(isset($_POST['cadastrarFornecedores'])){

@@ -36,10 +36,10 @@ if (isset($_GET['excluir'])) {
     <thead class="table-dark cordatabela">
       <tr>
         <th scope="col"></th>
-        <th scope="col">Código</th>
         <th scope="col">Nome</th>
-        <th scope="col">Email</th>
+        <th scope="col">CPF</th>
         <th scope="col">Telefone</th>
+        <th scope="col">CTPS</th>
         <th scope="col"></th>
 
       </tr>
@@ -54,12 +54,12 @@ if (isset($_GET['excluir'])) {
 <tr class="">
         <th scope="row"><?php echo $indice +1; ?></th>
 
-        <td><?php echo $linha['codigo']; ?></td>
         <td><?php echo $linha['nome']; ?></td>
-        <td><?php echo $linha['email']; ?></td>
+        <td><?php echo $linha['cpf']; ?></td>
         <td><?php echo $linha['telefone']; ?></td>
+        <td><?php echo $linha['ctps']; ?></td>
         <td>
-          <a href="index.php?acao=funcionarios&codigo=<?php echo $linha['codigo']; ?>" class="btn btn-warning">editar</a>
+          <button type="button"  class="btn btn-warning">editar</button>
           <a href="index.php?acao=funcionarios&excluir=<?php echo $linha['id']; ?>" class="btn btn-danger">excluir</a>
         </td>
       </tr>
@@ -96,8 +96,8 @@ if (isset($_GET['excluir'])) {
 
             <div class="form-row">
               <div class="form-group col-md-9">
-                <label for="nomeFuncionario">Nome</label>
-                <input type="text" class="form-control" id="nomeFuncionario" name="nome">
+                <label for="nomeFuncionario">Nome*</label>
+                <input type="text" class="form-control" id="nomeFuncionario" name="nome" required>
               </div>
               <div class="form-group col-md-3">
                 <label for="datadenascimento">Data de Nascimento</label>
@@ -108,8 +108,8 @@ if (isset($_GET['excluir'])) {
                 <input type="text" class="form-control" id="rgdofuncionario" name="rg">
               </div>
               <div class="form-group col-md-4">
-                <label for="cpfFuncionario">CPF</label>
-                <input type="text" class="form-control" id="cpfFuncionario" name="cpf">
+                <label for="cpfFuncionario">CPF*</label>
+                <input type="text" class="form-control" id="cpfFuncionario" name="cpf" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="ctpsFuncionario">CTPS</label>
@@ -132,16 +132,16 @@ if (isset($_GET['excluir'])) {
                 <input type="e-mail" class="form-control" id="emailFuncionario" name="email">
               </div>
               <div class="form-group col-md-4">
-                <label for="telefoneFuncionario">Telefone</label>
-                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone">
+                <label for="telefoneFuncionario">Telefone*</label>
+                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone" required>
               </div>
               <div class="form-group col-md-4">
-                <label for="senhaFuncionario">Senha</label>
-                <input type="password" class="form-control" id="senhaFuncionario" name="senha">
+                <label for="senhaFuncionario">Senha*</label>
+                <input type="password" class="form-control" id="senhaFuncionario" name="senha" required>
               </div>
               <div class="form-group col-md-3">
-                <label for="grupoFuncionario">Grupo de Acesso</label>
-                <input type="text" class="form-control" id="grupoFuncionario" maxlength="1" name="grupo_de_acesso">
+                <label for="grupoFuncionario">Grupo de Acesso*</label>
+                <input type="text" class="form-control" id="grupoFuncionario" maxlength="1" name="grupo_de_acesso" required>
               </div>
               <div class="modal-footer">
                   <button type="submit" class="btn btn-primary" name="cadastrarFuncionarios">Cadastrar</button>
