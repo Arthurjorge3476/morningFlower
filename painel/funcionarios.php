@@ -128,8 +128,8 @@ if (isset($_GET['excluir'])) {
                 <input type="text" class="form-control" id="cepFuncionario" name="cep">
               </div>
               <div class="form-group col-md-4">
-                <label for="emailFuncionario">Email</label>
-                <input type="e-mail" class="form-control" id="emailFuncionario" name="email">
+                <label for="emailFuncionario">Email*</label>
+                <input type="e-mail" class="form-control" id="emailFuncionario" name="email" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="telefoneFuncionario">Telefone*</label>
