@@ -24,11 +24,16 @@ $grupo_de_acesso = $_POST['grupo_de_acesso'];
 $campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
 $valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
 
+
+
+
 inserir('funcionarios', $campos, $valores);
 
 header("Location: index.php?acao=funcionarios");
-  exit; // Certifique-se de sair do script após o redirecionamento
+exit; // Certifique-se de sair do script após o redirecionamento
 }
+
+
 
 if(isset($_POST['cadastrarFornecedores'])){
 
@@ -87,6 +92,10 @@ if(isset($_POST['blocodeanotacao'])){
     inserir('blocodenotas',$campos,$valores);
 
 }
+
+
+
+
 ?>
 
 <!DOCTYPE html>
