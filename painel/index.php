@@ -1,7 +1,4 @@
-
 <?php
-
-
 include_once ('../consultaSQL.php');
 
 if(isset($_POST['cadastrarFuncionarios'])) {
@@ -19,11 +16,20 @@ $telefone = $_POST['telefone'];
 $senha = md5($_POST['senha']);
 $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
+   // Verifica e trata campos vazios
+   $data_de_nascimento = empty($data_de_nascimento) ? null : $data_de_nascimento;
+   $rg = empty('rg') ? null : $rg;
+   $ctps = empty('ctps') ? null : $ctps;
+   $cidade = empty('cidade') ? null : $cidade;
+   $endereco = empty('endereco') ? null : $endereco;
+   $cep = empty('cep') ? null : $cep;
 
 
 $campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
 $valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
 
+
+ 
 
 
 
