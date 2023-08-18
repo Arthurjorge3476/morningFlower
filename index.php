@@ -1,11 +1,3 @@
-<?php
-if(isset($_POST["passsenha"])){
-    $password= $_POST["passsenha"];
-    echo md5 ($password);
-}
-
-?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">

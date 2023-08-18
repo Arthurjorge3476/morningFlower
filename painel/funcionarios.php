@@ -105,15 +105,15 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="rgdoFuncionario">RG</label>
-                <input type="text" class="form-control" id="rgdofuncionario" name="rg">
+                <input type="text" class="form-control" id="rgdofuncionario" name="rg" oninput="formatRG(this)" maxlength="10">
               </div>
               <div class="form-group col-md-4">
                 <label for="cpfFuncionario">CPF*</label>
-                <input type="text" class="form-control" id="cpfFuncionario" name="cpf" required>
+                <input type="text" class="form-control" id="cpfFuncionario" name="cpf" oninput="formatCPF(this)" maxlength="14" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="ctpsFuncionario">CTPS</label>
-                <input type="text" class="form-control" id="ctpsFuncionario" name="ctps">
+                <input type="text" class="form-control" id="ctpsFuncionario" name="ctps" >
               </div>
               <div class="form-group col-md-4">
                 <label for="cidadeFuncionario">Cidade</label>
@@ -125,7 +125,7 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="cepFuncionario">CEP</label>
-                <input type="text" class="form-control" id="cepFuncionario" name="cep">
+                <input type="text" class="form-control" id="cepFuncionario"  name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9">
               </div>
               <div class="form-group col-md-4">
                 <label for="emailFuncionario">Email*</label>
@@ -133,11 +133,11 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="telefoneFuncionario">Telefone*</label>
-                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone" required>
+                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone" oninput="formatPhoneNumber(this)" maxlength="15" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="senhaFuncionario">Senha*</label>
-                <input type="password" class="form-control" id="senhaFuncionario" name="senha" required>
+                <input type="password" class="form-control" id="senhaFuncionario" maxlength="10" name="senha" required>
               </div>
               <div class="form-group col-md-3">
                 <label for="grupoFuncionario">Grupo de Acesso*</label>
@@ -153,3 +153,38 @@ if (isset($_GET['excluir'])) {
     </div>
   </div>
   </div>
+
+
+  <script>
+        function formatCPF(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+            if (value.length > 9) {
+                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            }
+            input.value = value;
+        }
+
+        function formatPhoneNumber(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+            if (value.length === 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (value.length === 10) {
+                value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+            }
+            input.value = value;
+        }
+
+        function formatRG(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+            if (value.length >= 2 && value.length <= 9) {
+                value = value.replace(/(\d{1,2})(\d{3})(\d{3})/, '$1.$2.$3');
+            }
+            input.value = value;
+        }
+
+        function formatarCEP(cep) {
+            cep = cep.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            cep = cep.replace(/^(\d{5})(\d{3})$/, '$1-$2'); // Insere a barra
+            return cep;
+        }
+    </script>

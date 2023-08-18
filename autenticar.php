@@ -6,7 +6,7 @@ $conexao = conectar();
 
     $username = $_POST['email'];
 
-    $password = md5($_POST['senha']);
+    $password = $_POST['senha'];
    
 
     // Consulta SQL para verificar as credenciais do usuário
