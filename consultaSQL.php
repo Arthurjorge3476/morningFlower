@@ -52,7 +52,14 @@ function select($tabela, $where = null) {
 
 function inserir ($tabela, $campos, $valores) {
 $conexao = conectar();
+
 try {
+// Tratamento de campos vazios
+ foreach ($valores as &$valor) {
+     if (empty($valor)) {
+      $valor = null;
+        }
+    }
 // Montar a query SQL para a inserção de dados
 $sql = "INSERT INTO $tabela (";
 $sql .= implode(', ', $campos);
