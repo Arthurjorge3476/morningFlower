@@ -16,7 +16,7 @@ $endereco = $_POST['endereco'];
 $cep = $_POST['cep'];
 $email = $_POST['email'];
 $telefone = $_POST['telefone'];
-$senha = $_POST['senha'];
+$senha = md5($_POST['senha']);
 $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
 
