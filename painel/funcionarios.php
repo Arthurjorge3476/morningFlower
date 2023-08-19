@@ -1,4 +1,74 @@
+<?php
+$listaFuncionarios = select('funcionarios'); // Presumindo que isso retorna os funcionários do banco
 
+if (isset($_GET['excluir'])) {
+    $idParaExcluir = $_GET['excluir'];
+    deletar('funcionarios', $idParaExcluir);
+
+    // Redirecionar para a página após a exclusão
+    header("Location: index.php?acao=funcionarios");
+    exit;
+}
+
+if (isset($_POST['editarFuncionario'])) {
+    $idParaEditar = $_POST['editar_id'];
+    $novoNome = $_POST['novo_nome'];
+    $novoCpf = $_POST['novo_cpf'];
+    $novoTelefone = $_POST['novo_telefone'];
+    $novoCtps = $_POST['novo_ctps'];
+    // ... Adicione os demais campos de edição
+
+    // Atualizar no banco de dados - Você deve ajustar a função de atualização conforme sua implementação
+    $atualizadoComSucesso = atualizarFuncionario($idParaEditar, $novoNome, $novoCpf, $novoTelefone, $novoCtps);
+
+    if ($atualizadoComSucesso) {
+        // Redirecionar para a página após a atualização
+        header("Location: index.php?acao=funcionarios");
+        exit;
+    } else {
+        echo "Erro ao atualizar os dados.";
+    }
+}
+
+// Restante do seu código HTML
+?>
+
+<!-- Restante do seu HTML -->
+
+<table class="table table-bordered table-hover mt-3">
+    <thead class="table-dark cordatabela">
+        <!-- Cabeçalho da tabela -->
+    </thead>
+    <tbody>
+        <?php foreach ($listaFuncionarios as $indice => $linha) { ?>
+            <tr>
+                <th scope="row"><?php echo $indice + 1; ?></th>
+                <td><?php echo $linha['nome']; ?></td>
+                <td><?php echo $linha['cpf']; ?></td>
+                <td><?php echo $linha['telefone']; ?></td>
+                <td><?php echo $linha['ctps']; ?></td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<?php echo $linha['id']; ?>">Editar</button>
+                    <a href="index.php?acao=funcionarios&excluir=<?php echo $linha['id']; ?>" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+
+            <!-- Modal de Edição -->
+            <div class="modal fade" id="exampleModalCenter<?php echo $linha['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <!-- Restante do modal -->
+
+                <form class="cadastro" method="POST" action="index.php?acao=funcionarios">
+                    <input type="hidden" name="editar_id" value="<?php echo $linha['id']; ?>">
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <label for="nomeFuncionario">Nome*</label>
+                            <input type="text" class="form-control" id="nomeFuncionario" name="novo_nome" value="<?php echo $linha['nome']; ?>" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="cpfFuncionario">CPF*</label>
+                            <input type="text" class="form-control" id="cpfFuncionario" name="novo_cpf" value="<?php echo $linha['cpf']; ?>" required>
+                        </div>
+                    
 <?php
 
 $listaFuncionarios = select('funcionarios');
@@ -59,7 +129,7 @@ if (isset($_GET['excluir'])) {
         <td><?php echo $linha['telefone']; ?></td>
         <td><?php echo $linha['ctps']; ?></td>
         <td>
-          <button type="button"  class="btn btn-warning">editar</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter ">Editar </button>
           <a href="index.php?acao=funcionarios&excluir=<?php echo $linha['id']; ?>" class="btn btn-danger">excluir</a>
         </td>
       </tr>
@@ -105,15 +175,15 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="rgdoFuncionario">RG</label>
-                <input type="text" class="form-control" id="rgdofuncionario" name="rg" oninput="formatRG(this)" maxlength="10">
+                <input type="text" class="form-control" id="rgdofuncionario" name="rg">
               </div>
               <div class="form-group col-md-4">
                 <label for="cpfFuncionario">CPF*</label>
-                <input type="text" class="form-control" id="cpfFuncionario" name="cpf" oninput="formatCPF(this)" maxlength="14" required>
+                <input type="text" class="form-control" id="cpfFuncionario" name="cpf" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="ctpsFuncionario">CTPS</label>
-                <input type="text" class="form-control" id="ctpsFuncionario" name="ctps" >
+                <input type="text" class="form-control" id="ctpsFuncionario" name="ctps">
               </div>
               <div class="form-group col-md-4">
                 <label for="cidadeFuncionario">Cidade</label>
@@ -125,7 +195,7 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="cepFuncionario">CEP</label>
-                <input type="text" class="form-control" id="cepFuncionario"  name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9">
+                <input type="text" class="form-control" id="cepFuncionario" name="cep">
               </div>
               <div class="form-group col-md-4">
                 <label for="emailFuncionario">Email*</label>
@@ -133,11 +203,11 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="telefoneFuncionario">Telefone*</label>
-                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone" oninput="formatPhoneNumber(this)" maxlength="15" required>
+                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="senhaFuncionario">Senha*</label>
-                <input type="password" class="form-control" id="senhaFuncionario" maxlength="10" name="senha" required>
+                <input type="password" class="form-control" id="senhaFuncionario" name="senha" required>
               </div>
               <div class="form-group col-md-3">
                 <label for="grupoFuncionario">Grupo de Acesso*</label>
@@ -153,38 +223,24 @@ if (isset($_GET['excluir'])) {
     </div>
   </div>
   </div>
+    <div class="form-group col-md-4">
+                            <label for="telefoneFuncionario">Telefone*</label>
+                            <input type="text" class="form-control" id="telefoneFuncionario" name="novo_telefone" value="<?php echo $linha['telefone']; ?>" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ctpsFuncionario">CTPS</label>
+                            <input type="text" class="form-control" id="ctpsFuncionario" name="novo_ctps" value="<?php echo $linha['ctps']; ?>">
+                        </div>
+                        <!-- ... Outros campos de edição -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" name="editarFuncionario">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        <?php } ?>
+    </tbody>
+</table>
 
 
-  <script>
-        function formatCPF(input) {
-            let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-            if (value.length > 9) {
-                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-            }
-            input.value = value;
-        }
-
-        function formatPhoneNumber(input) {
-            let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-            if (value.length === 11) {
-                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-            } else if (value.length === 10) {
-                value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
-            }
-            input.value = value;
-        }
-
-        function formatRG(input) {
-            let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-            if (value.length >= 2 && value.length <= 9) {
-                value = value.replace(/(\d{1,2})(\d{3})(\d{3})/, '$1.$2.$3');
-            }
-            input.value = value;
-        }
-
-        function formatarCEP(cep) {
-            cep = cep.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-            cep = cep.replace(/^(\d{5})(\d{3})$/, '$1-$2'); // Insere a barra
-            return cep;
-        }
-    </script>
