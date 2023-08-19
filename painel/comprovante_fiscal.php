@@ -1,60 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <title>vendas</title>
+    <title>Comprovante Fiscal</title>
     <style>
-   
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .comprovante {
-            border: 1px solid #ccc;
-            padding: 20px;
-            width: 400px;
-            margin: 0 auto;
-        }
-        .comprovante p {
-            margin: 5px 0;
-        }
+        /* Estilos del comprobante aquí... */
     </style>
 </head>
 <body>
-
     <div class="comprovante">
         <h2>Comprovante de Venda</h2>
         <p><strong>Data:</strong> <?php echo date('d/m/Y'); ?></p>
         <p><strong>Nome do cliente:</strong> <?php echo $_POST['nome_cliente']; ?></p>
-        <p><strong>CPF:</strong> <?php echo $_POST['cpf_cnpj_cliente']; ?></p>
-        <p><strong>Produto retirado:</strong> <?php echo $_POST['produto_retirado']; ?></p>
-        <p><strong>Quantidade retirada:</strong> <?php echo $_POST['Quantidade_retirada']; ?></p>
         <p><strong>Cidade:</strong> <?php echo $_POST['cidade']; ?></p>
         <p><strong>Endereço:</strong> <?php echo $_POST['endereco']; ?></p>
         <p><strong>Cep:</strong> <?php echo $_POST['cep']; ?></p>
         <p><strong>Telefone:</strong> <?php echo $_POST['telefone']; ?></p>
 
         <?php
-            // Remova o caractere "R$" e quaisquer espaços antes de converter o valor para float
-            $valor = floatval(str_replace(['R$', ' '], '', $_POST['valor']));
+        $valorTotal = 0;
+        
+        if (isset($_POST['produto_retirado']) && is_array($_POST['produto_retirado'])) {
+            for ($i = 0; $i < count($_POST['produto_retirado']); $i++) {
+                $produto = $_POST['produto_retirado'][$i];
+                $valor = floatval($_POST['valor'][$i]);
+                $quantidade = intval($_POST['quantidade_retirada'][$i]);
+                $totalProduto = $valor * $quantidade;
+                
+                echo "<p><strong>Produto retirado:</strong> <span>$produto</span></p>";
+                echo "<p><strong>Valor Unitário:</strong> <span>R$ " . number_format($valor, 2, ',', '.') . "</span></p>";
+                echo "<p><strong>Quantidade retirada:</strong> <span>$quantidade</span></p>";
+                echo "<p><strong>Total do Produto:</strong> <span>R$ " . number_format($totalProduto, 2, ',', '.') . "</span></p>";
+                echo "<hr>";
+                
+                $valorTotal += $totalProduto;
+            }
+        }
+        
+        echo "<p><strong>Valor Total:</strong> <span>R$ " . number_format($valorTotal, 2, ',', '.') . "</span></p>";
         ?>
-        <p><strong>Valor:</strong> R$ <?php echo number_format($valor, 2, ',', '.'); ?></p>
+        
+        <form action="" method="post">
+            <input type="button" value="Imprimir Comprovante" onclick="DoPrinting()">
+        </form>
 
-
-        <form action="comprovante_fiscal.php" method="post">
-       
-            
-        <input type="submit" value="Gerar Comprovante"  onclick="DoPrinting()">
- 
-
-    <script language="JavaScript">
-function DoPrinting()
-{
-   window.print()
-}
-</script>
-
-</form> 
+        <script language="JavaScript">
+        function DoPrinting() {
+            window.print();
+        }
+        </script>
     </div>
- 
 </body>
 </html>
