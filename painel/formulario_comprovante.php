@@ -91,7 +91,6 @@ $listaProdutos = select ('produtos');
  >
     -->
     <form class="cadastro"  method="POST" action="comprovante_fiscal.php">
-    <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="nomeFuncionario">Nome</label>
@@ -137,7 +136,7 @@ $listaProdutos = select ('produtos');
               </div>
     
           </form>
-          </div>
+          
  
 
 
