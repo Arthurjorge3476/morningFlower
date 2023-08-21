@@ -1,4 +1,11 @@
 <?php
+@session_start();
+
+if (!isset($_SESSION['nome'])) {
+    header('Location: ../index.php');
+}
+
+
 include_once ('../consultaSQL.php');
 
 if(isset($_POST['cadastrarFuncionarios'])) {
@@ -131,6 +138,8 @@ if(isset($_POST['blocodeanotacao'])){
                     <a class="nav-item nav-link " href="index.php?acao=produtos">Produtos</a>
                     <a class="nav-item nav-link  " href="index.php?acao=fornecedores">Fornecedores</a>
                     <a class="nav-item nav-link" href="index.php?acao=comprovante">Comprovante</a>
+                    <a class="nav-item nav-link" href="../logout.php">Sair</a>
+
 
                 </div>
             </div>

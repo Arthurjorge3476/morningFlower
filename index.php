@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,10 +28,10 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="Nome de usuário" autofocus>
+                        <input type="text" name="email" class="form-control" placeholder="Seu Email" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="senha" class="form-control" placeholder="Sua senha">
+                        <input type="password" name="senha" class="form-control" placeholder="Sua senha" maxlength="10">
                     </div>
                 </div>
             </div>
