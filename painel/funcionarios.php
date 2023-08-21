@@ -1,75 +1,4 @@
 <?php
-$listaFuncionarios = select('funcionarios'); // Presumindo que isso retorna os funcionários do banco
-
-if (isset($_GET['excluir'])) {
-    $idParaExcluir = $_GET['excluir'];
-    deletar('funcionarios', $idParaExcluir);
-
-    // Redirecionar para a página após a exclusão
-    header("Location: index.php?acao=funcionarios");
-    exit;
-}
-
-if (isset($_POST['editarFuncionario'])) {
-    $idParaEditar = $_POST['editar_id'];
-    $novoNome = $_POST['novo_nome'];
-    $novoCpf = $_POST['novo_cpf'];
-    $novoTelefone = $_POST['novo_telefone'];
-    $novoCtps = $_POST['novo_ctps'];
-    // ... Adicione os demais campos de edição
-
-    // Atualizar no banco de dados - Você deve ajustar a função de atualização conforme sua implementação
-    $atualizadoComSucesso = atualizarFuncionario($idParaEditar, $novoNome, $novoCpf, $novoTelefone, $novoCtps);
-
-    if ($atualizadoComSucesso) {
-        // Redirecionar para a página após a atualização
-        header("Location: index.php?acao=funcionarios");
-        exit;
-    } else {
-        echo "Erro ao atualizar os dados.";
-    }
-}
-
-// Restante do seu código HTML
-?>
-
-<!-- Restante do seu HTML -->
-
-<table class="table table-bordered table-hover mt-3">
-    <thead class="table-dark cordatabela">
-        <!-- Cabeçalho da tabela -->
-    </thead>
-    <tbody>
-        <?php foreach ($listaFuncionarios as $indice => $linha) { ?>
-            <tr>
-                <th scope="row"><?php echo $indice + 1; ?></th>
-                <td><?php echo $linha['nome']; ?></td>
-                <td><?php echo $linha['cpf']; ?></td>
-                <td><?php echo $linha['telefone']; ?></td>
-                <td><?php echo $linha['ctps']; ?></td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<?php echo $linha['id']; ?>">Editar</button>
-                    <a href="index.php?acao=funcionarios&excluir=<?php echo $linha['id']; ?>" class="btn btn-danger">Excluir</a>
-                </td>
-            </tr>
-
-            <!-- Modal de Edição -->
-            <div class="modal fade" id="exampleModalCenter<?php echo $linha['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <!-- Restante do modal -->
-
-                <form class="cadastro" method="POST" action="index.php?acao=funcionarios">
-                    <input type="hidden" name="editar_id" value="<?php echo $linha['id']; ?>">
-                    <div class="form-row">
-                        <div class="form-group col-md-9">
-                            <label for="nomeFuncionario">Nome*</label>
-                            <input type="text" class="form-control" id="nomeFuncionario" name="novo_nome" value="<?php echo $linha['nome']; ?>" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="cpfFuncionario">CPF*</label>
-                            <input type="text" class="form-control" id="cpfFuncionario" name="novo_cpf" value="<?php echo $linha['cpf']; ?>" required>
-                        </div>
-                    
-<?php
 
 $listaFuncionarios = select('funcionarios');
 
@@ -97,10 +26,6 @@ if (isset($_GET['excluir'])) {
   </div>
  </div>
 
-
- 
-
- 
   <div class="tabela">
   <table class="table table-bordered  table-hover mt-3">
     <thead class="table-dark cordatabela">
@@ -118,8 +43,6 @@ if (isset($_GET['excluir'])) {
     <?php
       
       foreach ($listaFuncionarios as $indice => $linha){ ?>
-
-
 
 <tr class="">
         <th scope="row"><?php echo $indice +1; ?></th>
@@ -175,11 +98,11 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="rgdoFuncionario">RG</label>
-                <input type="text" class="form-control" id="rgdofuncionario" name="rg">
+                <input type="text" class="form-control" id="rgdofuncionario" name="rg" oninput="this.value = formatarRG(this.value);" maxlength="9">
               </div>
               <div class="form-group col-md-4">
                 <label for="cpfFuncionario">CPF*</label>
-                <input type="text" class="form-control" id="cpfFuncionario" name="cpf" required>
+                <input type="text" class="form-control" id="cpfFuncionario" name="cpf" oninput="this.value = formatarCPF(this.value);" maxlength="14" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="ctpsFuncionario">CTPS</label>
@@ -195,7 +118,7 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="cepFuncionario">CEP</label>
-                <input type="text" class="form-control" id="cepFuncionario" name="cep">
+                <input type="text" class="form-control" id="cepFuncionario" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9">
               </div>
               <div class="form-group col-md-4">
                 <label for="emailFuncionario">Email*</label>
@@ -203,11 +126,11 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="telefoneFuncionario">Telefone*</label>
-                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone" required>
+                <input type="text" class="form-control" id="telefoneFuncionario" name="telefone"  oninput="this.value = formatarTelefone(this.value);" maxlength="15" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="senhaFuncionario">Senha*</label>
-                <input type="password" class="form-control" id="senhaFuncionario" name="senha" required>
+                <input type="password" class="form-control" id="senhaFuncionario" name="senha" maxlength="10" required>
               </div>
               <div class="form-group col-md-3">
                 <label for="grupoFuncionario">Grupo de Acesso*</label>
@@ -223,24 +146,36 @@ if (isset($_GET['excluir'])) {
     </div>
   </div>
   </div>
-    <div class="form-group col-md-4">
-                            <label for="telefoneFuncionario">Telefone*</label>
-                            <input type="text" class="form-control" id="telefoneFuncionario" name="novo_telefone" value="<?php echo $linha['telefone']; ?>" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="ctpsFuncionario">CTPS</label>
-                            <input type="text" class="form-control" id="ctpsFuncionario" name="novo_ctps" value="<?php echo $linha['ctps']; ?>">
-                        </div>
-                        <!-- ... Outros campos de edição -->
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" name="editarFuncionario">Salvar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+    
 
-        <?php } ?>
+        <?php  ?>
     </tbody>
 </table>
 
 
+<script>
+  function formatarCEP(cep) {
+            cep = cep.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            cep = cep.replace(/^(\d{5})(\d{3})$/, '$1-$2'); // Insere a barra
+            return cep;
+        }
+
+        function formatarCPF(cpf) {
+            cpf = cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Insere o primeiro ponto
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Insere o segundo ponto
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Insere o segundo ponto
+            cpf = cpf.replace(/(\d{3})(\d{2})$/, '$1-$2'); // Insere o hífen
+            return cpf;
+        }
+        function formatarRG(rg) {
+            rg = rg.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            rg = rg.replace(/(\d{1})(\d{3})(\d{3})$/, '$1.$2.$3'); // Formatação do RG
+            return rg;
+        }
+        function formatarTelefone(telefone) {
+            telefone = telefone.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            telefone = telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formatação do telefone
+            return telefone;
+        }
+</script>
