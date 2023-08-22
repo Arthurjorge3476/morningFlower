@@ -52,8 +52,59 @@ if (isset($_GET['excluir'])) {
         <td><?php echo $linha['telefone']; ?></td>
         <td><?php echo $linha['ctps']; ?></td>
         <td>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter ">Editar </button>
-          <a href="index.php?acao=funcionarios&excluir=<?php echo $linha['id']; ?>" class="btn btn-danger">excluir</a>
+        <button type="button" class="btn btn-primary editar-funcionario" data-toggle="modal" data-target="#editarFuncionarioModal" data-id="<?php echo $linha['id']; ?>">Editar</button>
+           <!-- Modal de Edição de Funcionário -->
+<div class="modal fade" id="editarFuncionarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Funcionário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulário de Edição de Funcionário -->
+        <form id="formEditarFuncionario" method="POST" action="editar_funcionario.php">
+          <!-- Campos de edição de funcionário -->
+          <input type="hidden" id="idFuncionarioEditar" name="idFuncionarioEditar" value="">
+          <div class="form-group">
+            <label for="nomeFuncionarioEditar">Nome</label>
+            <input type="text" class="form-control" id="nomeFuncionarioEditar" name="nomeFuncionarioEditar" required>
+          </div>
+          <!-- Adicione outros campos de edição conforme necessário -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="salvarEdicaoFuncionario">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <a href="index.php?acao=funcionarios&excluir" class="btn btn-danger excluir-funcionario" data-id="<?php echo $linha['id']; ?>" data-nome="<?php echo $linha['nome']; ?>" >excluir</a>
+          <!-- Modal de confirmação de exclusão personalizada -->
+                  <div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Exclusão de Funcionário</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Você deseja excluir  o funcionário <span id="nomeFuncionarioExclusao"></span>?
+                        </div>
+                        <div class="modal-footer">
+                          <a href="#" id="confirmarExclusao" class="btn btn-danger">Confirmar Exclusão</a>
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
         </td>
       </tr>
       <?php };
@@ -178,4 +229,77 @@ if (isset($_GET['excluir'])) {
             telefone = telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formatação do telefone
             return telefone;
         }
+</script>
+
+<!--excluir confirmando -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Adicionar um evento de clique a todos os links com a classe 'excluir-funcionario'
+    const excluirLinks = document.querySelectorAll('.excluir-funcionario');
+    const nomeFuncionarioExclusao = document.getElementById('nomeFuncionarioExclusao');
+    const confirmarExclusao = document.getElementById('confirmarExclusao');
+
+    excluirLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita que o link seja seguido
+
+        const funcionarioID = this.getAttribute('data-id'); // Obtém o ID do funcionário
+        const nomeFuncionario = this.getAttribute('data-nome'); // Obtém o nome do funcionário
+
+        nomeFuncionarioExclusao.textContent = nomeFuncionario; // Atualiza o nome na modal
+
+        // Adiciona um evento de clique ao botão 'Confirmar Exclusão'
+        confirmarExclusao.addEventListener('click', function () {
+          // Redireciona para a página de exclusão com o ID do funcionário
+          window.location.href = `index.php?acao=funcionarios&excluir=${funcionarioID}`;
+        });
+
+        // Abre a modal de confirmação
+        $('#confirmacaoExclusao').modal('show');
+      });
+    });
+  });
+</script>
+
+<!--botão de editar-->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const editarLinks = document.querySelectorAll('.editar-funcionario');
+    const idFuncionarioEditar = document.getElementById('idFuncionarioEditar');
+    const nomeFuncionarioEditar = document.getElementById('nomeFuncionarioEditar');
+    const salvarEdicaoFuncionario = document.getElementById('salvarEdicaoFuncionario');
+
+    editarLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const funcionarioID = this.getAttribute('data-id');
+        const funcionario = encontrarFuncionarioPorID(funcionarioID); // Implemente uma função para buscar os dados do funcionário
+
+        if (funcionario) {
+          // Preencha os campos de edição com os dados do funcionário
+          idFuncionarioEditar.value = funcionario.id;
+          nomeFuncionarioEditar.value = funcionario.nome;
+          // Preencha outros campos de edição conforme necessário
+
+          // Abra a modal de edição
+          $('#editarFuncionarioModal').modal('show');
+
+          // Adicione um evento de clique ao botão "Salvar"
+          salvarEdicaoFuncionario.addEventListener('click', function () {
+            // Submeta o formulário de edição para atualizar o funcionário
+            document.getElementById('formEditarFuncionario').submit();
+          });
+        }
+      });
+    });
+
+    // Função fictícia para buscar dados do funcionário pelo ID
+    function encontrarFuncionarioPorID(funcionarioID) {
+      // Implemente esta função para buscar os dados do funcionário no seu sistema e retorne um objeto com os dados.
+      // Se o funcionário não for encontrado, retorne null.
+    }
+  });
 </script>
