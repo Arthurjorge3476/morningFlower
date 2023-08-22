@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/08/2023 às 19:56
+-- Tempo de geração: 22/08/2023 às 19:12
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.0.28
 
@@ -81,7 +81,7 @@ CREATE TABLE `funcionarios` (
   `cep` varchar(9) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `telefone` varchar(16) NOT NULL,
-  `senha` varchar(10) NOT NULL,
+  `senha` varchar(200) NOT NULL,
   `grupo_de_acesso` varchar(1) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -91,11 +91,9 @@ CREATE TABLE `funcionarios` (
 --
 
 INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `cidade`, `endereco`, `cep`, `email`, `telefone`, `senha`, `grupo_de_acesso`, `id`) VALUES
-('Raissa', '2200-01-23', '1258458', '12598745', '12365847', 'Santa Rosa do Sul', '160', '8564798', 'raisinha@gmail.com', '48996518776', '78945612', '2', 32),
-('Vaquinha Mumu', '2006-01-23', '254569', '111111111', '555555555', 'Santa Rosa do Sul', '789', '58964', 'vaquinhamumu@gmail.com', '48996518778', 'c12da8f562', '2', 39),
-('Bianca Renata', '0000-00-00', '', '888888888', '', '', '', '', 'bianca@gmail.com', '489965755', '12345687', '2', 47),
 ('Raquel', '2006-01-23', '69.852.155', '255.648.822-12', '555556598', 'Santa Rosa do Sul', 'Avenida Damasio Péres', '88965-000', 'admin@admin.com', '(48) 96588-4885', 'e78caf5693', '2', 52),
-('Morgana', '2006-01-23', '99.999.999', '999.999.999-99', '7878', 'Santa Rosa do Sul', 'Avenida Damasio Péres', '88965-000', 'morgana@gmail.com', '(99) 99999-9999', 'e0ec043b3f', '2', 60);
+('Sabrina', NULL, NULL, '523.654.885.22', NULL, NULL, NULL, NULL, 'sabrinafraga@gmail.com', '(48) 95654-8522', '808756e43b', '2', 84),
+('Raissa', NULL, NULL, '255.549.888.85', NULL, NULL, NULL, NULL, 'raissafraga@gmail.com', '(45) 88778-9451', 'e10adc3949ba59abbe56e057f20f883e', '1', 89);
 
 -- --------------------------------------------------------
 
@@ -181,7 +179,7 @@ ALTER TABLE `fornecedores`
 -- AUTO_INCREMENT de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
