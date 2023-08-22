@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/08/2023 às 19:12
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.0.28
+-- Tempo de geração: 22-Ago-2023 às 21:45
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `blocodenotas`
+-- Estrutura da tabela `blocodenotas`
 --
 
 CREATE TABLE `blocodenotas` (
@@ -34,7 +34,26 @@ CREATE TABLE `blocodenotas` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `fornecedores`
+-- Estrutura da tabela `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `codigo` varchar(255) NOT NULL,
+  `nome` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`codigo`, `nome`) VALUES
+('13', 'arthur'),
+('13', 'arthur');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `fornecedores`
 --
 
 CREATE TABLE `fornecedores` (
@@ -58,7 +77,7 @@ CREATE TABLE `fornecedores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `fornecedores`
+-- Extraindo dados da tabela `fornecedores`
 --
 
 INSERT INTO `fornecedores` (`id`, `codigo`, `nome`, `endereco`, `cidade`, `bairro`, `estado`, `cep`, `telefone1`, `telefone2`, `email`, `cnpj`, `vendedor`, `telefonevendedor1`, `telefonevendedor2`, `condicaodavenda`, `atividade`) VALUES
@@ -67,7 +86,7 @@ INSERT INTO `fornecedores` (`id`, `codigo`, `nome`, `endereco`, `cidade`, `bairr
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `funcionarios`
+-- Estrutura da tabela `funcionarios`
 --
 
 CREATE TABLE `funcionarios` (
@@ -87,7 +106,7 @@ CREATE TABLE `funcionarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `funcionarios`
+-- Extraindo dados da tabela `funcionarios`
 --
 
 INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `cidade`, `endereco`, `cep`, `email`, `telefone`, `senha`, `grupo_de_acesso`, `id`) VALUES
@@ -98,7 +117,7 @@ INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produtos`
+-- Estrutura da tabela `produtos`
 --
 
 CREATE TABLE `produtos` (
@@ -117,7 +136,7 @@ CREATE TABLE `produtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `produtos`
+-- Extraindo dados da tabela `produtos`
 --
 
 INSERT INTO `produtos` (`codigo`, `produto`, `estoque`, `precodecompra`, `precodevenda`, `fornecedor`, `validade`, `observacao`, `categoria`, `margemdelucro`, `lucroanterior`, `id`) VALUES
@@ -129,13 +148,13 @@ INSERT INTO `produtos` (`codigo`, `produto`, `estoque`, `precodecompra`, `precod
 --
 
 --
--- Índices de tabela `blocodenotas`
+-- Índices para tabela `blocodenotas`
 --
 ALTER TABLE `blocodenotas`
   ADD PRIMARY KEY (`notas`);
 
 --
--- Índices de tabela `fornecedores`
+-- Índices para tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`id`,`cnpj`),
@@ -149,24 +168,24 @@ ALTER TABLE `fornecedores`
   ADD UNIQUE KEY `telefonevendedor2_UNIQUE` (`telefonevendedor2`);
 
 --
--- Índices de tabela `funcionarios`
+-- Índices para tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `rg_UNIQUE` (`rg`),
   ADD UNIQUE KEY `cpf_UNIQUE` (`cpf`),
-  ADD UNIQUE KEY `ctps_UNIQUE` (`ctps`),
-  ADD UNIQUE KEY `senha_UNIQUE` (`senha`);
+  ADD UNIQUE KEY `senha_UNIQUE` (`senha`),
+  ADD UNIQUE KEY `rg_UNIQUE` (`rg`),
+  ADD UNIQUE KEY `ctps_UNIQUE` (`ctps`);
 
 --
--- Índices de tabela `produtos`
+-- Índices para tabela `produtos`
 --
 ALTER TABLE `produtos`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `codigo_UNIQUE` (`codigo`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --

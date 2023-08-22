@@ -8,7 +8,7 @@ if (!isset($_SESSION['nome'])) {
 
 include_once ('../consultaSQL.php');
 
-if(isset($_POST['cadastrarFuncionarios'])) {
+if(isset($_POST['cadastrarFuncionarios'])){
 
 $nome = $_POST['nome'];
 $data_de_nascimento = $_POST['data_de_nascimento'];
@@ -23,20 +23,26 @@ $telefone = $_POST['telefone'];
 $senha = md5($_POST['senha']);
 $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
-
 $campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
 $valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
-
+}
 
  
 
 
+if(isset($_POST['cadastrarClientes'])){
 
-inserir('funcionarios', $campos, $valores);
 
-header("Location: index.php?acao=funcionarios");
-exit; // Certifique-se de sair do script após o redirecionamento
-}
+    $codigo = $_POST['codigo'];
+    $nome = $_POST['nome'];
+   
+    $campos = array('codigo','nome');
+    $valores = array($codigo,$nome);
+    
+    inserir('clientes', $campos, $valores);
+    
+    }
+    
 
 
 
@@ -66,6 +72,22 @@ $valores = array($codigo,$nome, $endereco, $cidade,$bairro,$estado,$cep,$telefon
 inserir('fornecedores', $campos, $valores);
 
 }
+
+
+if(isset($_POST['cadastrarClientes'])){
+
+
+    $codigo = $_POST['codigo'];
+    $nome = $_POST['nome'];
+    
+    $campos = array('codigo','nome');
+    $valores = array($codigo,$nome);
+    
+    inserir('clientes', $campos, $valores);
+    
+    }
+
+
 
 if(isset($_POST['cadastrarProdutos'])){
 $codigo = $_POST['codigo'];
@@ -137,6 +159,7 @@ if(isset($_POST['blocodeanotacao'])){
                     <a class="nav-item nav-link " href="index.php?acao=funcionarios">Funcionários</a>
                     <a class="nav-item nav-link " href="index.php?acao=produtos">Produtos</a>
                     <a class="nav-item nav-link  " href="index.php?acao=fornecedores">Fornecedores</a>
+                    <a class="nav-item nav-link  " href="index.php?acao=clientes">Clientes</a>
                     <a class="nav-item nav-link" href="index.php?acao=comprovante">Comprovante</a>
                     <a class="nav-item nav-link" href="../logout.php">Sair</a>
 
@@ -170,6 +193,10 @@ if(isset($_POST['blocodeanotacao'])){
              elseif($acao == 'comprovante'){
                 include('formulario_comprovante.php');
              }
+             elseif($acao == 'clientes'){
+                include('clientes.php');
+             }
+             
         } else {
             include('home.php');
         }
@@ -178,4 +205,3 @@ if(isset($_POST['blocodeanotacao'])){
 </body>
 
 </html>
-
