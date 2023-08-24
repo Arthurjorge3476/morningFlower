@@ -99,5 +99,16 @@ function deletar ($tabela, $id) {
     }
 }
 
-
+    function editar ($tabela, $id ) {
+    $conexao = conectar();
+     
+    try {
+        $sql = "UPDATE FROM $tabela WHERE id = $id";
+        $stmt = $conexao -> prepare($sql);
+        $stmt -> execute();
+        $conexao = null;
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    }
 ?>
