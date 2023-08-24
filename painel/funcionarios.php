@@ -36,6 +36,7 @@ if (isset($_GET['excluir'])) {
         <th scope="col">Telefone</th>
         <th scope="col">CTPS</th>
         <th scope="col"></th>
+        <th scope="col"></th>
 
       </tr>
     </thead>
@@ -52,7 +53,7 @@ if (isset($_GET['excluir'])) {
         <td><?php echo $linha['telefone']; ?></td>
         <td><?php echo $linha['ctps']; ?></td>
         <td>
-        <button type="button" class="btn btn-primary editar-funcionario" data-toggle="modal" data-target="#editarFuncionarioModal" data-id="<?php echo $linha['id']; ?>">Editar</button>
+        <a href="index.php?acao=funcionarios&excluir" class="btn btn-outline-warning btn-sm editar-funcionario" data-info='<?php echo json_encode($linha); ?>'>Editar</a>
            <!-- Modal de Edição de Funcionário -->
 <div class="modal fade" id="editarFuncionarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -68,22 +69,68 @@ if (isset($_GET['excluir'])) {
         <form id="formEditarFuncionario" method="POST" action="editar_funcionario.php">
           <!-- Campos de edição de funcionário -->
           <input type="hidden" id="idFuncionarioEditar" name="idFuncionarioEditar" value="">
-          <div class="form-group">
-            <label for="nomeFuncionarioEditar">Nome</label>
-            <input type="text" class="form-control" id="nomeFuncionarioEditar" name="nomeFuncionarioEditar" required>
-          </div>
+          <div class="form-row">
+              <div class="form-group col-md-9">
+                <label for="nomeFuncionarioEditar">Nome*</label>
+                <input type="text" class="form-control" id="nomeFuncionarioEditar" name="nomeFuncionarioEditar" required>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="datadenascimentoEditar">Data de Nascimento</label>
+                <input type="date" class="form-control" id="datadenascimentoEditar" name="data_de_nascimento">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="rgdoFuncionarioEditar">RG</label>
+                <input type="text" class="form-control" id="rgdoFuncionarioEditar" name="rg" oninput="this.value = formatarRG(this.value);" maxlength="9">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cpfFuncionario">CPF*</label>
+                <input type="text" class="form-control" id="cpfFuncionario" name="cpf" oninput="this.value = formatarCPF(this.value);" maxlength="14" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="ctpsFuncionarioEditar">CTPS</label>
+                <input type="text" class="form-control" id="ctpsFuncionarioEditar" name="ctps" oninput="this.value = formatarCTPS(this.value);">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cidadeFuncionarioEditar">Cidade</label>
+                <input type="text" class="form-control" id="cidadeFuncionarioEditar" name="cidade" oninput="this.value = formatarCidade(this.value);">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="enderecoFuncionarioEditar">Endereço</label>
+                <input type="text" class="form-control" id="enderecoFuncionarioEditar" name="endereco" oninput="this.value = formatarEndereco(this.value);">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cepFuncionarioEditar">CEP</label>
+                <input type="text" class="form-control" id="cepFuncionarioEditar" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="emailFuncionarioEditar">Email*</label>
+                <input type="e-mail" class="form-control" id="emailFuncionarioEditar" name="email" oninput="this.value = formatarEmail(this.value);" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="telefoneFuncionarioEditar">Telefone*</label>
+                <input type="text" class="form-control" id="telefoneFuncionarioEditar" name="telefone"  oninput="this.value = formatarTelefone(this.value);" maxlength="15" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="senhaFuncionarioEditar">Senha*</label>
+                <input type="password" class="form-control" id="senhaFuncionarioEditar" name="senha" maxlength="10" oninput="this.value = formatarSenha(this.value);" required>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="grupoFuncionarioEditar">Grupo de Acesso*</label>
+                <input type="text" class="form-control" id="grupoFuncionarioEditar" maxlength="1" name="grupo_de_acesso" oninput="this.value = formatarGrupodeacesso(this.value);" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="salvarEdicaoFuncionario" name>Salvar</button>
+              </div>
           <!-- Adicione outros campos de edição conforme necessário -->
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" id="salvarEdicaoFuncionario">Salvar</button>
       </div>
-    </div>
   </div>
 </div>
 
-          <a href="index.php?acao=funcionarios&excluir" class="btn btn-danger excluir-funcionario" data-id="<?php echo $linha['id']; ?>" data-nome="<?php echo $linha['nome']; ?>" >excluir</a>
+ <td><a href="index.php?acao=funcionarios&excluir" class="btn btn-outline-danger btn-sm excluir-funcionario" data-id="<?php echo $linha['id']; ?>" data-nome="<?php echo $linha['nome']; ?>" >excluir</a></td>
+          
           <!-- Modal de confirmação de exclusão personalizada -->
                   <div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -173,7 +220,7 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="emailFuncionario">Email*</label>
-                <input type="e-mail" class="form-control" id="emailFuncionario" name="email" required>
+                <input type="e-mail" class="form-control" id="emailFuncionario" name="email"  required>
               </div>
               <div class="form-group col-md-4">
                 <label for="telefoneFuncionario">Telefone*</label>
@@ -181,7 +228,14 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="form-group col-md-4">
                 <label for="senhaFuncionario">Senha*</label>
-                <input type="password" class="form-control" id="senhaFuncionario" name="senha" maxlength="10" required>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="senhaFuncionario" name="senha" maxlength="10" required>
+                  <div class="input-group-append">
+                      <button type="button" class="btn btn-outline-secondary" id="mostrarSenha">
+                          <i class="fas fa-eye" id="iconeMostrarSenha"></i>
+                      </button>
+                  </div>
+               </div>
               </div>
               <div class="form-group col-md-3">
                 <label for="grupoFuncionario">Grupo de Acesso*</label>
@@ -265,41 +319,77 @@ if (isset($_GET['excluir'])) {
 <!--botão de editar-->
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const editarLinks = document.querySelectorAll('.editar-funcionario');
-    const idFuncionarioEditar = document.getElementById('idFuncionarioEditar');
-    const nomeFuncionarioEditar = document.getElementById('nomeFuncionarioEditar');
-    const salvarEdicaoFuncionario = document.getElementById('salvarEdicaoFuncionario');
+    document.addEventListener('DOMContentLoaded', function () {
+        const editarLinks = document.querySelectorAll('.editar-funcionario');
+        const idFuncionarioEditar = document.getElementById('idFuncionarioEditar');
+        const nomeFuncionarioEditar = document.getElementById('nomeFuncionarioEditar');
+        const cpfFuncionarioEditar = document.getElementById('cpfFuncionario'); // Campo CPF
+        const datadenascimentoEditar = document.getElementById('datadenascimentoEditar');
+        const rgdoFuncionarioEditar = document.getElementById('rgdoFuncionarioEditar');
+        const ctpsFuncionarioEditar = document.getElementById('ctpsFuncionarioEditar');
+        const cidadeFuncionarioEditar = document.getElementById('cidadeFuncionarioEditar');
+        const enderecoFuncionarioEditar = document.getElementById('enderecoFuncionarioEditar');
+        const cepFuncionarioEditar = document.getElementById('cepFuncionarioEditar');
+        const emailFuncionarioEditar = document.getElementById('emailFuncionarioEditar');
+        const telefoneFuncionarioEditar = document.getElementById('telefoneFuncionarioEditar');
+        const senhaFuncionarioEditar = document.getElementById('senhaFuncionarioEditar');
+        const grupoFuncionarioEditar = document.getElementById('grupoFuncionarioEditar');
+        // Outros campos de edição...
 
-    editarLinks.forEach(function (link) {
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
+        editarLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
 
-        const funcionarioID = this.getAttribute('data-id');
-        const funcionario = encontrarFuncionarioPorID(funcionarioID); // Implemente uma função para buscar os dados do funcionário
+                // Obtenha as informações do funcionário a partir do atributo 'data-info'
+                const infoFuncionario = JSON.parse(this.getAttribute('data-info'));
 
-        if (funcionario) {
-          // Preencha os campos de edição com os dados do funcionário
-          idFuncionarioEditar.value = funcionario.id;
-          nomeFuncionarioEditar.value = funcionario.nome;
-          // Preencha outros campos de edição conforme necessário
+                // Preencha os campos da modal com as informações do funcionário
+                idFuncionarioEditar.value = infoFuncionario.id;
+                nomeFuncionarioEditar.value = infoFuncionario.nome;
+                cpfFuncionarioEditar.value = infoFuncionario.cpf;
+                datadenascimentoEditar.value = infoFuncionario.data_de_nascimento; 
+                rgdoFuncionarioEditar.value = infoFuncionario.rg;
+                ctpsFuncionarioEditar.value = infoFuncionario.ctps;
+                cidadeFuncionarioEditar.value = infoFuncionario.cidade;
+                enderecoFuncionarioEditar.value = infoFuncionario.endereco;
+                cepFuncionarioEditar.value = infoFuncionario.cep;
+                emailFuncionarioEditar.value = infoFuncionario.email;
+                telefoneFuncionarioEditar.value = infoFuncionario.telefone;
+                senhaFuncionarioEditar.value = infoFuncionario.senha;
+                grupoFuncionarioEditar.value = infoFuncionario.grupo_de_acesso;
+                // Preencha outros campos de edição conforme necessário
 
-          // Abra a modal de edição
-          $('#editarFuncionarioModal').modal('show');
+                // Abra a modal de edição
+                $('#editarFuncionarioModal').modal('show');
+            });
+        });
 
-          // Adicione um evento de clique ao botão "Salvar"
-          salvarEdicaoFuncionario.addEventListener('click', function () {
-            // Submeta o formulário de edição para atualizar o funcionário
-            document.getElementById('formEditarFuncionario').submit();
-          });
-        }
-      });
+        // Resto do seu código JavaScript...
     });
-
-    // Função fictícia para buscar dados do funcionário pelo ID
-    function encontrarFuncionarioPorID(funcionarioID) {
-      // Implemente esta função para buscar os dados do funcionário no seu sistema e retorne um objeto com os dados.
-      // Se o funcionário não for encontrado, retorne null.
-    }
-  });
 </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Selecione o campo de senha e o ícone
+        const senhaFuncionario = document.getElementById('senhaFuncionario');
+        const iconeMostrarSenha = document.getElementById('iconeMostrarSenha');
+
+        // Adicione um evento de clique ao botão
+        document.getElementById('mostrarSenha').addEventListener('click', function () {
+            if (senhaFuncionario.type === 'password') {
+                senhaFuncionario.type = 'text'; // Mostrar senha
+                iconeMostrarSenha.classList.remove('fa-eye');
+                iconeMostrarSenha.classList.add('fa-eye-slash');
+            } else {
+                senhaFuncionario.type = 'password'; // Ocultar senha
+                iconeMostrarSenha.classList.remove('fa-eye-slash');
+                iconeMostrarSenha.classList.add('fa-eye');
+            }
+        });
+    });
+</script>
+
+
+
+

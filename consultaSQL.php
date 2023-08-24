@@ -98,4 +98,6 @@ function deletar ($tabela, $id) {
         echo $e;
     }
 }
+
+
 ?>
