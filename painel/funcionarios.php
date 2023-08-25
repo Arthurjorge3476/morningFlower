@@ -12,6 +12,36 @@ if (isset($_GET['excluir'])) {
   header("Location: index.php?acao=funcionarios");
   exit; // Certifique-se de sair do script após o redirecionamento
 }
+
+
+// Se o formulário de edição for enviado
+if (isset($_POST['salvarEditar'])) {
+    $idFuncionarioEditar = $_POST['idFuncionarioEditar'];
+    $nomeFuncionarioEditar = $_POST['nomeFuncionarioEditar'];
+    $data_de_nascimento = $_POST['data_de_nascimento'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $ctps = $_POST['ctps'];
+    $cidade = $_POST['cidade'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+    $senha = $_POST['senha'];
+    $grupo_de_acesso = $_POST['grupo_de_acesso'];
+
+
+    // Aqui você deve realizar a atualização no banco de dados usando os valores acima
+    // Certifique-se de usar declarações preparadas para evitar SQL Injection.
+
+    // Depois de atualizar o registro, você pode redirecionar para a página de funcionários ou exibir uma mensagem de sucesso.
+    header("Location: index.php?acao=funcionarios");
+    exit;
+}
+
+// Resto do seu código PHP e HTML...
+?>
+
  
 
 ?>
@@ -53,7 +83,8 @@ if (isset($_GET['excluir'])) {
         <td><?php echo $linha['telefone']; ?></td>
         <td><?php echo $linha['ctps']; ?></td>
         <td>
-        <a href="index.php?acao=funcionarios&excluir" class="btn btn-outline-warning btn-sm editar-funcionario" data-info='<?php echo json_encode($linha); ?>'>Editar</a>
+        <a href="index.php?acao=funcionarios&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm editar-funcionario" data-info='<?php echo json_encode($linha); ?>'>Editar</a>
+
            <!-- Modal de Edição de Funcionário -->
 <div class="modal fade" id="editarFuncionarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -66,13 +97,13 @@ if (isset($_GET['excluir'])) {
       </div>
       <div class="modal-body">
         <!-- Formulário de Edição de Funcionário -->
-        <form id="formEditarFuncionario" method="POST" action="editar_funcionario.php">
+        <form id="formEditarFuncionario" method="POST" action="index.php?acao=funcionarios">
           <!-- Campos de edição de funcionário -->
-          <input type="hidden" id="idFuncionarioEditar" name="idFuncionarioEditar" value="">
+          <input type="hidden" id="idFuncionarioEditar" name="idFuncionarioEditar">
           <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="nomeFuncionarioEditar">Nome*</label>
-                <input type="text" class="form-control" id="nomeFuncionarioEditar" name="nomeFuncionarioEditar" required>
+                <input type="text0" class="form-control" id="nomeFuncionarioEditar" name="nomeFuncionarioEditar" required>
               </div>
               <div class="form-group col-md-3">
                 <label for="datadenascimentoEditar">Data de Nascimento</label>
@@ -120,7 +151,7 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" id="salvarEdicaoFuncionario" name>Salvar</button>
+                <button type="submit" class="btn btn-primary" id="salvarEdicaoFuncionario" name="salvarEditar">Salvar</button>
               </div>
           <!-- Adicione outros campos de edição conforme necessário -->
         </form>

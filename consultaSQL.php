@@ -3,7 +3,7 @@
 function conectar() {
 // Configurações do banco de dados
 $hostname = 'localhost'; // Host do banco de dados
-$database = 'morningflower'; // Nome do banco de dados
+$database = 'morning flower'; // Nome do banco de dados
 $username = 'root'; // Nome do usuário do banco de dados
 $password = ''; // Senha do usuário do banco de dados
 
@@ -99,16 +99,18 @@ function deletar ($tabela, $id) {
     }
 }
 
-    function editar ($tabela, $id ) {
+function editar($tabela, $id) {
     $conexao = conectar();
-     
+
     try {
-        $sql = "UPDATE FROM $tabela WHERE id = $id";
-        $stmt = $conexao -> prepare($sql);
-        $stmt -> execute();
+        $sql = "UPDATE $tabela WHERE id = $id";
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->execute();
         $conexao = null;
     } catch (PDOException $e) {
-        echo $e;
+        echo "Erro: " . $e->getMessage();
     }
-    }
+}
+
 ?>
