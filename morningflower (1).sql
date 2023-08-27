@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22-Ago-2023 às 21:45
+-- Tempo de geração: 27-Ago-2023 às 15:16
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -113,6 +113,19 @@ INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `
 ('Raquel', '2006-01-23', '69.852.155', '255.648.822-12', '555556598', 'Santa Rosa do Sul', 'Avenida Damasio Péres', '88965-000', 'admin@admin.com', '(48) 96588-4885', 'e78caf5693', '2', 52),
 ('Sabrina', NULL, NULL, '523.654.885.22', NULL, NULL, NULL, NULL, 'sabrinafraga@gmail.com', '(48) 95654-8522', '808756e43b', '2', 84),
 ('Raissa', NULL, NULL, '255.549.888.85', NULL, NULL, NULL, NULL, 'raissafraga@gmail.com', '(45) 88778-9451', 'e10adc3949ba59abbe56e057f20f883e', '1', 89);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pedido`
+--
+
+CREATE TABLE `pedido` (
+  `numero` int(11) NOT NULL,
+  `data` int(11) NOT NULL,
+  `vendedor` int(11) NOT NULL,
+  `cliente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
