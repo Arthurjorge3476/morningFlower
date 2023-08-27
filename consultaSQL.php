@@ -97,20 +97,14 @@ function deletar ($tabela, $id) {
     } catch (PDOException $e) {
         echo $e;
     }
+
 }
 
-function editar($tabela, $id) {
-    $conexao = conectar();
-
-    try {
-        $sql = "UPDATE $tabela WHERE id = $id";
-        $stmt = $conexao->prepare($sql);
-
-        $stmt->execute();
-        $conexao = null;
-    } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
-    }
-}
-
+  
 ?>
+
+
+
+
+
+

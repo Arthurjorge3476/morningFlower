@@ -25,7 +25,35 @@ $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
 $campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
 $valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
+
+inserir('funcionarios', $campos, $valores);
+
 }
+
+if(isset($_POST['editar'])){
+
+    $nome = $_POST['nome'];
+    $data_de_nascimento = $_POST['data_de_nascimento'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $ctps = $_POST['ctps'];
+    $cidade = $_POST['cidade'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+    $senha = md5($_POST['senha']);
+    $grupo_de_acesso = $_POST['grupo_de_acesso'];
+    
+    $campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
+    $valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
+    
+    inserir('funcionarios', $campos, $valores);
+    
+    }
+
+
+
 
  
 
@@ -137,6 +165,8 @@ if(isset($_POST['blocodeanotacao'])){
     <link rel="stylesheet" href="../css/telainicial.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -155,7 +185,7 @@ if(isset($_POST['blocodeanotacao'])){
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link " href="index.php">Home <span class="sr-only">(Página atual)</span></a>
-                    <a class="nav-item nav-link " href="index.php?acao=presentes">Presentes</a>
+                    <a class="nav-item nav-link " href="index.php?acao=presentes">Estoque</a>
                     <a class="nav-item nav-link " href="index.php?acao=funcionarios">Funcionários</a>
                     <a class="nav-item nav-link " href="index.php?acao=produtos">Produtos</a>
                     <a class="nav-item nav-link  " href="index.php?acao=fornecedores">Fornecedores</a>

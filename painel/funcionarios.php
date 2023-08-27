@@ -4,6 +4,57 @@ $listaFuncionarios = select('funcionarios');
 
 
 
+if (isset($_POST['editar'])) {
+    // Certifique-se de definir $id com o ID do funcionário que está sendo editado
+    $id = $_POST['idFuncionarioEditar'];
+
+    $nome = $_POST['nome'];
+    $data_de_nascimento = $_POST['data_de_nascimento'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $ctps = $_POST['ctps'];
+    $cidade = $_POST['cidade'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+    $senha = md5($_POST['senha']);
+    $grupo_de_acesso = $_POST['grupo_de_acesso'];
+
+    // Atualize o funcionário no banco de dados
+    $sql_update = "UPDATE funcionarios SET nome = :nome, data_de_nascimento = :data_de_nascimento, rg = :rg, cpf = :cpf, ctps = :ctps, cidade = :cidade, endereco = :endereco, cep = :cep, email = :email, telefone = :telefone, senha = :senha, grupo_de_acesso = :grupo_de_acesso WHERE id = :id";
+
+    $stmt_update = $PDO->prepare($sql_update);
+
+    $stmt_update->bindParam(':id', $id);
+    $stmt_update->bindParam(':nome', $nome);
+    $stmt_update->bindParam(':data_de_nascimento', $data_de_nascimento);
+    $stmt_update->bindParam(':rg', $rg);
+    $stmt_update->bindParam(':cpf', $cpf);
+    $stmt_update->bindParam(':ctps', $ctps);
+    $stmt_update->bindParam(':cidade', $cidade);
+    $stmt_update->bindParam(':endereco', $endereco);
+    $stmt_update->bindParam(':cep', $cep);
+    $stmt_update->bindParam(':email', $email);
+    $stmt_update->bindParam(':telefone', $telefone);
+    $stmt_update->bindParam(':senha', $senha);
+    $stmt_update->bindParam(':grupo_de_acesso', $grupo_de_acesso);
+
+    $result_update = $stmt_update->execute();
+
+    if (!$result_update) {
+        var_dump($stmt_update->errorInfo());
+        exit;
+    } else {
+        echo $stmt_update->rowCount() . " Linha atualizada";
+        header("Location: index.php?acao=funcionarios");
+        exit;
+    }
+}
+
+
+ 
+
 if (isset($_GET['excluir'])) {
   $idParaExcluir = $_GET['excluir'];
   deletar('funcionarios', $idParaExcluir);
@@ -14,37 +65,12 @@ if (isset($_GET['excluir'])) {
 }
 
 
-// Se o formulário de edição for enviado
-if (isset($_POST['salvarEditar'])) {
-    $idFuncionarioEditar = $_POST['idFuncionarioEditar'];
-    $nomeFuncionarioEditar = $_POST['nomeFuncionarioEditar'];
-    $data_de_nascimento = $_POST['data_de_nascimento'];
-    $rg = $_POST['rg'];
-    $cpf = $_POST['cpf'];
-    $ctps = $_POST['ctps'];
-    $cidade = $_POST['cidade'];
-    $endereco = $_POST['endereco'];
-    $cep = $_POST['cep'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $senha = $_POST['senha'];
-    $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
 
-    // Aqui você deve realizar a atualização no banco de dados usando os valores acima
-    // Certifique-se de usar declarações preparadas para evitar SQL Injection.
-
-    // Depois de atualizar o registro, você pode redirecionar para a página de funcionários ou exibir uma mensagem de sucesso.
-    header("Location: index.php?acao=funcionarios");
-    exit;
-}
-
-// Resto do seu código PHP e HTML...
-?>
-
- 
 
 ?>
+
+
 
 
  <div class="search-container">
@@ -60,6 +86,7 @@ if (isset($_POST['salvarEditar'])) {
   <table class="table table-bordered  table-hover mt-3">
     <thead class="table-dark cordatabela">
       <tr>
+        
         <th scope="col"></th>
         <th scope="col">Nome</th>
         <th scope="col">CPF</th>
@@ -83,10 +110,14 @@ if (isset($_POST['salvarEditar'])) {
         <td><?php echo $linha['telefone']; ?></td>
         <td><?php echo $linha['ctps']; ?></td>
         <td>
-        <a href="index.php?acao=funcionarios&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm editar-funcionario" data-info='<?php echo json_encode($linha); ?>'>Editar</a>
+        <div>
+        <a href="index.php?acao=funcionarios&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm editar-funcionario" data-info='<?php echo json_encode($linha); ?>' data-toggle="modal" data-target="#editarFuncionarioModal" name="editar">Editar</a>
 
-           <!-- Modal de Edição de Funcionário -->
-<div class="modal fade" id="editarFuncionarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        
+
+
+
+ <div class="modal fade" id="editarFuncionarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -103,7 +134,7 @@ if (isset($_POST['salvarEditar'])) {
           <div class="form-row">
               <div class="form-group col-md-9">
                 <label for="nomeFuncionarioEditar">Nome*</label>
-                <input type="text0" class="form-control" id="nomeFuncionarioEditar" name="nomeFuncionarioEditar" required>
+                <input type="text" class="form-control" id="nomeFuncionarioEditar" name="nome" required>
               </div>
               <div class="form-group col-md-3">
                 <label for="datadenascimentoEditar">Data de Nascimento</label>
@@ -151,14 +182,19 @@ if (isset($_POST['salvarEditar'])) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" id="salvarEdicaoFuncionario" name="salvarEditar">Salvar</button>
+                <a href="index.php?acao=funcionarios&editar=<?php echo $linha['id']; ?>" class="btn btn-primary" id="salvarEdicaoFuncionario" name="editar">Salvar</a>
+
               </div>
-          <!-- Adicione outros campos de edição conforme necessário -->
+          
         </form>
       </div>
-      </div>
+    </div>
   </div>
 </div>
+</div>
+
+
+
 
  <td><a href="index.php?acao=funcionarios&excluir" class="btn btn-outline-danger btn-sm excluir-funcionario" data-id="<?php echo $linha['id']; ?>" data-nome="<?php echo $linha['nome']; ?>" >excluir</a></td>
           
@@ -347,7 +383,65 @@ if (isset($_POST['salvarEditar'])) {
   });
 </script>
 
-<!--botão de editar-->
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Selecione o campo de senha e o ícone
+        const senhaFuncionario = document.getElementById('senhaFuncionario');
+        const iconeMostrarSenha = document.getElementById('iconeMostrarSenha');
+
+        // Adicione um evento de clique ao botão
+        document.getElementById('mostrarSenha').addEventListener('click', function () {
+            if (senhaFuncionario.type === 'password') {
+                senhaFuncionario.type = 'text'; // Mostrar senha
+                iconeMostrarSenha.classList.remove('fa-eye');
+                iconeMostrarSenha.classList.add('fa-eye-slash');
+            } else {
+                senhaFuncionario.type = 'password'; // Ocultar senha
+                iconeMostrarSenha.classList.remove('fa-eye-slash');
+                iconeMostrarSenha.classList.add('fa-eye');
+            }
+        });
+    });
+</script>
+
+
+
+
+<script>
+  $(document).ready(function () {
+    // Função para preencher a modal de edição com informações do funcionário
+    $(".editar-funcionario").on("click", function () {
+      var funcionario = $(this).data("info");
+      $("#editNome").val(funcionario.nome);
+      // Preencha outros campos de edição aqui
+    });
+
+    // Função para enviar os dados de edição para o servidor
+    $("#salvarEdicao").on("click", function () {
+      var dadosEdicao = $("#formEditarFuncionario").serialize();
+      $.ajax({
+        type: "POST",
+        url: "editar_funcionario.php", // Substitua pelo seu arquivo de edição PHP
+        data: dadosEdicao,
+        success: function (response) {
+          if (response === "success") {
+            // Atualização bem-sucedida
+            alert("Funcionário atualizado com sucesso.");
+            location.reload(); // Recarregue a página para exibir as alterações
+          } else {
+            // Trate os erros aqui
+            alert("Ocorreu um erro ao atualizar o funcionário.");
+          }
+        },
+      });
+    });
+  });
+</script>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -400,26 +494,9 @@ if (isset($_POST['salvarEditar'])) {
 </script>
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Selecione o campo de senha e o ícone
-        const senhaFuncionario = document.getElementById('senhaFuncionario');
-        const iconeMostrarSenha = document.getElementById('iconeMostrarSenha');
 
-        // Adicione um evento de clique ao botão
-        document.getElementById('mostrarSenha').addEventListener('click', function () {
-            if (senhaFuncionario.type === 'password') {
-                senhaFuncionario.type = 'text'; // Mostrar senha
-                iconeMostrarSenha.classList.remove('fa-eye');
-                iconeMostrarSenha.classList.add('fa-eye-slash');
-            } else {
-                senhaFuncionario.type = 'password'; // Ocultar senha
-                iconeMostrarSenha.classList.remove('fa-eye-slash');
-                iconeMostrarSenha.classList.add('fa-eye');
-            }
-        });
-    });
-</script>
+
+
 
 
 
