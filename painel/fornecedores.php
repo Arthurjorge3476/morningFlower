@@ -24,6 +24,7 @@ $listaFornecedores = select('fornecedores');
         <th scope="col">Email</th>
         <th scope="col">Telefone</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +39,31 @@ $listaFornecedores = select('fornecedores');
         <td><?php echo $linha['telefone1']; ?></td>
         <td>
           <button type="submit" class="btn btn-cadastro">editar</button>
-          <button type="submit" class="btn btn-danger" name="excluir">excluir</button>
+        </td>
+        <td>
+        <button type="submit" class="btn btn-danger" name="excluir">excluir</button>
+
+         <!-- Modal de confirmação de exclusão personalizada -->
+         <div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Exclusão de Funcionário</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Você deseja excluir  o funcionário <span id="nomeFuncionarioExclusao"></span>?
+                        </div>
+                        <div class="modal-footer">
+                          <a href="#" id="confirmarExclusao" class="btn btn-danger">Confirmar Exclusão</a>
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
         </td>
       </tr>
       <?php };
@@ -72,12 +97,12 @@ $listaFornecedores = select('fornecedores');
           <form class="cadastro" method="POST" action="index.php">
             <div class="form-row">
               <div class="form-group col-md-2">
-                <label for="codigodofornecedor">Código</label>
+                <label for="codigodofornecedor">Código*</label>
                 <input type="text" class="form-control" id="codigodofornecedor" name="codigo">
               </div>
 
               <div class="form-group col-md-12">
-                <label for="nomedofornecedor">Nome da Empresa</label>
+                <label for="nomedofornecedor">Nome da Empresa*</label>
                 <input type="text" class="form-control" id="nomedofornecedor" name="nome">
               </div>
 
@@ -134,7 +159,7 @@ $listaFornecedores = select('fornecedores');
 
                 <div class="form-group col-md-2">
                   <label for="cepdofornecedor">CEP</label>
-                  <input type="texto" class="form-control" id="cepdofornecedor" name="cep">
+                  <input type="texto" class="form-control" id="cepdofornecedor" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9">
                 </div>
 
                 <div class="form-group col-md-3">
@@ -148,7 +173,7 @@ $listaFornecedores = select('fornecedores');
                 </div>
 
               <div class="form-group col-md-6">
-                <label for="emaildofornecedor">Email</label>
+                <label for="emaildofornecedor">Email*</label>
                 <input type="email" class="form-control" id="emaildofornecedor" name="email">
               </div>
 
@@ -163,7 +188,7 @@ $listaFornecedores = select('fornecedores');
               </div>
 
               <div class="form-group col-md-3">
-                <label for="telefonedofornecedor">Telefone 1</label>
+                <label for="telefonedofornecedor">Telefone 1*</label>
                 <input type="text" class="form-control" id="telefonedofornecedor" name="telefonevendedor1">
               </div>
 
@@ -193,3 +218,11 @@ $listaFornecedores = select('fornecedores');
       </div>
     </div>
   </div>
+
+  <script>
+    function formatarCEP(cep) {
+            cep = cep.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            cep = cep.replace(/^(\d{5})(\d{3})$/, '$1-$2'); // Insere a barra
+            return cep;
+        }
+  </script>

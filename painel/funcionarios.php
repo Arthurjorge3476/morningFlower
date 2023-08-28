@@ -4,9 +4,11 @@ $listaFuncionarios = select('funcionarios');
 
 
 
-if (isset($_POST['editar'])) {
+if (isset($_POST['btnEditar'])) {
     // Certifique-se de definir $id com o ID do funcionário que está sendo editado
     $id = $_POST['idFuncionarioEditar'];
+
+    $conexao = conectar();
 
     $nome = $_POST['nome'];
     $data_de_nascimento = $_POST['data_de_nascimento'];
@@ -24,7 +26,7 @@ if (isset($_POST['editar'])) {
     // Atualize o funcionário no banco de dados
     $sql_update = "UPDATE funcionarios SET nome = :nome, data_de_nascimento = :data_de_nascimento, rg = :rg, cpf = :cpf, ctps = :ctps, cidade = :cidade, endereco = :endereco, cep = :cep, email = :email, telefone = :telefone, senha = :senha, grupo_de_acesso = :grupo_de_acesso WHERE id = :id";
 
-    $stmt_update = $PDO->prepare($sql_update);
+    $stmt_update = $conexao->prepare($sql_update);
 
     $stmt_update->bindParam(':id', $id);
     $stmt_update->bindParam(':nome', $nome);
@@ -182,7 +184,7 @@ if (isset($_GET['excluir'])) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <a href="index.php?acao=funcionarios&editar=<?php echo $linha['id']; ?>" class="btn btn-primary" id="salvarEdicaoFuncionario" name="editar">Salvar</a>
+                <input type="submit" for="formEditarFuncionario" name="btnEditar" class="btn btn-primary">
 
               </div>
           
