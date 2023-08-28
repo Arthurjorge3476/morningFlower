@@ -88,7 +88,6 @@ if (isset($_GET['excluir'])) {
   <table class="table table-bordered  table-hover mt-3">
     <thead class="table-dark cordatabela">
       <tr>
-        
         <th scope="col"></th>
         <th scope="col">Nome</th>
         <th scope="col">CPF</th>
@@ -96,7 +95,6 @@ if (isset($_GET['excluir'])) {
         <th scope="col">CTPS</th>
         <th scope="col"></th>
         <th scope="col"></th>
-
       </tr>
     </thead>
     <tbody>

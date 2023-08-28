@@ -2,6 +2,14 @@
 
 $listaFornecedores = select('fornecedores');
 
+if (isset($_GET['excluir'])) {
+  $idParaExcluir = $_GET['excluir'];
+  deletar('fornecedores', $idParaExcluir);
+
+  // Redirecionar para a página após a exclusão
+  header("Location: index.php?acao=fornecedores");
+  exit; // Certifique-se de sair do script após o redirecionamento
+}
 
 
 ?>
@@ -32,29 +40,28 @@ $listaFornecedores = select('fornecedores');
       foreach ($listaFornecedores as $indice => $linha) { ?>
 
 <tr class="">
-        <th scope="row"><?php echo $indice +1; ?></th>
-        <td><?php echo $linha['codigo']; ?></td>
-        <td><?php echo $linha['nome']; ?></td>
-        <td><?php echo $linha['email']; ?></td>
-        <td><?php echo $linha['telefone1']; ?></td>
+        <th scope="row"><?php echo $indice +1;?></th>
+        <td><?php echo $linha['codigo'];?></td>
+        <td><?php echo $linha['nome'];?></td>
+        <td><?php echo $linha['email'];?></td>
+        <td><?php echo $linha['telefone1'];?></td>
         <td>
           <button type="submit" class="btn btn-cadastro">editar</button>
         </td>
         <td>
-        <button type="submit" class="btn btn-danger" name="excluir">excluir</button>
-
+        <a href="index.php?acao=fornecedores&excluir" class="btn btn-outline-danger btn-sm excluir-fornecedores" data-id="<?php echo $linha['id']; ?>" data-nome="<?php echo $linha['nome']; ?>" >excluir</a>
          <!-- Modal de confirmação de exclusão personalizada -->
          <div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Exclusão de Funcionário</h5>
+                          <h5 class="modal-title" id="exampleModalLabel">Exclusão de Fornecedores</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
-                          Você deseja excluir  o funcionário <span id="nomeFuncionarioExclusao"></span>?
+                          Você deseja excluir  o fornecedor <span id="nomeFornecedoresExclusao"></span>?
                         </div>
                         <div class="modal-footer">
                           <a href="#" id="confirmarExclusao" class="btn btn-danger">Confirmar Exclusão</a>
@@ -98,12 +105,12 @@ $listaFornecedores = select('fornecedores');
             <div class="form-row">
               <div class="form-group col-md-2">
                 <label for="codigodofornecedor">Código*</label>
-                <input type="text" class="form-control" id="codigodofornecedor" name="codigo">
+                <input type="text" class="form-control" id="codigodofornecedor" name="codigo" required>
               </div>
 
               <div class="form-group col-md-12">
                 <label for="nomedofornecedor">Nome da Empresa*</label>
-                <input type="text" class="form-control" id="nomedofornecedor" name="nome">
+                <input type="text" class="form-control" id="nomedofornecedor" name="nome" required>
               </div>
 
               <div class="form-group col-md-6">
@@ -163,13 +170,13 @@ $listaFornecedores = select('fornecedores');
                 </div>
 
                 <div class="form-group col-md-3">
-                  <label for="telefone1dofornecedor">Telefone 1</label>
-                  <input type="texto" class="form-control" id="telefone1dofornecedor" name="telefone1">
+                  <label for="telefone1dofornecedor">Telefone 1*</label>
+                  <input type="texto" class="form-control" id="telefone1dofornecedor" name="telefone1" oninput="this.value = formatarTelefone(this.value);" maxlength="15" required>
                 </div>
 
                 <div class="form-group col-md-3">
                   <label for="telefone2dofornecedor">Telefone 2</label>
-                  <input type="texto" class="form-control" id="telefone2dofornecedor" name="telefone2">
+                  <input type="texto" class="form-control" id="telefone2dofornecedor" name="telefone2" oninput="this.value = formatarTelefone2(this.value);" maxlength="15">
                 </div>
 
               <div class="form-group col-md-6">
@@ -189,12 +196,12 @@ $listaFornecedores = select('fornecedores');
 
               <div class="form-group col-md-3">
                 <label for="telefonedofornecedor">Telefone 1*</label>
-                <input type="text" class="form-control" id="telefonedofornecedor" name="telefonevendedor1">
+                <input type="text" class="form-control" id="telefonedofornecedor" name="telefonevendedor1" oninput="this.value = formatarTelefonevendedor(this.value);" maxlength="15">
               </div>
 
               <div class="form-group col-md-3">
                 <label for="telefonedovendedor">Telefone 2</label>
-                <input type="text" class="form-control" id="telefonedovendedor" name="telefonevendedor2">
+                <input type="text" class="form-control" id="telefonedovendedor" name="telefonevendedor2"  oninput="this.value = formatarTelefonevendedor2(this.value);" maxlength="15">
               </div>
               
               <div class="form-group col-md-6">
@@ -225,4 +232,57 @@ $listaFornecedores = select('fornecedores');
             cep = cep.replace(/^(\d{5})(\d{3})$/, '$1-$2'); // Insere a barra
             return cep;
         }
+
+    function formatarTelefone(telefone1) {
+            telefone1 = telefone1.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            telefone1 = telefone1.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formatação do telefone
+            return telefone1;
+        }
+
+        function formatarTelefone2(telefone2) {
+            telefone2 = telefone2.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            telefone2 = telefone2.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formatação do telefone
+            return telefone2;
+        }
+      
+      function formatarTelefonevendedor(telefonevendedor1){
+        telefonevendedor1 = telefonevendedor1.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        telefonevendedor1 = telefonevendedor1.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formatação do telefone
+        return telefonevendedor1;
+      }
+
+      function formatarTelefonevendedor2(telefonevendedor2){
+        telefonevendedor2 = telefonevendedor2.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        telefonevendedor2 = telefonevendedor2.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formatação do telefone
+        return telefonevendedor2;
+      }
   </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Adicionar um evento de clique a todos os links com a classe 'excluir-funcionario'
+    const excluirLinks = document.querySelectorAll('.excluir-fornecedores');
+    const nomeFornecedoresExclusao = document.getElementById('nomeFornecedoresExclusao');
+    const confirmarExclusao = document.getElementById('confirmarExclusao');
+
+    excluirLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita que o link seja seguido
+
+        const fornecedoresID = this.getAttribute('data-id'); // Obtém o ID do funcionário
+        const nomeFornecedores = this.getAttribute('data-nome'); // Obtém o nome do funcionário
+
+        nomeFornecedoresExclusao.textContent = nomeFornecedores; // Atualiza o nome na modal
+
+        // Adiciona um evento de clique ao botão 'Confirmar Exclusão'
+        confirmarExclusao.addEventListener('click', function () {
+          // Redireciona para a página de exclusão com o ID do funcionário
+          window.location.href = `index.php?acao=fornecedores&excluir=${fornecedoresID}`;
+        });
+
+        // Abre a modal de confirmação
+        $('#confirmacaoExclusao').modal('show');
+      });
+    });
+  });
+</script>
