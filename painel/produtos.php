@@ -2,6 +2,54 @@
 
 $listaProdutos = select ('produtos');
 
+if (isset($_POST['btnEditar'])) {
+  // Certifique-se de definir $id com o ID do funcionário que está sendo editado
+  $id = $_POST['idprodutosEditar'];
+
+  $conexao = conectar();
+
+$codigo = $_POST['codigo'];
+$produto = $_POST['produto'];
+$categoria = $_POST['categoria'];
+$fornecedor = $_POST['fornecedor'];
+$precodecompra = $_POST['precodecompra'];
+$precodevenda = $_POST['precodevenda'];
+$margemdelucro = $_POST['margemdelucro'];
+$lucroanterior = $_POST['lucroanterior'];
+$estoque = $_POST['estoque'];
+$validade = $_POST['validade'];
+$observacao = $_POST['observacao'];
+  // Atualize o funcionário no banco de dados
+  $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, margemdelucro = :margemdelucro, lucroanterior = :lucroanterior, estoque = :estoque, validade = :validade, observacao = :observacao WHERE id = :id";
+
+  $stmt_update = $conexao->prepare($sql_update);
+
+  $stmt_update->bindParam(':id', $id);
+  $stmt_update->bindParam(':codigo', $codigo);
+  $stmt_update->bindParam(':produto', $produto);
+  $stmt_update->bindParam(':categoria', $categoria);
+  $stmt_update->bindParam(':fornecedor', $fornecedor);
+  $stmt_update->bindParam(':precodecompra', $precodecompra);
+  $stmt_update->bindParam(':precodevenda', $precodevenda);
+  $stmt_update->bindParam(':margemdelucro', $margemdelucro);
+  $stmt_update->bindParam(':lucroanterior', $lucroanterior);
+  $stmt_update->bindParam(':estoque', $estoque);
+  $stmt_update->bindParam(':validade', $validade);
+  $stmt_update->bindParam(':observacao', $observacao);
+ 
+
+  $result_update = $stmt_update->execute();
+
+  if (!$result_update) {
+      var_dump($stmt_update->errorInfo());
+      exit;
+  } else {
+      echo $stmt_update->rowCount() . " Linha atualizada";
+      header("Location: index.php?acao=produtos");
+      exit;
+  }
+}
+
 
 if (isset($_GET['excluir'])) {
   $idParaExcluir = $_GET['excluir'];
@@ -49,9 +97,101 @@ if (isset($_GET['excluir'])) {
         <td><?php echo $linha['fornecedor']; ?></td>
         <td><?php echo $linha['estoque']; ?></td>
         <td>
-          <button type="submit" class="btn btn-cadastro">editar</button>
+        <a href="index.php?acao=produtos&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm editar-produtos" data-info='<?php echo json_encode($linha); ?>' data-toggle="modal" data-target="#editarprodutosModal" name="editar">Editar</a>
+
+        <div class="modal fade " id="editarprodutosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="cadastro" method="POST" action="index.php?acao=produtos">
+        <input type="hidden" id="idprodutosEditar" name="idprodutosEditar">
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label for="codigodoprodutos">Código*</label>
+              <input type="text" class="form-control" id="codigodoprodutos" name="codigo" required>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="produtos">Produto*</label>
+              <input type="text" class="form-control" id="produtos" name="produto" required>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="categoria">Categoria</label>
+              <input type="texto" class="form-control" id="categoria" name="categoria">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="fornecedor">Fornecedor*</label>
+              <select class="form-control" aria-label=".form-select-lg example" id="fornecedor" name="fornecedor" style="border-radius: 18px;font-size: 19px; " required>
+                <option selected> </option>
+                <option value="fornecedor">Rodrigo Silva</option>
+                <option value="fornecedor">Carlos Daniel</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="precodecompra">Preço de Compra</label>
+              <input type="texto" class="form-control" id="precodecompra" name="precodecompra">
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="venda">Preço de Venda*</label>
+              <input type="text" class="form-control" id="venda" name="precodevenda" required>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="margemdelucro">Margem de lucro[%]</label>
+              <input type="texto" class="form-control" id="margemdelucro" name="margemdelucro">
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="lucroanterior">Lucro anterior[%]</label>
+              <input type="texto" class="form-control" id="lucroanterior" name="lucroanterior">
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="estoque">Estoque*</label>
+              <input type="texto" class="form-control" id="estoque" name="estoque" required>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="validade">Validade</label>
+
+              <input type="date" class="form-control" id="validade" name="validade">
+
+            </div>
+
+            <div class="form-group col-md-6" style="margin-top: 32px;border-radius: 20px;font-size: 17px;">
+              <form method="post"  enctype="multipart/form-data">
+                <input type="file" name="fotodoproduto">
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="inputobs">Observação do Produto:</label>
+              <textarea id="produtossalvos" name="observacao" class="form-control" rows="8" cols="50"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <input type="submit" for="formEditarprodutos" name="btnEditar" class="btn btn-primary">
+
+              </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
         </td>
-        <td><a href="index.php?acao=produtos&excluir" class="btn btn-outline-danger btn-sm excluir-funcionario" data-id="<?php echo $linha['id']; ?>" data-codigo="<?php echo $linha['codigo']; ?>" >excluir</a></td>
+        <td><a href="index.php?acao=produtos&excluir" class="btn btn-outline-danger btn-sm excluir-produtos" data-id="<?php echo $linha['id']; ?>" data-codigo="<?php echo $linha['produto']; ?>" >excluir</a></td>
 
              <!-- Modal de confirmação de exclusão personalizada -->
              <div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,13 +250,13 @@ if (isset($_GET['excluir'])) {
         <form class="cadastro" method="POST" action="index.php?acao=produtos">
           <div class="form-row">
             <div class="form-group col-md-2">
-              <label for="codigodoprodutos">Código</label>
-              <input type="text" class="form-control" id="codigodoprodutos" name="codigo">
+              <label for="codigodoprodutos">Código*</label>
+              <input type="text" class="form-control" id="codigodoprodutos" name="codigo" required>
             </div>
 
             <div class="form-group col-md-12">
-              <label for="produtos">Produto</label>
-              <input type="text" class="form-control" id="produtos" name="produto">
+              <label for="produtos">Produto*</label>
+              <input type="text" class="form-control" id="produtos" name="produto" required>
             </div>
 
             <div class="form-group col-md-6">
@@ -125,8 +265,8 @@ if (isset($_GET['excluir'])) {
             </div>
 
             <div class="form-group col-md-6">
-              <label for="fornecedor">Fornecedor</label>
-              <select class="form-control" aria-label=".form-select-lg example" id="fornecedor" name="fornecedor">
+              <label for="fornecedor">Fornecedor*</label>
+              <select class="form-control" aria-label=".form-select-lg example" id="fornecedor" name="fornecedor" style="border-radius: 18px;font-size: 19px; " required>
                 <option selected> </option>
                 <option value="fornecedor">Rodrigo Silva</option>
                 <option value="fornecedor">Carlos Daniel</option>
@@ -135,12 +275,12 @@ if (isset($_GET['excluir'])) {
 
             <div class="form-group col-md-3">
               <label for="precodecompra">Preço de Compra</label>
-              <input type="texto" class="form-control" id="precodecompra" name="precodecompra">
+              <input type="texto" class="form-control" id="precodecompra" name="precodecompra" >
             </div>
 
             <div class="form-group col-md-3">
-              <label for="venda">Preço de Venda</label>
-              <input type="text" class="form-control" id="venda" name="precodevenda">
+              <label for="venda">Preço de Venda*</label>
+              <input type="text" class="form-control" id="venda" name="precodevenda" required>
             </div>
 
             <div class="form-group col-md-3">
@@ -154,23 +294,23 @@ if (isset($_GET['excluir'])) {
             </div>
 
             <div class="form-group col-md-3">
-              <label for="estoque">Estoque</label>
-              <input type="texto" class="form-control" id="estoque" name="estoque">
+              <label for="estoque">Estoque*</label>
+              <input type="texto" class="form-control" id="estoque" name="estoque" required>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
               <label for="validade">Validade</label>
 
-              <input type="text" class="form-control" id="validade" name="validade">
+              <input type="date" class="form-control" id="validade" name="validade">
 
             </div>
 
-            <div class="form-group col-md-6">
-              <form method="post"  enctype="multipart/form-data">
-                <input type="file" name="fotodoproduto">
+            <div class="form-group col-md-6" style="margin-top: 32px;font-size: 17px;">
+              <form method="post"  enctype="multipart/form-data" >
+                <input type="file" name="fotodoproduto" >
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <label for="inputobs">Observação do Produto:</label>
               <textarea id="produtossalvos" name="observacao" class="form-control" rows="8" cols="50"></textarea>
             </div>
@@ -186,6 +326,7 @@ if (isset($_GET['excluir'])) {
     </div>
   </div>
 </div>
+
 
 
 <script>
@@ -216,3 +357,93 @@ if (isset($_GET['excluir'])) {
     });
   });
 </script>
+
+
+<script>
+  $(document).ready(function () {
+    // Função para preencher a modal de edição com informações do funcionário
+    $(".editar-produtos").on("click", function () {
+      var produtos = $(this).data("info");
+      $("#editNome").val(produtos.codigo);
+      // Preencha outros campos de edição aqui
+    });
+
+    // Função para enviar os dados de edição para o servidor
+    $("#salvarEdicao").on("click", function () {
+      var dadosEdicao = $("#formEditarprodutos").serialize();
+      $.ajax({
+        type: "POST",
+        url: "editar_produtos.php", // Substitua pelo seu arquivo de edição PHP
+        data: dadosEdicao,
+        success: function (response) {
+          if (response === "success") {
+            // Atualização bem-sucedida
+            alert("Funcionário atualizado com sucesso.");
+            location.reload(); // Recarregue a página para exibir as alterações
+          } else {
+            // Trate os erros aqui
+            alert("Ocorreu um erro ao atualizar o funcionário.");
+          }
+        },
+      });
+    });
+  });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const editarLinks = document.querySelectorAll('.editar-produtos');
+        const idprodutosEditar = document.getElementById('idprodutosEditar');
+        const codigodoprodutos = document.getElementById('codigodoprodutos');
+        const produtos = document.getElementById('produtos'); // Campo CPF
+        const categoria = document.getElementById('categoria');
+        const fornecedor = document.getElementById('fornecedor');
+        const precodecompra = document.getElementById('precodecompra');
+        const venda = document.getElementById('venda');
+        const margemdelucro = document.getElementById('margemdelucro');
+        const lucroanterior = document.getElementById('lucroanterior');
+        const estoque = document.getElementById('estoque');
+        const validade = document.getElementById('validade');
+        const produtossalvos = document.getElementById('produtossalvos');
+        // Outros campos de edição...
+
+        editarLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Obtenha as informações do funcionário a partir do atributo 'data-info'
+                const infoprodutos = JSON.parse(this.getAttribute('data-info'));
+
+                // Preencha os campos da modal com as informações do funcionário
+                idprodutosEditar.value = infoprodutos.id;
+                codigodoprodutos.value = infoprodutos.codigo;
+                produtos.value = infoprodutos.produto;
+                categoria.value = infoprodutos.categoria; 
+                fornecedor.value = infoprodutos.fornecedor;
+                precodecompra.value = infoprodutos.precodecompra;
+                venda.value = infoprodutos.precodevenda;
+                margemdelucro.value = infoprodutos.margemdelucro;
+                lucroanterior.value = infoprodutos.lucroanterior;
+                estoque.value = infoprodutos.estoque;
+                validade.value = infoprodutos.validade;
+                produtossalvos.value = infoprodutos.observacao;
+                // Preencha outros campos de edição conforme necessário
+
+                // Abra a modal de edição
+                $('#editarprodutosModal').modal('show');
+            });
+        });
+
+        // Resto do seu código JavaScript...
+    });
+</script>
+
+
+
+
+
+
+
+
+
