@@ -21,7 +21,10 @@ $listaClientes = select('clientes');
         <th scope="col"></th>
         <th scope="col">Código</th>
         <th scope="col">Nome</th>
-        <th scope="col"></th>
+        <th scope="col">cidade</th>
+        <th scope="col">endereco</th>
+        <th scope="col">cep</th>
+        <th scope="col">telefone</th>
       </tr>
     </thead>
     <tbody>
@@ -32,6 +35,10 @@ $listaClientes = select('clientes');
         <th scope="row"><?php echo $indice +1; ?></th>
         <td><?php echo $linha['codigo']; ?></td>
         <td><?php echo $linha['nome']; ?></td>
+        <td><?php echo $linha['cidade']; ?></td>
+        <td><?php echo $linha['endereco']; ?></td>
+        <td><?php echo $linha['cep']; ?></td>
+        <td><?php echo $linha['telefone']; ?></td>
         <td>
           <button type="submit" class="btn btn-cadastro">editar</button>
           <button type="submit" class="btn btn-danger" name="excluir">excluir</button>
@@ -77,7 +84,27 @@ $listaClientes = select('clientes');
                 <input type="text" class="form-control" id="nomedocliente" name="nome">
               </div>
 
-             
+              <div class="form-group col-md-12">
+                <label for="nomedocliente">cidade</label>
+                <input type="text" class="form-control" id="cidadedocliente" name="cidade">
+              </div>
+
+              <div class="form-group col-md-12">
+                <label for="nomedocliente">endereco</label>
+                <input type="text" class="form-control" id="enderecodocliente" name="endereco">
+              </div>
+
+              <div class="form-group col-md-12">
+                <label for="nomedocliente">cep</label>
+                <input type="text" class="form-control" id="cepdocliente" name="cep">
+              </div>
+
+              <div class="form-group col-md-12">
+                <label for="nomedocliente">telefone</label>
+                <input type="text" class="form-control" id="telefonedocliente" name="telefone">
+              </div>
+                
+        
 
               <div class="modal-footer">
           <button type="submit" class="btn btn-primary" name="cadastrarClientes">Cadastrar</button>

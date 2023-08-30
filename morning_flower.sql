@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Ago-2023 às 15:16
+-- Tempo de geração: 30-Ago-2023 às 02:39
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `morningflower`
+-- Banco de dados: `morning flower`
 --
 
 -- --------------------------------------------------------
@@ -38,17 +38,32 @@ CREATE TABLE `blocodenotas` (
 --
 
 CREATE TABLE `clientes` (
-  `codigo` varchar(255) NOT NULL,
-  `nome` varchar(225) NOT NULL
+  `codigo` int(250) NOT NULL,
+  `nome` varchar(250) NOT NULL,
+  `cidade` varchar(250) NOT NULL,
+  `endereco` varchar(250) NOT NULL,
+  `cep` int(8) NOT NULL,
+  `telefone` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `clientes`
 --
 
-INSERT INTO `clientes` (`codigo`, `nome`) VALUES
-('13', 'arthur'),
-('13', 'arthur');
+INSERT INTO `clientes` (`codigo`, `nome`, `cidade`, `endereco`, `cep`, `telefone`) VALUES
+(12, 'arthur', 'Sombrio / SC', 'Vila', 12, 19938883);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `comprovante`
+--
+
+CREATE TABLE `comprovante` (
+  `pedido` int(11) NOT NULL,
+  `produto` varchar(50) NOT NULL,
+  `quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -122,9 +137,9 @@ INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `
 
 CREATE TABLE `pedido` (
   `numero` int(11) NOT NULL,
-  `data` int(11) NOT NULL,
-  `vendedor` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL
+  `data` date NOT NULL,
+  `vendedor` varchar(50) NOT NULL,
+  `cliente` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -191,6 +206,12 @@ ALTER TABLE `funcionarios`
   ADD UNIQUE KEY `ctps_UNIQUE` (`ctps`);
 
 --
+-- Índices para tabela `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`numero`);
+
+--
 -- Índices para tabela `produtos`
 --
 ALTER TABLE `produtos`
@@ -212,6 +233,12 @@ ALTER TABLE `fornecedores`
 --
 ALTER TABLE `funcionarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+
+--
+-- AUTO_INCREMENT de tabela `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`

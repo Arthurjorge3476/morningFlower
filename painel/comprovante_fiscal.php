@@ -10,11 +10,12 @@
     <div class="comprovante">
         <h2>Comprovante de Venda</h2>
         <p><strong>Data:</strong> <?php echo date('d/m/Y'); ?></p>
-        <p><strong>Nome do cliente:</strong> <?php echo $_POST['nome_cliente']; ?></p>
+        <p><strong>Nome do cliente:</strong> <?php echo $_POST['cliente']; ?></p>
         <p><strong>Cidade:</strong> <?php echo $_POST['cidade']; ?></p>
         <p><strong>Endereço:</strong> <?php echo $_POST['endereco']; ?></p>
         <p><strong>Cep:</strong> <?php echo $_POST['cep']; ?></p>
         <p><strong>Telefone:</strong> <?php echo $_POST['telefone']; ?></p>
+        <p><strong>Vendedor:</strong> <?php echo $_POST['vendedor']; ?></p>
 
         <?php
         $valorTotal = 0;
@@ -25,6 +26,10 @@
                 $valor = floatval($_POST['valor'][$i]);
                 $quantidade = intval($_POST['quantidade_retirada'][$i]);
                 $totalProduto = $valor * $quantidade;
+
+                //COMEÇA AQUI CABEÇA
+
+
                 
                 echo "<p><strong>Produto retirado:</strong> <span>$produto</span></p>";
                 echo "<p><strong>Valor Unitário:</strong> <span>R$ " . number_format($valor, 2, ',', '.') . "</span></p>";

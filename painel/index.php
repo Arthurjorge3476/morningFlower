@@ -54,7 +54,22 @@ if(isset($_POST['editar'])){
 
 
 
+    if(isset($_POST['cadastrarPedido'])){
 
+    
+        $numero = $_POST['numero'];
+        $data = $_POST['data'];
+        $vendedor = $_POST['vendedor'];
+        $cliente = $_POST['cliente'];
+       
+    
+       
+        $campos = array('numero','data','vendedor','cliente');
+        $valores = array($numero,$data,$vendedor,$cliente);
+        
+        inserir('pedido', $campos, $valores);
+        
+        }
  
 
 
@@ -63,9 +78,14 @@ if(isset($_POST['cadastrarClientes'])){
 
     $codigo = $_POST['codigo'];
     $nome = $_POST['nome'];
+    $cidade = $_POST['cidade'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $telefone = $_POST['telefone'];
+
    
-    $campos = array('codigo','nome');
-    $valores = array($codigo,$nome);
+    $campos = array('codigo','nome','cidade','endereco','cep','telefone');
+    $valores = array($codigo,$nome,$cidade,$endereco,$cep,$telefone);
     
     inserir('clientes', $campos, $valores);
     
@@ -100,20 +120,6 @@ $valores = array($codigo,$nome, $endereco, $cidade,$bairro,$estado,$cep,$telefon
 inserir('fornecedores', $campos, $valores);
 
 }
-
-
-if(isset($_POST['cadastrarClientes'])){
-
-
-    $codigo = $_POST['codigo'];
-    $nome = $_POST['nome'];
-    
-    $campos = array('codigo','nome');
-    $valores = array($codigo,$nome);
-    
-    inserir('clientes', $campos, $valores);
-    
-    }
 
 
 

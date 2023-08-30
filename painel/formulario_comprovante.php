@@ -1,3 +1,8 @@
+<?php
+
+$listaPedido = select('pedido');
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,24 +13,28 @@
     <form class="cadastro" method="POST" action="comprovante_fiscal.php">
         <div class="form-row">
             <div class="form-group col-md-9">
-                <label for="nomeFuncionario">Nome</label>
-                <input type="text" class="form-control" name="nome_cliente" required>
+                <label for="nomeCliente">Nome</label>
+                <input type="text" class="form-control" name="cliente" required>
             </div>
             <div class="form-group col-md-4">
-                <label for="cidadeFuncionario">Cidade</label>
+                <label for="cidadeCliente">Cidade</label>
                 <input type="text" class="form-control" name="cidade" required>
             </div>
             <div class="form-group col-md-4">
-                <label for="enderecoFuncionario">Endereço</label>
+                <label for="enderecoCliente">Endereço</label>
                 <input type="text" class="form-control" name="endereco" required>
             </div>
             <div class="form-group col-md-4">
-                <label for="cepFuncionario">CEP</label>
+                <label for="cepCliente">CEP</label>
                 <input type="text" class="form-control" name="cep" required>
             </div>
             <div class="form-group col-md-4">
-                <label for="telefoneFuncionario">Telefone</label>
+                <label for="telefoneCliente">Telefone</label>
                 <input type="text" class="form-control" name="telefone" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="nomeVendedor">Vendedor</label>
+                <input type="text" class="form-control" name="vendedor" required>
             </div>
         </div>
 
@@ -46,7 +55,7 @@
         </div>
 
         <div class="modal-footer">
-            <input type="submit" class="btn btn-primary" value="Gerar Comprovante">
+            <input type="submit" class="btn btn-primary" name="cadastrarPedido" value="Gerar Comprovante">
         </div>
     </form>
 
