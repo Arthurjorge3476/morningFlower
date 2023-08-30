@@ -128,9 +128,9 @@ if (isset($_GET['excluir'])) {
                   <input type="texto" class="form-control" id="bairrodofornecedor" name="bairro">
                 </div>
 
-               <div class="form-group col-md-2">
-                  <label for="estadodofornecedor">Estado</label>
-                  <select class="form-control" aria-label=".form-select-lg example" id="estadodofornecedor" name="estado">
+               <div class="form-group col-md-2" >
+                  <label for="estadodofornecedor" >Estado</label>
+                  <select class="form-control" aria-label=".form-select-lg example" id="estadodofornecedor" name="estado" style="border-radius: 18px;font-size: 19px; ">
                     <option selected> </option>
                     <option value="AC">AC</option>
                     <option value="AL">AL</option>
@@ -185,8 +185,8 @@ if (isset($_GET['excluir'])) {
               </div>
 
               <div class="form-group col-md-6">
-                <label for="cnpjdofornecedor">CNPJ</label>
-                <input type="text" class="form-control" id="cnpjdofornecedor" name="cnpj">
+                <label for="cnpjdofornecedor">CNPJ*</label>
+                <input type="text" class="form-control" id="cnpjdofornecedor" name="cnpj"  oninput="this.value = formatarCNPJ(this.value);" maxlength="18" required>
               </div>
 
               <div class="form-group col-md-6">
@@ -255,6 +255,15 @@ if (isset($_GET['excluir'])) {
         telefonevendedor2 = telefonevendedor2.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
         telefonevendedor2 = telefonevendedor2.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formatação do telefone
         return telefonevendedor2;
+      }
+      function formatarCNPJ(cnpj){
+        cnpj = cnpj.replace(/\D/g, '');
+        cnpj = cnpj.replace(/(\d{2})(\d)/, '$1.$2'); // Insere o primeiro ponto
+        cnpj = cnpj.replace(/(\d{3})(\d)/, '$1.$2'); // Insere o segundo ponto
+        cnpj = cnpj.replace(/(\d{3})(\d)/, '$1/$2'); // Insere o segundo ponto
+        cnpj = cnpj.replace(/(\d{4})(\d{2})$/, '$1-$2'); // Insere o hífen
+        return cnpj;
+
       }
   </script>
 
