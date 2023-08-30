@@ -90,6 +90,7 @@ if (isset($_POST['btnEditar'])) {
         <th scope="col">Código</th>
         <th scope="col">Nome</th>
         <th scope="col">Email</th>
+        <th scope="col">CNPJ</th>
         <th scope="col">Telefone</th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -104,16 +105,17 @@ if (isset($_POST['btnEditar'])) {
         <td><?php echo $linha['codigo'];?></td>
         <td><?php echo $linha['nome'];?></td>
         <td><?php echo $linha['email'];?></td>
+        <td><?php echo $linha['cnpj'];?></td>
         <td><?php echo $linha['telefone1'];?></td>
         <td>
         <div>
         <a href="index.php?acao=fornecedores&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm editar-fornecedores" data-info='<?php echo json_encode($linha); ?>' data-toggle="modal" data-target="#editarFornecedoresModal" name="editar">Editar</a>
 
-        <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade " id="editarFornecedoresModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Editar Fornecedor</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Editar Fornecedor</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -238,7 +240,7 @@ if (isset($_POST['btnEditar'])) {
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <input type="submit" for="formEditarFornecedores" name="btnEditar" class="btn btn-primary">
+                <input type="submit" for="formEditarFornecedor" name="btnEditar" class="btn btn-primary">
 
               </div>
           </form>
@@ -305,7 +307,7 @@ if (isset($_POST['btnEditar'])) {
           </button>
         </div>
         <div class="modal-body">
-          <form class="cadastro" method="POST" action="index.php">
+          <form class="cadastro" method="POST" action="index.php?acao=fornecedores">
             <div class="form-row">
               <div class="form-group col-md-2">
                 <label for="codigodofornecedor">Código*</label>
@@ -500,6 +502,37 @@ if (isset($_POST['btnEditar'])) {
   });
 </script>
 
+<script>
+  $(document).ready(function () {
+    // Função para preencher a modal de edição com informações do funcionário
+    $(".editar-fornecedores").on("click", function () {
+      var funcionario = $(this).data("info");
+      $("#editNome").val(funcionario.nome);
+      // Preencha outros campos de edição aqui
+    });
+
+    // Função para enviar os dados de edição para o servidor
+    $("#salvarEdicao").on("click", function () {
+      var dadosEdicao = $("#formEditarFornecedor").serialize();
+      $.ajax({
+        type: "POST",
+        url: "editar_fornecedores.php", // Substitua pelo seu arquivo de edição PHP
+        data: dadosEdicao,
+        success: function (response) {
+          if (response === "success") {
+            // Atualização bem-sucedida
+            alert("Funcionário atualizado com sucesso.");
+            location.reload(); // Recarregue a página para exibir as alterações
+          } else {
+            // Trate os erros aqui
+            alert("Ocorreu um erro ao atualizar o funcionário.");
+          }
+        },
+      });
+    });
+  });
+</script>
+
 
 
 <script>
@@ -529,26 +562,26 @@ if (isset($_POST['btnEditar'])) {
                 event.preventDefault();
 
                 // Obtenha as informações do funcionário a partir do atributo 'data-info'
-                const infoFuncionario = JSON.parse(this.getAttribute('data-info'));
+                const infoFornecedor = JSON.parse(this.getAttribute('data-info'));
 
                 // Preencha os campos da modal com as informações do funcionário
                 idFornecedoresEditar.value = infoFornecedor.id;
-                codigodofornecedor.value = infoFuncionario.codigo;
-                nomedofornecedor.value = infoFuncionario.cpf;
-                enderecodofornecedor.value = infoFuncionario.data_de_nascimento; 
-                cidadedofornecedor.value = infoFuncionario.rg;
-                bairrodofornecedor.value = infoFuncionario.ctps;
-                estadodofornecedor.value = infoFuncionario.cidade;
-                cepdofornecedor.value = infoFuncionario.endereco;
-                telefone1dofornecedor.value = infoFuncionario.cep;
-                telefone2dofornecedor.value = infoFuncionario.email;
-                emaildofornecedor.value = infoFuncionario.telefone;
-                cnpjdofornecedor.value = infoFuncionario.senha;
-                vendedordofornecedor.value = infoFuncionario.grupo_de_acesso;
-                telefonedofornecedor.value = infoFuncionario.grupo_de_acesso;
-                telefonedovendedor.value = infoFuncionario.grupo_de_acesso;
-                codicaodavenda.value = infoFuncionario.grupo_de_acesso;
-                atividadedavenda.value = infoFuncionario.grupo_de_acesso;
+                codigodofornecedor.value = infoFornecedor.codigo;
+                nomedofornecedor.value = infoFornecedor.nome;
+                enderecodofornecedor.value = infoFornecedor.endereco; 
+                cidadedofornecedor.value = infoFornecedor.cidade;
+                bairrodofornecedor.value = infoFornecedor.bairro;
+                estadodofornecedor.value = infoFornecedor.estado;
+                cepdofornecedor.value = infoFornecedor.cep;
+                telefone1dofornecedor.value = infoFornecedor.telefone1;
+                telefone2dofornecedor.value = infoFornecedor.telefone2;
+                emaildofornecedor.value = infoFornecedor.email;
+                cnpjdofornecedor.value = infoFornecedor.cnpj;
+                vendedordofornecedor.value = infoFornecedor.vendedor;
+                telefonedofornecedor.value = infoFornecedor.telefonevendedor1;
+                telefonedovendedor.value = infoFornecedor.telefonevendedor2;
+                codicaodavenda.value = infoFornecedor.condicaodavenda;
+                atividadedavenda.value = infoFornecedor.atividade;
                 // Preencha outros campos de edição conforme necessário
 
                 // Abra a modal de edição

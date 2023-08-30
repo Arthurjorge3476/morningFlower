@@ -2,6 +2,15 @@
 
 $listaProdutos = select ('produtos');
 
+
+if (isset($_GET['excluir'])) {
+  $idParaExcluir = $_GET['excluir'];
+  deletar('produtos', $idParaExcluir);
+
+  // Redirecionar para a página após a exclusão
+  header("Location: index.php?acao=produtos");
+  exit; // Certifique-se de sair do script após o redirecionamento
+}
 ?>
 
  <div class="search-container">
@@ -25,6 +34,7 @@ $listaProdutos = select ('produtos');
       <th scope="col">Fornecedor</th>
       <th scope="col">Estoque</th>
       <th scope="col"> </th>
+      <th scope="col"> </th>
 
     </tr>
   </thead>
@@ -40,7 +50,30 @@ $listaProdutos = select ('produtos');
         <td><?php echo $linha['estoque']; ?></td>
         <td>
           <button type="submit" class="btn btn-cadastro">editar</button>
-          <button type="submit" class="btn btn-danger" name="excluir">excluir</button>
+        </td>
+        <td><a href="index.php?acao=produtos&excluir" class="btn btn-outline-danger btn-sm excluir-funcionario" data-id="<?php echo $linha['id']; ?>" data-codigo="<?php echo $linha['codigo']; ?>" >excluir</a></td>
+
+             <!-- Modal de confirmação de exclusão personalizada -->
+             <div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Exclusão de Produtos</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Você deseja excluir  o funcionário <span id="codigoprodutosExclusao"></span>?
+                        </div>
+                        <div class="modal-footer">
+                          <a href="#" id="confirmarExclusao" class="btn btn-danger">Confirmar Exclusão</a>
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
         </td>
       </tr>
       <?php };
@@ -153,3 +186,33 @@ $listaProdutos = select ('produtos');
     </div>
   </div>
 </div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Adicionar um evento de clique a todos os links com a classe 'excluir-funcionario'
+    const excluirLinks = document.querySelectorAll('.excluir-produtos');
+    const codigoprodutosExclusao = document.getElementById('codigoprodutosExclusao');
+    const confirmarExclusao = document.getElementById('confirmarExclusao');
+
+    excluirLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita que o link seja seguido
+
+        const produtosID = this.getAttribute('data-id'); // Obtém o ID do funcionário
+        const codigoprodutos = this.getAttribute('data-codigo'); // Obtém o nome do funcionário
+
+        codigoprodutosExclusao.textContent = codigoprodutos; // Atualiza o nome na modal
+
+        // Adiciona um evento de clique ao botão 'Confirmar Exclusão'
+        confirmarExclusao.addEventListener('click', function () {
+          // Redireciona para a página de exclusão com o ID do funcionário
+          window.location.href = `index.php?acao=produtos&excluir=${produtosID}`;
+        });
+
+        // Abre a modal de confirmação
+        $('#confirmacaoExclusao').modal('show');
+      });
+    });
+  });
+</script>
