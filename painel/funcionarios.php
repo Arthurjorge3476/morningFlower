@@ -67,7 +67,14 @@ if (isset($_GET['excluir'])) {
 }
 
 
-
+if (isset($_POST['pesquisar'])) {
+  $termoPesquisa = $_POST['pesquisar'];
+  $listaFuncionarios = array_filter($listaFuncionarios, function ($funcionario) use ($termoPesquisa) {
+      // Aqui, você pode ajustar como deseja que a pesquisa seja realizada.
+      // Atualmente, ela é case-insensitive e verifica se o nome contém o termo de pesquisa.
+      return stripos($funcionario['nome'], $termoPesquisa) !== false;
+  });
+}
 
 
 ?>
@@ -75,14 +82,17 @@ if (isset($_GET['excluir'])) {
 
 
 
- <div class="search-container">
- <div class="search-wrapper">
-    <input type="text" id="searchInput"  placeholder="Pesquisar...">
-    <button type="button" id="searchButton">
-    <i class="fas fa-search"></i> 
-  </button>
-  </div>
- </div>
+<form method="POST" action="index.php?acao=funcionarios">
+    <div class="search-container">
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" name="pesquisar" placeholder="Pesquisar...">
+            <button type="submit" id="searchButton">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
 
   <div class="tabela">
   <table class="table table-bordered  table-hover mt-3">
@@ -492,6 +502,31 @@ if (isset($_GET['excluir'])) {
         // Resto do seu código JavaScript...
     });
 </script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const tableRows = document.querySelectorAll('.tabela tbody tr');
+
+    searchInput.addEventListener('keyup', function () {
+      const searchTerm = searchInput.value.toLowerCase();
+
+      tableRows.forEach(function (row) {
+        const cell = row.getElementsByTagName('td') [1]; // Coluna de nome
+        if (cell) {
+          const nome = cell.textContent.toLowerCase();
+          if (nome.includes(searchTerm)) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+</script>
+
 
 
 
