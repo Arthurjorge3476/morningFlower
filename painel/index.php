@@ -123,16 +123,21 @@ $valores = array($codigo,$produto,$categoria,$fornecedor,$precodecompra,$precode
 inserir('produtos',$campos,$valores);
 }
 
-if(isset($_POST['blocodeanotacao'])){
-    
-    $bloco = $_POST['notas'];
 
-    $campos= array('notas');
-    $valores = array($bloco);
 
-    inserir('blocodenotas',$campos,$valores);
+if (isset($_POST['anotacoes'])) {
+    $notes = $_POST['notes'];
+    $notesJSON = json_encode($notes); // Converter o array em uma string JSON
 
+    if (inserirAnotacoes($notesJSON)) { // Passar a string JSON para a função
+        echo 'Anotações inseridas com sucesso!';
+    } else {
+        echo 'Erro ao inserir anotações.';
+    }
 }
+
+
+
 
 
 
