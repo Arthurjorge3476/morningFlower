@@ -79,19 +79,21 @@ if (isset($_POST['pesquisar'])) {
 
 ?>
 
-
-
-
 <form method="POST" action="index.php?acao=funcionarios">
     <div class="search-container">
         <div class="search-wrapper">
             <input type="text" id="searchInput" name="pesquisar" placeholder="Pesquisar...">
-            <button type="submit" id="searchButton">
-                <i class="fas fa-search"></i>
+            <button type="submit" id="searchButton" onclick="searchDate()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
             </button>
         </div>
     </div>
 </form>
+
+
+
 
 
   <div class="tabela">
@@ -505,26 +507,22 @@ if (isset($_POST['pesquisar'])) {
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    const tableRows = document.querySelectorAll('.tabela tbody tr');
+  var search = document.getElementById('searchInput');
 
-    searchInput.addEventListener('keyup', function () {
-      const searchTerm = searchInput.value.toLowerCase();
-
-      tableRows.forEach(function (row) {
-        const cell = row.getElementsByTagName('td') [1]; // Coluna de nome
-        if (cell) {
-          const nome = cell.textContent.toLowerCase();
-          if (nome.includes(searchTerm)) {
-            row.style.display = '';
-          } else {
-            row.style.display = 'none';
-          }
-        }
-      });
-    });
+  search.addEventListener("keydown", function(event) {
+    if (event.key === "Enter")
+    {
+      searchDate();
+    }
   });
+
+
+
+
+  function searchDate()
+  {
+    window.location = 'index.php?acao=funcionarios&search='+ search.value;
+  }
 </script>
 
 
