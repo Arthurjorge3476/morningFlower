@@ -1,69 +1,83 @@
+
 <?php
-$filename = 'notepad.txt'; // Nome do arquivo de anotações
-
-if (isset($_POST['anotacoes'])) {
-    $notes = $_POST['notes'];
-    $notesJSON = json_encode($notes); // Certifique-se de que $notes contém os dados corretos
-    var_dump($notesJSON); // Verifique os dados antes de inserir
-
-    if (inserirAnotacoes($notesJSON)) {
-        echo 'Anotações inseridas com sucesso!';
-    } else {
-        echo 'Erro ao inserir anotações.';
-    }
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $notes = $_POST['notes']; // Obtém as anotações enviadas pelo formulário
-    $_SESSION['notes'] = $notes; // Armazena as anotações na sessão
-
-    echo 'Anotações salvas com sucesso!';
-}
-
-// Obtém as anotações da sessão, se existirem
-$notes = isset($_SESSION['notes']) ? $_SESSION['notes'] : array();
+$listaPedido = select('pedido');
 ?>
 
-<div class="blocodenotas">
-    <div class="area-login mt-5" style="width: 70%;height: 100%;border-radius: 10px;">
-        <div id="notepad">
-            <h1 class="mt-1" style="justify-content: center;display: flex; font-weight: bold;font-family: arial;">Bloco de Anotações</h1>
-            <form method="POST">
-                <ul id="notes-list" class="list-unstyled">
-                    <?php foreach ($notes as $index => $note) : ?>
-                        <?php
-                        $isChecked = isset($note['checked']) && $note['checked'];
-                        $contentValue = isset($note['content']) ? $note['content'] : '';
-                        ?>
-                        <li class="bloco d-flex align-items-center mb-2">
-                            <input type="checkbox" name="notes[<?php echo $index; ?>][checked]" <?php echo $isChecked ? 'checked' : ''; ?> class="mr-2">
-                            <input type="text" name="notes[<?php echo $index; ?>][content]" value="<?php echo $contentValue; ?>" class="form-control mr-2">
-                            <button type="button" class="btn btn-danger delete-note-btn" onclick="deleteNote(this)">X</button>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-                <div class="add-note-btn mt-3">
-                    <button type="button" class="btn btn-primary" onclick="addNote()">Adicionar Anotação</button>
-                    <input type="hidden" name="anotacoes" value="1">
-                    <button type="submit" name="blocodeanotacao" class="btn btn-primary">Salvar</button>
-                </div>
-            </form>
+
+        
+        <form class="cadastro" method="POST" action="comprovante_fiscal.php" style="background-color: white;justify-content: center;width: 100%;  margin: auto;max-width: 1200px; padding: 20px;">
+        <div class="modal-header ">
+          <h5 class="modal-title" id="exampleModalLongTitle">Comprovante</h5>
         </div>
-    </div>
-</div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nomeCliente">Nome</label>
+                <input type="text" class="form-control" name="cliente" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="telefoneCliente">Telefone</label>
+                <input type="text" class="form-control" name="telefone" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cidadeCliente">Cidade</label>
+                <input type="text" class="form-control" name="cidade" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="enderecoCliente">Endereço</label>
+                <input type="text" class="form-control" name="endereco" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cepCliente">CEP</label>
+                <input type="text" class="form-control" name="cep" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nomeVendedor">Vendedor</label>
+                <input type="text" class="form-control" name="vendedor" required>
+            </div>
+            <div class="form-group col-md-6">
+            <label for="produto_retirado">Produtos Retirados</label>
+            <div class="row product-row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="produto_retirado[]" placeholder="Nome do Produto" required>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="quantidade_retirada[]" placeholder="Quantidade" required>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="valor[]" placeholder="Valor" required>
+                </div>
+            </div>
+    </form>
 
-<script>
-    function addNote() {
-        var notesList = document.getElementById('notes-list');
-        var li = document.createElement('li');
-        li.className = 'bloco d-flex align-items-center mb-2';
-        li.innerHTML = '<input type="checkbox" name="notes[checked][]" value="1" class="mr-2"><input type="text" name="notes[content][]" value="" class="form-control mr-2"><button type="button" class="btn btn-danger delete-note-btn" onclick="deleteNote(this)">X</button>';
-        notesList.appendChild(li);
-    }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".btn-add-product").click(function() {
+                var productRow = '<div class="row product-row">' +
+                                    '<div class="col-md-6">' +
+                                        '<input type="text" class="form-control" name="produto_retirado[]" placeholder="Nome do Produto" required>' +
+                                    '</div>' +
+                                    '<div class="col-md-3">' +
+                                        '<input type="text" class="form-control" name="quantidade_retirada[]" placeholder="Quantidade" required>' +
+                                    '</div>' +
+                                    '<div class="col-md-3">' +
+                                        '<input type="text" class="form-control" name="valor[]" placeholder="Valor" required>' +
+                                    '</div>' +
+                                '</div>';
+                $(".product-row:last").after(productRow);
+            });
+        });
+    </script>
 
-    function deleteNote(button) {
-        var li = button.parentNode;
-        li.parentNode.removeChild(li);
-    }
-</script>
+
+                <div>
+                    <button type="button" class="btn btn-secondary btn-add-product">Adicionar Produto</button>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" name="cadastrarPedido" value="Gerar Comprovante">
+                </div>
+
+
+
+
+

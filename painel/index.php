@@ -181,7 +181,6 @@ if (isset($_POST['anotacoes'])) {
                     <a class="nav-item nav-link " href="index.php?acao=produtos">Produtos</a>
                     <a class="nav-item nav-link  " href="index.php?acao=fornecedores">Fornecedores</a>
                     <a class="nav-item nav-link  " href="index.php?acao=clientes">Clientes</a>
-                    <a class="nav-item nav-link" href="index.php?acao=comprovante">Comprovante</a>
                     <a class="nav-item nav-link" href="../logout.php">Sair</a>
 
 
@@ -211,9 +210,7 @@ if (isset($_POST['anotacoes'])) {
             elseif($acao == 'fornecedores'){
                 include('fornecedores.php');
             }
-             elseif($acao == 'comprovante'){
-                include('formulario_comprovante.php');
-             }
+             
              elseif($acao == 'clientes'){
                 include('clientes.php');
              }
