@@ -5,7 +5,7 @@ $listaPedido = select('pedido');
 
 
         
-        <form class="cadastro" method="POST" action="comprovante_fiscal.php" style="background-color: white;justify-content: center;width: 100%;  margin: auto;max-width: 1200px; padding: 20px;">
+        <form class="cadastro" method="POST" action="comprovante_fiscal.php" style="background-color: white;justify-content: center;width: 100%;  margin: auto;max-width: 1200px; padding: 5px;margin-bottom: 20px;  border-radius: 10px ;">
         <div class="modal-header ">
           <h5 class="modal-title" id="exampleModalLongTitle">Comprovante</h5>
         </div>
