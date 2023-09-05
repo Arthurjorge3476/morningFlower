@@ -70,9 +70,18 @@ if (isset($_POST['btnEditar'])) {
   }
 }
 
-
+if (isset($_POST['pesquisar'])) {
+  $termoPesquisa = $_POST['pesquisar'];
+  $listaFornecedores = array_filter($listaFornecedores, function ($fornecedores) use ($termoPesquisa) {
+      // Aqui, você pode ajustar como deseja que a pesquisa seja realizada.
+      // Atualmente, ela é case-insensitive e verifica se o nome contém o termo de pesquisa.
+      return stripos($fornecedores['nome'], $termoPesquisa) !== false;
+  });
+}
 
 ?>
+
+
  
  <form method="POST" action="index.php?acao=fornecedores">
     <div class="search-container">

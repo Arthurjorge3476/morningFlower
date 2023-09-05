@@ -59,6 +59,15 @@ if (isset($_GET['excluir'])) {
   header("Location: index.php?acao=produtos");
   exit; // Certifique-se de sair do script após o redirecionamento
 }
+
+if (isset($_POST['pesquisar'])) {
+  $termoPesquisa = $_POST['pesquisar'];
+  $listaProdutos = array_filter($listaProdutos, function ($produtos) use ($termoPesquisa) {
+      // Aqui, você pode ajustar como deseja que a pesquisa seja realizada.
+      // Atualmente, ela é case-insensitive e verifica se o nome contém o termo de pesquisa.
+      return stripos($produtos['produto'], $termoPesquisa) !== false;
+  });
+}
 ?>
 
 <form method="POST" action="index.php?acao=produtos">
