@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/09/2023 às 23:06
+-- Tempo de geração: 05/09/2023 às 14:36
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.0.28
 
@@ -20,16 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `morning flower`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `blocodenotas`
---
-
-CREATE TABLE `blocodenotas` (
-  `notas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -153,18 +143,11 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`codigo`, `produto`, `estoque`, `precodecompra`, `precodevenda`, `fornecedor`, `validade`, `observacao`, `categoria`, `margemdelucro`, `lucroanterior`, `id`) VALUES
-(487, 'Girasol', '', '', '', '', '', '', '', '', '', 2),
 (488, 'Rosas Vermelhas', '50', '', '20,00', 'fornecedor', '', '', '', '', '', 3);
 
 --
 -- Índices para tabelas despejadas
 --
-
---
--- Índices de tabela `blocodenotas`
---
-ALTER TABLE `blocodenotas`
-  ADD PRIMARY KEY (`notas`);
 
 --
 -- Índices de tabela `fornecedores`
