@@ -3,13 +3,65 @@
 <head>
     <title>Comprovante Fiscal</title>
     <style>
-        /* Estilos del comprobante aquí... */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .comprovante {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        span {
+            font-weight: normal;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="comprovante">
         <h2>Comprovante de Venda</h2>
-        <p><strong>Data:</strong> <?php echo date('d/m/Y'); ?></p>
+        <?php
+        date_default_timezone_set('America/Sao_Paulo'); 
+        echo "<p><strong>Data e Hora:</strong> " . date('d/m/Y H:i:s') . "</p>"; ?>                               
         <p><strong>Nome do cliente:</strong> <?php echo $_POST['cliente']; ?></p>
         <p><strong>Cidade:</strong> <?php echo $_POST['cidade']; ?></p>
         <p><strong>Endereço:</strong> <?php echo $_POST['endereco']; ?></p>
@@ -26,10 +78,6 @@
                 $valor = floatval($_POST['valor'][$i]);
                 $quantidade = intval($_POST['quantidade_retirada'][$i]);
                 $totalProduto = $valor * $quantidade;
-
-                //COMEÇA AQUI CABEÇA
-
-
                 
                 echo "<p><strong>Produto retirado:</strong> <span>$produto</span></p>";
                 echo "<p><strong>Valor Unitário:</strong> <span>R$ " . number_format($valor, 2, ',', '.') . "</span></p>";
