@@ -101,41 +101,11 @@ function deletar ($tabela, $id) {
 }
 
 
-function inserirAnotacoes($notesJSON) {
-    $conexao = conectar();
-    try {
-        // Decodificar a string JSON em um array associativo
-        $notes = json_decode($notesJSON, true);
-
-        // Verifique se a decodificação JSON foi bem-sucedida
-        if ($notes === null && json_last_error() !== JSON_ERROR_NONE) {
-            throw new Exception('Erro na decodificação JSON.');
-        }
-
-        // Montar a query SQL para a inserção de dados
-        $sql = "INSERT INTO anotacoes (notas) VALUES (:notas)";
-
-        // Preparar a declaração
-        $stmt = $conexao->prepare($sql);
-
-        // Passar a variável por referência
-        $stmt->bindParam(':notas', $notesJSON);
-
-        // Executar a query com os valores dos parâmetros
-        $stmt->execute();
-        $conexao = null;
-
-        return true;
-    } catch (Exception $e) {
-        // Em caso de erro, você pode tratar a exceção aqui ou retornar um erro personalizado
-        echo "Erro ao inserir anotações: " . $e->getMessage();
-        return false;
-    }
-}
 
 
-  
 ?>
+
+
 
 
 
