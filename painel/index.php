@@ -53,24 +53,22 @@ inserir('funcionarios', $campos, $valores);
  
 
 
-if(isset($_POST['cadastrarClientes'])){
+        if(isset($_POST['cadastrarClientes'])){
 
-
-    $codigo = $_POST['codigo'];
-    $nome = $_POST['nome'];
-    $cidade = $_POST['cidade'];
-    $endereco = $_POST['endereco'];
-    $cep = $_POST['cep'];
-    $telefone = $_POST['telefone'];
-
-   
-    $campos = array('codigo','nome','cidade','endereco','cep','telefone');
-    $valores = array($codigo,$nome,$cidade,$endereco,$cep,$telefone);
-    
-    inserir('clientes', $campos, $valores);
-    
-    }
-    
+            $nome = $_POST['nome'];
+            $cpf = $_POST['cpf'];
+            $cidade = $_POST['cidade'];
+            $endereco = $_POST['endereco'];
+            $cep = $_POST['cep'];
+            $email = $_POST['email'];
+            $telefone = $_POST['telefone'];
+            
+            $campos = array('nome', 'cpf', 'cidade', 'endereco', 'cep', 'email', 'telefone');
+            $valores = array($nome, $cpf,  $cidade, $endereco, $cep, $email, $telefone,);
+            
+            inserir('clientes', $campos, $valores);
+            
+            }
 
 
 
