@@ -6,97 +6,93 @@ if (!isset($_SESSION['nome'])) {
 }
 
 
-include_once ('../consultaSQL.php');
+include_once('../consultaSQL.php');
 
-if(isset($_POST['cadastrarFuncionarios'])){
+if (isset($_POST['cadastrarFuncionarios'])) {
 
-$nome = $_POST['nome'];
-$data_de_nascimento = $_POST['data_de_nascimento'];
-$rg = $_POST['rg'];
-$cpf = $_POST['cpf'];
-$ctps = $_POST['ctps'];
-$cidade = $_POST['cidade'];
-$endereco = $_POST['endereco'];
-$cep = $_POST['cep'];
-$email = $_POST['email'];
-$telefone = $_POST['telefone'];
-$senha = md5($_POST['senha']);
-$grupo_de_acesso = $_POST['grupo_de_acesso'];
+    $nome = $_POST['nome'];
+    $data_de_nascimento = $_POST['data_de_nascimento'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $ctps = $_POST['ctps'];
+    $cidade = $_POST['cidade'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+    $senha = md5($_POST['senha']);
+    $grupo_de_acesso = $_POST['grupo_de_acesso'];
 
-$campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
-$valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
+    $campos = array('nome', 'data_de_nascimento', 'rg', 'cpf', 'ctps', 'cidade', 'endereco', 'cep', 'email', 'telefone', 'senha', 'grupo_de_acesso');
+    $valores = array($nome, $data_de_nascimento, $rg, $cpf, $ctps, $cidade, $endereco, $cep, $email, $telefone, $senha, $grupo_de_acesso);
 
-inserir('funcionarios', $campos, $valores);
-
+    inserir('funcionarios', $campos, $valores);
 }
 
 
 
 
 
-    if(isset($_POST['cadastrarPedido'])){
-
-    
-        $numero = $_POST['numero'];
-        $data = $_POST['data'];
-        $vendedor = $_POST['vendedor'];
-        $cliente = $_POST['cliente'];
-       
-    
-       
-        $campos = array('numero','data','vendedor','cliente');
-        $valores = array($numero,$data,$vendedor,$cliente);
-        
-        inserir('pedido', $campos, $valores);
-        
-        }
- 
+if (isset($_POST['cadastrarPedido'])) {
 
 
-        if(isset($_POST['cadastrarClientes'])){
-
-            $nome = $_POST['nome'];
-            $cpf = $_POST['cpf'];
-            $cidade = $_POST['cidade'];
-            $endereco = $_POST['endereco'];
-            $cep = $_POST['cep'];
-            $email = $_POST['email'];
-            $telefone = $_POST['telefone'];
-            
-            $campos = array('nome', 'cpf', 'cidade', 'endereco', 'cep', 'email', 'telefone');
-            $valores = array($nome, $cpf,  $cidade, $endereco, $cep, $email, $telefone,);
-            
-            inserir('clientes', $campos, $valores);
-            
-            }
+    $numero = $_POST['numero'];
+    $data = $_POST['data'];
+    $vendedor = $_POST['vendedor'];
+    $cliente = $_POST['cliente'];
 
 
 
-if(isset($_POST['cadastrarFornecedores'])){
+    $campos = array('numero', 'data', 'vendedor', 'cliente');
+    $valores = array($numero, $data, $vendedor, $cliente);
+
+    inserir('pedido', $campos, $valores);
+}
 
 
-$codigo = $_POST['codigo'];
-$nome = $_POST['nome'];
-$endereco = $_POST['endereco'];
-$cidade = $_POST['cidade'];
-$bairro = $_POST['bairro'];
-$estado = $_POST['estado'];
-$cep = $_POST['cep'];
-$telefone1 = $_POST['telefone1'];
-$telefone2 = $_POST['telefone2'];
-$email = $_POST['email'];
-$cnpj = $_POST['cnpj'];
-$vendedor = $_POST['vendedor'];
-$telefonevendedor1 = $_POST['telefonevendedor1'];
-$telefonevendedor2 = $_POST['telefonevendedor2'];
-$condicaodavenda = $_POST['condicaodavenda'];
-$atividade = $_POST['atividade'];
 
-$campos = array('codigo','nome', 'endereco', 'cidade','bairro','estado','cep','telefone1','telefone2','email','cnpj','vendedor','telefonevendedor1','telefonevendedor2','condicaodavenda','atividade');
-$valores = array($codigo,$nome, $endereco, $cidade,$bairro,$estado,$cep,$telefone1,$telefone2,$email,$cnpj,$vendedor,$telefonevendedor1,$telefonevendedor2,$condicaodavenda,$atividade);
+if (isset($_POST['cadastrarClientes'])) {
 
-inserir('fornecedores', $campos, $valores);
+    $nome = $_POST['nome'];
+    $cpf = $_POST['cpf'];
+    $cidade = $_POST['cidade'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
 
+    $campos = array('nome', 'cpf', 'cidade', 'endereco', 'cep', 'email', 'telefone');
+    $valores = array($nome, $cpf,  $cidade, $endereco, $cep, $email, $telefone,);
+
+    inserir('clientes', $campos, $valores);
+}
+
+
+
+if (isset($_POST['cadastrarFornecedores'])) {
+
+
+    $codigo = $_POST['codigo'];
+    $nome = $_POST['nome'];
+    $endereco = $_POST['endereco'];
+    $cidade = $_POST['cidade'];
+    $bairro = $_POST['bairro'];
+    $estado = $_POST['estado'];
+    $cep = $_POST['cep'];
+    $telefone1 = $_POST['telefone1'];
+    $telefone2 = $_POST['telefone2'];
+    $email = $_POST['email'];
+    $cnpj = $_POST['cnpj'];
+    $vendedor = $_POST['vendedor'];
+    $telefonevendedor1 = $_POST['telefonevendedor1'];
+    $telefonevendedor2 = $_POST['telefonevendedor2'];
+    $condicaodavenda = $_POST['condicaodavenda'];
+    $atividade = $_POST['atividade'];
+
+    $campos = array('codigo', 'nome', 'endereco', 'cidade', 'bairro', 'estado', 'cep', 'telefone1', 'telefone2', 'email', 'cnpj', 'vendedor', 'telefonevendedor1', 'telefonevendedor2', 'condicaodavenda', 'atividade');
+    $valores = array($codigo, $nome, $endereco, $cidade, $bairro, $estado, $cep, $telefone1, $telefone2, $email, $cnpj, $vendedor, $telefonevendedor1, $telefonevendedor2, $condicaodavenda, $atividade);
+
+    inserir('fornecedores', $campos, $valores);
 }
 
 
@@ -117,11 +113,10 @@ if (isset($_POST['cadastrarProdutos'])) {
     $imagem = $_FILES['imagem']['name'];
 
 
-$campos = array('codigo', 'produto', 'categoria', 'fornecedor', 'precodecompra', 'precodevenda', 'margemdelucro', 'lucroanterior', 'estoque', 'validade', 'observacao', 'imagem');
-$valores = array($codigo, $produto, $categoria, $fornecedor, $precodecompra, $precodevenda, $margemdelucro, $lucroanterior, $estoque, $validade, $observacao, $imagem);
+    $campos = array('codigo', 'produto', 'categoria', 'fornecedor', 'precodecompra', 'precodevenda', 'margemdelucro', 'lucroanterior', 'estoque', 'validade', 'observacao', 'imagem');
+    $valores = array($codigo, $produto, $categoria, $fornecedor, $precodecompra, $precodevenda, $margemdelucro, $lucroanterior, $estoque, $validade, $observacao, $imagem);
 
-inserir('produtos', $campos, $valores);
-
+    inserir('produtos', $campos, $valores);
 }
 
 
@@ -156,9 +151,9 @@ inserir('produtos', $campos, $valores);
 <body class="login">
     <header class="corpo">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-                    <div class="iconelogo" >
-                        <img src="../img/logo.png.png" class="img-fluid">
-                    </div>
+            <div class="iconelogo">
+                <img src="../img/logo.png.png" class="img-fluid">
+            </div>
             <a class="navbar-brand" href="index.php" style="font-family: lucida handwriting;">Morning Flower</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
@@ -177,39 +172,34 @@ inserir('produtos', $campos, $valores);
                 </div>
             </div>
         </nav>
-                    
-                </div>
-            </div>
+
+        </div>
+        </div>
         </nav>
-     
 
-</header>
 
-<div>
-    <?php
+    </header>
+
+    <div>
+        <?php
         if (isset($_GET['acao'])) {
             $acao = $_GET['acao'];
-            if($acao == 'presentes') {
+            if ($acao == 'presentes') {
                 include('presentes.php');
             } elseif ($acao == 'funcionarios') {
                 include('funcionarios.php');
-            }
-            elseif($acao == 'produtos') {
+            } elseif ($acao == 'produtos') {
                 include('produtos.php');
-            }
-            elseif($acao == 'fornecedores'){
+            } elseif ($acao == 'fornecedores') {
                 include('fornecedores.php');
-            }
-             
-             elseif($acao == 'clientes'){
+            } elseif ($acao == 'clientes') {
                 include('clientes.php');
-             }
-             
+            }
         } else {
             include('home.php');
         }
-    ?>
-</div>
+        ?>
+    </div>
 </body>
 
 </html>

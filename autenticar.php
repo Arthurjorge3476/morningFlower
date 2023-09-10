@@ -14,4 +14,3 @@ $dados = select('funcionarios',"email='$username' and senha= '$senhacrip'");
         echo "Logou@";
     } else {
         header('Location: index.php');    }
-?>

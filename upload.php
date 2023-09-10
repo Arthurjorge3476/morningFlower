@@ -15,4 +15,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Erro ao fazer o upload da imagem.";
     }
 }
-?>

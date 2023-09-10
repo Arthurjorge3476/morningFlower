@@ -99,16 +99,3 @@ function deletar ($tabela, $id) {
     }
 
 }
-
-
-
-
-?>
-
-
-
-
-
-
-
-
