@@ -2,17 +2,7 @@
 
 $listaProdutos = select('produtos');
 
-if (isset($_POST['cadastrarProdutos'])) {
-  // Verifique se um arquivo de imagem foi enviado
-  if (isset($_FILES['imagem']) && !empty($_FILES['imagem']['name'])) {
-    $imagem = "../uploads/" . $_FILES['imagem']['name'];
 
-    // Move o arquivo de imagem para o diretório correto
-    move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem);
-  } else {
-    $imagem = "null";
-  }
-}
 
 
 if (isset($_POST['btnEditar'])) {

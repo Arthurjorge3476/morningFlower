@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09-Set-2023 às 23:16
+-- Tempo de geração: 11-Set-2023 às 20:11
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -38,12 +38,22 @@ CREATE TABLE `blocodenotas` (
 --
 
 CREATE TABLE `clientes` (
+  `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `cpf` int(250) NOT NULL,
-  `endereço` varchar(250) NOT NULL,
+  `cpf` varchar(255) NOT NULL,
+  `endereco` varchar(250) NOT NULL,
   `telefone` varchar(250) NOT NULL,
-  `cidade` varchar(250) NOT NULL
+  `cidade` varchar(250) NOT NULL,
+  `cep` int(250) NOT NULL,
+  `email` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nome`, `cpf`, `endereco`, `telefone`, `cidade`, `cep`, `email`) VALUES
+(2, 'JOSÉ ADEMIR BARBOZA JORGE', '990.990.090.90', 'policia rodoviaria', '(48) 99159-0905', 'Araranguá / SC', 8890231, 'arthur@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -52,6 +62,7 @@ CREATE TABLE `clientes` (
 --
 
 CREATE TABLE `comprovante` (
+  `id` int(11) NOT NULL,
   `pedido` int(11) NOT NULL,
   `produto` varchar(50) NOT NULL,
   `quantidade` int(11) NOT NULL
@@ -128,7 +139,8 @@ INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `
 --
 
 CREATE TABLE `pedido` (
-  `numero` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `numero` int(50) NOT NULL,
   `data` date NOT NULL,
   `vendedor` varchar(50) NOT NULL,
   `cliente` varchar(50) NOT NULL
@@ -141,6 +153,7 @@ CREATE TABLE `pedido` (
 --
 
 CREATE TABLE `produtos` (
+  `id` int(11) NOT NULL,
   `codigo` int(11) NOT NULL,
   `produto` varchar(225) NOT NULL,
   `estoque` varchar(10) NOT NULL,
@@ -152,16 +165,26 @@ CREATE TABLE `produtos` (
   `categoria` varchar(45) DEFAULT NULL,
   `margemdelucro` varchar(45) NOT NULL,
   `lucroanterior` varchar(45) NOT NULL,
-  `id` int(11) NOT NULL
+  `imagem` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `produtos`
 --
 
-INSERT INTO `produtos` (`codigo`, `produto`, `estoque`, `precodecompra`, `precodevenda`, `fornecedor`, `validade`, `observacao`, `categoria`, `margemdelucro`, `lucroanterior`, `id`) VALUES
-(745, 'Girasol', '50', '200,00', '15,00', 'fornecedor', '10/09/2023', '', 'planta', '10%', '5%', 1),
-(488, 'Girasol', '', '', '', '', '', '', '', '', '', 2);
+INSERT INTO `produtos` (`id`, `codigo`, `produto`, `estoque`, `precodecompra`, `precodevenda`, `fornecedor`, `validade`, `observacao`, `categoria`, `margemdelucro`, `lucroanterior`, `imagem`) VALUES
+(4, 8890231, 'girassol', '31', '11', '31', 'fornecedor', '2023-09-28', NULL, 'planta', '13', '31', '../uploads/girassol.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produto_comprovante`
+--
+
+CREATE TABLE `produto_comprovante` (
+  `comprovante` int(11) NOT NULL,
+  `produto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tabelas despejadas
@@ -172,6 +195,18 @@ INSERT INTO `produtos` (`codigo`, `produto`, `estoque`, `precodecompra`, `precod
 --
 ALTER TABLE `blocodenotas`
   ADD PRIMARY KEY (`notas`);
+
+--
+-- Índices para tabela `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `comprovante`
+--
+ALTER TABLE `comprovante`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `fornecedores`
@@ -201,7 +236,8 @@ ALTER TABLE `funcionarios`
 -- Índices para tabela `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`numero`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `numero` (`numero`);
 
 --
 -- Índices para tabela `produtos`
@@ -213,6 +249,18 @@ ALTER TABLE `produtos`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `comprovante`
+--
+ALTER TABLE `comprovante`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`
@@ -230,13 +278,13 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -19,8 +19,8 @@ if (isset($_POST['btnEditar'])) {
   $telefone = $_POST['telefone'];
 
   // Atualize o funcionário no banco de dados
-  $sql_update = "UPDATE cliente SET nome = :nome,  cpf = :cpf, cidade = :cidade, endereco = :endereco, cep = :cep, email = :email, telefone = :telefone,";
-
+  $sql_update = "UPDATE clientes SET nome = :nome,  cpf = :cpf, cidade = :cidade, endereco = :endereco, cep = :cep, email = :email, telefone = :telefone where id = :id";  
+    
   $stmt_update = $conexao->prepare($sql_update);
 
   $stmt_update->bindParam(':id', $id);
@@ -116,7 +116,7 @@ if (isset($_POST['pesquisar'])) {
           <td><?php echo $linha['cidade']; ?></td>
           <td>
             <div>
-              <a href="index.php?acao=clientes&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm editar-Cliente" data-info='<?php echo json_encode($linha); ?>' data-toggle="modal" data-target="#editarClienteModal" name="editar">Editar</a>
+              <a href="index.php?acao=clientes&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm " data-info='<?php echo json_encode($linha); ?>' data-toggle="modal" data-target="#editarClienteModal" name="editar">Editar</a>
 
 
 
@@ -133,7 +133,7 @@ if (isset($_POST['pesquisar'])) {
                     </div>
                     <div class="modal-body">
                       <!-- Formulário de Edição de Funcionário -->
-                      <form id="formEditarCliente" method="POST" action="index.php?acao=Clientes">
+                      <form id="formEditarCliente" method="POST" action="index.php?acao=clientes">
                         <!-- Campos de edição de funcionário -->
                         <input type="hidden" id="idClienteEditar" name="idClienteEditar">
                         <div class="form-row">
@@ -181,33 +181,33 @@ if (isset($_POST['pesquisar'])) {
 
 
 
-          <td><a href="index.php?acao=clientes&excluir" class="btn btn-outline-danger btn-sm excluir-clientes" data-id="<?php echo $linha['id']; ?>" data-nome="<?php echo $linha['nome']; ?>">excluir</a></td>
+           <td><a href="index.php?acao=clientes&excluir" class="btn btn-outline-danger btn-sm excluir-clientes" data-id="<?php echo $linha['id']; ?>" data-codigo="<?php echo $linha['nome']; ?>">excluir</a></td>
 
-          <!-- Modal de confirmação de exclusão personalizada -->
-          <div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Exclusão de Cliente</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Você deseja excluir o Cliente <span id="nomeClienteExclusao"></span>?
-                </div>
-                <div class="modal-footer">
-                  <a href="#" id="confirmarExclusao" class="btn btn-danger">Confirmar Exclusão</a>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- Modal de confirmação de exclusão personalizada -->
+<div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Exclusão de Clientes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Você deseja excluir o Cliente <span id="codigoclientesExclusao"></span>?
+      </div>
+      <div class="modal-footer">
+        <a href="#" id="confirmarExclusao" class="btn btn-danger">Confirmar Exclusão</a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-          </td>
-        </tr>
-      <?php };
-      ?>
+</td>
+</tr>
+<?php };
+?>
 
 
       <td scope="row">
@@ -438,3 +438,32 @@ if (isset($_POST['pesquisar'])) {
     window.location = 'index.php?acao=clientes&search=' + search.value;
   }
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Adicionar um evento de clique a todos os links com a classe 'excluir-funcionario'
+      const excluirLinks = document.querySelectorAll('.excluir-clientes');
+      const codigoclientesExclusao = document.getElementById('codigoclientesExclusao');
+      const confirmarExclusao = document.getElementById('confirmarExclusao');
+
+      excluirLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+          event.preventDefault(); // Evita que o link seja seguido
+
+          const clientesID = this.getAttribute('data-id'); // Obtém o ID do funcionário
+          const codigoclientes = this.getAttribute('data-codigo'); // Obtém o nome do funcionário
+
+          codigoclientesExclusao.textContent = codigoclientes; // Atualiza o nome na modal
+
+          // Adiciona um evento de clique ao botão 'Confirmar Exclusão'
+          confirmarExclusao.addEventListener('click', function() {
+            // Redireciona para a página de exclusão com o ID do funcionário
+            window.location.href = `index.php?acao=clientes&excluir=${clientesID}`;
+          });
+
+          // Abre a modal de confirmação
+          $('#confirmacaoExclusao').modal('show');
+        });
+      });
+    });
+  </script>

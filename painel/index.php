@@ -98,7 +98,16 @@ if (isset($_POST['cadastrarFornecedores'])) {
 
 
 
+
 if (isset($_POST['cadastrarProdutos'])) {
+    if (isset($_FILES['imagem']) && !empty($_FILES['imagem']['name'])) {
+        $imagem = "../uploads/" . $_FILES['imagem']['name'];
+    
+        // Move o arquivo de imagem para o diretório correto
+        move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem);
+      } else {
+        $imagem = null;
+      }
     $codigo = $_POST['codigo'];
     $produto = $_POST['produto'];
     $categoria = $_POST['categoria'];
@@ -110,7 +119,6 @@ if (isset($_POST['cadastrarProdutos'])) {
     $estoque = $_POST['estoque'];
     $validade = $_POST['validade'];
     $observacao = $_POST['observacao'];
-    $imagem = $_FILES['imagem']['name'];
 
 
     $campos = array('codigo', 'produto', 'categoria', 'fornecedor', 'precodecompra', 'precodevenda', 'margemdelucro', 'lucroanterior', 'estoque', 'validade', 'observacao', 'imagem');
