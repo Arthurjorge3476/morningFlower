@@ -29,10 +29,6 @@ $listaPedido = select('pedido');
             <input type="text" class="form-control" name="cep" required>
         </div>
         <div class="form-group col-md-6">
-            <label for="nomeVendedor">Vendedor</label>
-            <input type="text" class="form-control" name="vendedor" required>
-        </div>
-        <div class="form-group col-md-6">
             <label for="produto_retirado">Produtos Retirados</label>
             <div class="row product-row">
                 <div class="col-md-6">

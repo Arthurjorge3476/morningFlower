@@ -69,7 +69,7 @@
         <p><strong>Endereço:</strong> <?php echo $_POST['endereco']; ?></p>
         <p><strong>Cep:</strong> <?php echo $_POST['cep']; ?></p>
         <p><strong>Telefone:</strong> <?php echo $_POST['telefone']; ?></p>
-        <p><strong>Vendedor:</strong> <?php echo $_POST['vendedor']; ?></p>
+        
 
         <?php
         $valorTotal = 0;
