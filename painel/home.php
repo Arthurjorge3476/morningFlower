@@ -1,5 +1,5 @@
 <?php
-$listaPedido = select('pedido');
+$listaComprovante = select('comprovante');
 ?>
 
 
@@ -14,7 +14,7 @@ $listaPedido = select('pedido');
         </div>
         <div class="form-group col-md-6">
             <label for="telefoneCliente">Telefone</label>
-            <input type="text" class="form-control" name="telefone" required>
+            <input type="text" class="form-control" name="telefone" oninput="this.value = formatarTelefone(this.value);" maxlength="15" required>
         </div>
         <div class="form-group col-md-4">
             <label for="cidadeCliente">Cidade</label>
@@ -26,7 +26,7 @@ $listaPedido = select('pedido');
         </div>
         <div class="form-group col-md-4">
             <label for="cepCliente">CEP</label>
-            <input type="text" class="form-control" name="cep" required>
+            <input type="text" class="form-control" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9" required>
         </div>
         <div class="form-group col-md-6">
             <label for="produto_retirado">Produtos Retirados</label>
@@ -77,3 +77,20 @@ $listaPedido = select('pedido');
 <div class="modal-footer">
     <input type="submit" class="btn btn-primary" name="cadastrarPedido" value="Gerar Comprovante">
 </div>
+
+
+<script>
+  function formatarCEP(cep) {
+    cep = cep.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+    cep = cep.replace(/^(\d{5})(\d{3})$/, '$1-$2'); // Insere a barra
+    return cep;
+  }
+
+  function formatarTelefone(telefone) {
+    telefone = telefone.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+    telefone = telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formatação do telefone
+    return telefone;
+  }
+
+
+</script>

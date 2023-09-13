@@ -33,20 +33,20 @@ if (isset($_POST['cadastrarFuncionarios'])) {
 
 
 
-if (isset($_POST['cadastrarPedido'])) {
+if (isset($_POST['cadastrarcomprovante'])) {
 
 
-    $numero = $_POST['numero'];
-    $data = $_POST['data'];
-    $vendedor = $_POST['vendedor'];
-    $cliente = $_POST['cliente'];
+    $id = $_POST['id'];
+    $pedido = $_POST['pedido'];
+    $produto = $_POST['produto'];
+    $quantidade = $_POST['quantidade'];
 
 
 
-    $campos = array('numero', 'data', 'vendedor', 'cliente');
-    $valores = array($numero, $data, $vendedor, $cliente);
+    $campos = array('id', 'pedido', 'produto', 'quantidade');
+    $valores = array($id, $pedido, $produto, $quantidade);
 
-    inserir('pedido', $campos, $valores);
+    inserir('comprovante', $campos, $valores);
 }
 
 
