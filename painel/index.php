@@ -130,11 +130,6 @@ if (isset($_POST['cadastrarProdutos'])) {
 
 
 
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -169,7 +164,7 @@ if (isset($_POST['cadastrarProdutos'])) {
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link " href="index.php">Home <span class="sr-only">(Página atual)</span></a>
-                    <a class="nav-item nav-link " href="index.php?acao=presentes">Estoque</a>
+                    <a class="nav-item nav-link " href="index.php?acao=estoque">Estoque</a>
                     <a class="nav-item nav-link " href="index.php?acao=funcionarios">Funcionários</a>
                     <a class="nav-item nav-link " href="index.php?acao=produtos">Produtos</a>
                     <a class="nav-item nav-link  " href="index.php?acao=fornecedores">Fornecedores</a>
@@ -192,8 +187,8 @@ if (isset($_POST['cadastrarProdutos'])) {
         <?php
         if (isset($_GET['acao'])) {
             $acao = $_GET['acao'];
-            if ($acao == 'presentes') {
-                include('presentes.php');
+            if ($acao == 'estoque') {
+                include('estoque.php');
             } elseif ($acao == 'funcionarios') {
                 include('funcionarios.php');
             } elseif ($acao == 'produtos') {

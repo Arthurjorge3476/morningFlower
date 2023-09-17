@@ -1,6 +1,7 @@
 <?php
 
 $listaProdutos = select('produtos');
+$listaFornecedores = select('fornecedores');
 
 
 
@@ -112,7 +113,7 @@ if (isset($_POST['pesquisar'])) {
         <th scope="col">Código</th>
         <th scope="col">Produto</th>
         <th scope="col">Fornecedor</th>
-        <th scope="col">Estoque</th>
+        <th scope="col">Preço de compra</th>
         <th scope="col">Imagem do Produto</th>
         <th scope="col"> </th>
         <th scope="col"> </th>
@@ -128,7 +129,7 @@ if (isset($_POST['pesquisar'])) {
           <td><?php echo $linha['codigo']; ?></td>
           <td><?php echo $linha['produto']; ?></td>
           <td><?php echo $linha['fornecedor']; ?></td>
-          <td><?php echo $linha['estoque']; ?></td>
+          <td><?php echo $linha['precodecompra']; ?></td>
           <td>
             <img src="<?php echo $linha['imagem']; ?>" width="75" height="75" />
           </td>
@@ -165,11 +166,13 @@ if (isset($_POST['pesquisar'])) {
 
                         <div class="form-group col-md-6">
                           <label for="fornecedor">Fornecedor*</label>
-                          <select class="form-control" aria-label=".form-select-lg example" id="fornecedor" name="fornecedor" style="border-radius: 18px;font-size: 19px; " required>
-                            <option selected> </option>
-                            <option value="fornecedor">Rodrigo Silva</option>
-                            <option value="fornecedor">Carlos Daniel</option>
+                          <select class="form-control" aria-label=".form-select-lg example" id="fornecedor" name="fornecedor" style="border-radius: 18px; font-size: 19px;" required>
+                            <option value="">Selecione um fornecedor</option>
+                              <?php foreach ($listaFornecedores as $fornecedor) : ?>
+                                  <option value="<?php echo $fornecedor['nome']; ?>"><?php echo $fornecedor['nome']; ?></option>
+                              <?php endforeach; ?>
                           </select>
+
                         </div>
 
                         <div class="form-group col-md-3">
@@ -193,7 +196,7 @@ if (isset($_POST['pesquisar'])) {
                         </div>
 
                         <div class="form-group col-md-3">
-                          <label for="estoque">Estoque*</label>
+                          <label for="estoque">Quantidade*</label>
                           <input type="texto" class="form-control" id="estoque" name="estoque" required>
                         </div>
 
@@ -302,11 +305,13 @@ if (isset($_POST['pesquisar'])) {
 
               <div class="form-group col-md-6">
                 <label for="fornecedor">Fornecedor*</label>
-                <select class="form-control" aria-label=".form-select-lg example" id="fornecedor" name="fornecedor" style="border-radius: 18px;font-size: 19px; " required>
-                  <option selected> </option>
-                  <option value="fornecedor">Rodrigo Silva</option>
-                  <option value="fornecedor">Carlos Daniel</option>
-                </select>
+                <select class="form-control" aria-label=".form-select-lg example" id="fornecedor" name="fornecedor" style="border-radius: 18px; font-size: 19px;" required>
+                  <option value="">Selecione um fornecedor</option>
+                  <?php foreach ($listaFornecedores as $fornecedor) : ?>
+                      <option value="<?php echo $fornecedor['nome']; ?>"><?php echo $fornecedor['nome']; ?></option>
+                  <?php endforeach; ?>
+              </select>
+
               </div>
 
               <div class="form-group col-md-3">
@@ -330,7 +335,7 @@ if (isset($_POST['pesquisar'])) {
               </div>
 
               <div class="form-group col-md-3">
-                <label for="estoque">Estoque*</label>
+                <label for="estoque">Quantidade*</label>
                 <input type="texto" class="form-control" id="estoque" name="estoque" required>
               </div>
 
