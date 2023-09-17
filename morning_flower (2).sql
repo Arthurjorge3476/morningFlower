@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Set-2023 às 02:40
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- Tempo de geração: 17/09/2023 às 21:30
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `blocodenotas`
+-- Estrutura para tabela `blocodenotas`
 --
 
 CREATE TABLE `blocodenotas` (
@@ -34,7 +34,7 @@ CREATE TABLE `blocodenotas` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `clientes`
+-- Estrutura para tabela `clientes`
 --
 
 CREATE TABLE `clientes` (
@@ -49,7 +49,7 @@ CREATE TABLE `clientes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `clientes`
+-- Despejando dados para a tabela `clientes`
 --
 
 INSERT INTO `clientes` (`id`, `nome`, `cpf`, `endereco`, `telefone`, `cidade`, `cep`, `email`) VALUES
@@ -58,7 +58,7 @@ INSERT INTO `clientes` (`id`, `nome`, `cpf`, `endereco`, `telefone`, `cidade`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `comprovante`
+-- Estrutura para tabela `comprovante`
 --
 
 CREATE TABLE `comprovante` (
@@ -71,7 +71,7 @@ CREATE TABLE `comprovante` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `fornecedores`
+-- Estrutura para tabela `fornecedores`
 --
 
 CREATE TABLE `fornecedores` (
@@ -95,7 +95,7 @@ CREATE TABLE `fornecedores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `fornecedores`
+-- Despejando dados para a tabela `fornecedores`
 --
 
 INSERT INTO `fornecedores` (`id`, `codigo`, `nome`, `endereco`, `cidade`, `bairro`, `estado`, `cep`, `telefone1`, `telefone2`, `email`, `cnpj`, `vendedor`, `telefonevendedor1`, `telefonevendedor2`, `condicaodavenda`, `atividade`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `fornecedores` (`id`, `codigo`, `nome`, `endereco`, `cidade`, `bairr
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `funcionarios`
+-- Estrutura para tabela `funcionarios`
 --
 
 CREATE TABLE `funcionarios` (
@@ -124,7 +124,7 @@ CREATE TABLE `funcionarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `funcionarios`
+-- Despejando dados para a tabela `funcionarios`
 --
 
 INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `cidade`, `endereco`, `cep`, `email`, `telefone`, `senha`, `grupo_de_acesso`, `id`) VALUES
@@ -135,7 +135,7 @@ INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pedido`
+-- Estrutura para tabela `pedido`
 --
 
 CREATE TABLE `pedido` (
@@ -148,7 +148,7 @@ CREATE TABLE `pedido` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Estrutura para tabela `produtos`
 --
 
 CREATE TABLE `produtos` (
@@ -168,16 +168,17 @@ CREATE TABLE `produtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `produtos`
+-- Despejando dados para a tabela `produtos`
 --
 
 INSERT INTO `produtos` (`id`, `codigo`, `produto`, `estoque`, `precodecompra`, `precodevenda`, `fornecedor`, `validade`, `observacao`, `categoria`, `margemdelucro`, `lucroanterior`, `imagem`) VALUES
-(4, 8890231, 'girassol', '31', '11', '31', 'fornecedor', '2023-09-28', NULL, 'planta', '13', '31', '../uploads/girassol.jpg');
+(4, 8890231, 'girassol', '31', '11', '31', 'Vaquinha Mumu', '2023-09-28', '', 'planta', '13', '31', 'images.jpg'),
+(5, 488, 'Rosas Vermelhas', '50', '200,00', '15,00', 'fornecedor', '2000-08-31', NULL, 'planta', '10%', '5%', '../uploads/download.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produto_comprovante`
+-- Estrutura para tabela `produto_comprovante`
 --
 
 CREATE TABLE `produto_comprovante` (
@@ -190,25 +191,25 @@ CREATE TABLE `produto_comprovante` (
 --
 
 --
--- Índices para tabela `blocodenotas`
+-- Índices de tabela `blocodenotas`
 --
 ALTER TABLE `blocodenotas`
   ADD PRIMARY KEY (`notas`);
 
 --
--- Índices para tabela `clientes`
+-- Índices de tabela `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `comprovante`
+-- Índices de tabela `comprovante`
 --
 ALTER TABLE `comprovante`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `fornecedores`
+-- Índices de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`id`,`cnpj`),
@@ -222,7 +223,7 @@ ALTER TABLE `fornecedores`
   ADD UNIQUE KEY `telefonevendedor2_UNIQUE` (`telefonevendedor2`);
 
 --
--- Índices para tabela `funcionarios`
+-- Índices de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
   ADD PRIMARY KEY (`id`),
@@ -232,21 +233,21 @@ ALTER TABLE `funcionarios`
   ADD UNIQUE KEY `ctps_UNIQUE` (`ctps`);
 
 --
--- Índices para tabela `pedido`
+-- Índices de tabela `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `numero` (`numero`);
 
 --
--- Índices para tabela `produtos`
+-- Índices de tabela `produtos`
 --
 ALTER TABLE `produtos`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `codigo_UNIQUE` (`codigo`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -283,7 +284,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
