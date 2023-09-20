@@ -1,6 +1,57 @@
+<?php 
+include_once("../consultaSQL.php");
+
+if(isset($_POST['cadastrarPedido'])){
+
+    // COLETAR DADOS PARA O PEDIDO
+
+    $dataAtual = date("d/m/Y"); 
+    $dataAtualMySQL = date("Y-m-d");
+    $nomeCliente = $_POST['cliente'];
+    $produtosRetirados = $_POST["produto_retirado"];
+    $quantidadesRetiradas = $_POST["quantidade_retirada"];
+    $valores = $_POST["valor"];
+
+    $valorTotal = 0;
+
+    $conexao = conectar();
+
+    $sql = "INSERT INTO pedido (data, cliente, valorTotal) VALUES (?, ?, ?)";
+    $stmt = $conexao->prepare($sql);
+    $stmt->execute([$dataAtualMySQL, $nomeCliente, $valorTotal]);
+
+    $pedidoId = $conexao->lastInsertId();
+
+    for ($i = 0; $i < count($produtosRetirados); $i++) {
+        $produtoRetirado = $produtosRetirados[$i];
+        $quantidadeRetirada = $quantidadesRetiradas[$i];
+        $valor = $valores[$i];
+
+        $valorTotalItem = $quantidadeRetirada * $valor;
+
+        $valorTotal += $valorTotalItem;
+
+        $sql = "INSERT INTO itens_pedido (pedido_id, produto, quantidade, preco_unitario) VALUES (?, ?, ?, ?)";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([$pedidoId, $produtoRetirado, $quantidadeRetirada, $valor]);
+
+        $sql = "UPDATE pedido SET valorTotal = ? WHERE id = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([$valorTotal, $pedidoId]);
+    }
+
+    // COLETAR DADOS COMPROVANTE
+
+    $quantidadeTotal = array_sum($quantidadesRetiradas);
+
+    $sqlComprovante = "INSERT INTO comprovante (pedido, quantidade) VALUES (?, ?)";
+    $stmtComprovante = $conexao->prepare($sqlComprovante);
+    $stmtComprovante->execute([$pedidoId, $quantidadeTotal]);
+}
+?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Comprovante Fiscal</title>
     <style>

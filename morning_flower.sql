@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/09/2023 às 21:30
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.0.28
+-- Tempo de geração: 20/09/2023 às 03:41
+-- Versão do servidor: 10.4.27-MariaDB
+-- Versão do PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,9 +64,15 @@ INSERT INTO `clientes` (`id`, `nome`, `cpf`, `endereco`, `telefone`, `cidade`, `
 CREATE TABLE `comprovante` (
   `id` int(11) NOT NULL,
   `pedido` int(11) NOT NULL,
-  `produto` varchar(50) NOT NULL,
   `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comprovante`
+--
+
+INSERT INTO `comprovante` (`id`, `pedido`, `quantidade`) VALUES
+(1, 8, 24);
 
 -- --------------------------------------------------------
 
@@ -135,15 +141,58 @@ INSERT INTO `funcionarios` (`nome`, `data_de_nascimento`, `rg`, `cpf`, `ctps`, `
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `itens_pedido`
+--
+
+CREATE TABLE `itens_pedido` (
+  `id` int(11) NOT NULL,
+  `pedido_id` int(11) NOT NULL,
+  `produto` varchar(25) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `preco_unitario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `itens_pedido`
+--
+
+INSERT INTO `itens_pedido` (`id`, `pedido_id`, `produto`, `quantidade`, `preco_unitario`) VALUES
+(1, 4, '0', 10, 100),
+(2, 6, 'girassol', 10, 100),
+(3, 6, 'Rosa', 5, 100),
+(4, 7, 'girassol', 10, 100),
+(5, 7, 'Rosa', 4, 100),
+(6, 7, 'Bananeira', 10, 100),
+(7, 8, 'girassol', 10, 100),
+(8, 8, 'Rosa', 4, 100),
+(9, 8, 'Bananeira', 10, 100);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `pedido`
 --
 
 CREATE TABLE `pedido` (
   `id` int(11) NOT NULL,
-  `numero` int(50) NOT NULL,
   `data` date NOT NULL,
-  `cliente` varchar(50) NOT NULL
+  `cliente` varchar(50) NOT NULL,
+  `valorTotal` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `pedido`
+--
+
+INSERT INTO `pedido` (`id`, `data`, `cliente`, `valorTotal`) VALUES
+(1, '0000-00-00', 'Vitor Hugo', 0),
+(2, '0000-00-00', 'Vitor Hugo', 0),
+(3, '2023-09-20', 'Vitor Hugo', 0),
+(4, '2023-09-20', 'Vitor Hugo', 1000),
+(5, '2023-09-20', 'Teste Pedido', 0),
+(6, '2023-09-20', 'Teste Pedido', 1500),
+(7, '2023-09-20', 'Vitor Hugo', 2400),
+(8, '2023-09-20', 'Vitor Hugo', 2400);
 
 -- --------------------------------------------------------
 
@@ -174,17 +223,6 @@ CREATE TABLE `produtos` (
 INSERT INTO `produtos` (`id`, `codigo`, `produto`, `estoque`, `precodecompra`, `precodevenda`, `fornecedor`, `validade`, `observacao`, `categoria`, `margemdelucro`, `lucroanterior`, `imagem`) VALUES
 (4, 8890231, 'girassol', '31', '11', '31', 'Vaquinha Mumu', '2023-09-28', '', 'planta', '13', '31', 'images.jpg'),
 (5, 488, 'Rosas Vermelhas', '50', '200,00', '15,00', 'fornecedor', '2000-08-31', NULL, 'planta', '10%', '5%', '../uploads/download.jpg');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `produto_comprovante`
---
-
-CREATE TABLE `produto_comprovante` (
-  `comprovante` int(11) NOT NULL,
-  `produto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tabelas despejadas
@@ -233,11 +271,16 @@ ALTER TABLE `funcionarios`
   ADD UNIQUE KEY `ctps_UNIQUE` (`ctps`);
 
 --
+-- Índices de tabela `itens_pedido`
+--
+ALTER TABLE `itens_pedido`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `numero` (`numero`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `produtos`
@@ -260,7 +303,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de tabela `comprovante`
 --
 ALTER TABLE `comprovante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`
@@ -275,10 +318,16 @@ ALTER TABLE `funcionarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
+-- AUTO_INCREMENT de tabela `itens_pedido`
+--
+ALTER TABLE `itens_pedido`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
