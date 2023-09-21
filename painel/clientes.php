@@ -18,7 +18,7 @@ if (isset($_POST['btnEditar'])) {
   $email = $_POST['email'];
   $telefone = $_POST['telefone'];
 
-  // Atualize o funcionário no banco de dados
+  // Atualize o clientes no banco de dados
   $sql_update = "UPDATE clientes SET nome = :nome,  cpf = :cpf, cidade = :cidade, endereco = :endereco, cep = :cep, email = :email, telefone = :telefone where id = :id";  
     
   $stmt_update = $conexao->prepare($sql_update);
@@ -118,10 +118,6 @@ if (isset($_POST['pesquisar'])) {
             <div>
               <a href="index.php?acao=clientes&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm " data-info='<?php echo json_encode($linha); ?>' data-toggle="modal" data-target="#editarClienteModal" name="editar">Editar</a>
 
-
-
-
-
               <div class="modal fade" id="editarClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
@@ -132,9 +128,9 @@ if (isset($_POST['pesquisar'])) {
                       </button>
                     </div>
                     <div class="modal-body">
-                      <!-- Formulário de Edição de Funcionário -->
+                      <!-- Formulário de Edição de cliente -->
                       <form id="formEditarCliente" method="POST" action="index.php?acao=clientes">
-                        <!-- Campos de edição de funcionário -->
+                        <!-- Campos de edição de cliente -->
                         <input type="hidden" id="idClienteEditar" name="idClienteEditar">
                         <div class="form-row">
                           <div class="form-group col-md-9">
@@ -367,7 +363,7 @@ if (isset($_POST['pesquisar'])) {
         success: function(response) {
           if (response === "success") {
             // Atualização bem-sucedida
-            alert("Funcionário atualizado com sucesso.");
+            alert("cliente atualizado com sucesso.");
             location.reload(); // Recarregue a página para exibir as alterações
           } else {
             // Trate os erros aqui

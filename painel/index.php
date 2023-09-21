@@ -114,15 +114,13 @@ if (isset($_POST['cadastrarProdutos'])) {
     $fornecedor = $_POST['fornecedor'];
     $precodecompra = $_POST['precodecompra'];
     $precodevenda = $_POST['precodevenda'];
-    $margemdelucro = $_POST['margemdelucro'];
-    $lucroanterior = $_POST['lucroanterior'];
     $estoque = $_POST['estoque'];
     $validade = $_POST['validade'];
     $observacao = $_POST['observacao'];
 
 
-    $campos = array('codigo', 'produto', 'categoria', 'fornecedor', 'precodecompra', 'precodevenda', 'margemdelucro', 'lucroanterior', 'estoque', 'validade', 'observacao', 'imagem');
-    $valores = array($codigo, $produto, $categoria, $fornecedor, $precodecompra, $precodevenda, $margemdelucro, $lucroanterior, $estoque, $validade, $observacao, $imagem);
+    $campos = array('codigo', 'produto', 'categoria', 'fornecedor', 'precodecompra', 'precodevenda', 'estoque', 'validade', 'observacao', 'imagem');
+    $valores = array($codigo, $produto, $categoria, $fornecedor, $precodecompra, $precodevenda, $estoque, $validade, $observacao, $imagem);
 
     inserir('produtos', $campos, $valores);
 }

@@ -1,5 +1,6 @@
 <?php
 $listaComprovante = select('comprovante');
+$listaProdutos = select('produtos');
 ?>
 
 
@@ -32,7 +33,12 @@ $listaComprovante = select('comprovante');
             <label for="produto_retirado">Produtos Retirados</label>
             <div class="row product-row">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="produto_retirado[]" placeholder="Nome do Produto" required>
+                          <select class="form-control" aria-label=".form-select-lg example" id="produto" name="produto_retirado[]" style="border-radius: 18px; font-size: 19px;" required>
+                            <option value="">Selecione um produto</option>
+                              <?php foreach ($listaProdutos as $produto) : ?>
+                                  <option value="<?php echo $produto['produto']; ?>"><?php echo $produto['produto']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
                 </div>
                 <div class="col-md-3">
                     <input type="text" class="form-control" name="quantidade_retirada[]" placeholder="Quantidade" required>
@@ -47,7 +53,7 @@ $listaComprovante = select('comprovante');
                     $(".btn-add-product").click(function() {
                         var productRow = '<div class="row product-row">' +
                             '<div class="col-md-6">' +
-                            '<input type="text" class="form-control" name="produto_retirado[]" placeholder="Nome do Produto" required>' +
+                            '<select class="form-control" aria-label=".form-select-lg example" id="produto" name="produto_retirado[]" style="border-radius: 18px; font-size: 19px;" required> <option value="">Selecione um produto</option>  <?php foreach ($listaProdutos as $produto) : ?> <option value="<?php echo $produto['produto']; ?>"><?php echo $produto['produto']; ?></option>  <?php endforeach; ?> </select>' +
                             '</div>' +
                             '<div class="col-md-3">' +
                             '<input type="text" class="form-control" name="quantidade_retirada[]" placeholder="Quantidade" required>' +

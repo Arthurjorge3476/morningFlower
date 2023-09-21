@@ -1,6 +1,6 @@
 <?php 
 include_once("../consultaSQL.php");
-
+$listaProdutos = select('produtos');
 if(isset($_POST['cadastrarPedido'])){
 
     // COLETAR DADOS PARA O PEDIDO

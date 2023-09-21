@@ -32,14 +32,12 @@ if (isset($_POST['btnEditar'])) {
   $fornecedor = $_POST['fornecedor'];
   $precodecompra = $_POST['precodecompra'];
   $precodevenda = $_POST['precodevenda'];
-  $margemdelucro = $_POST['margemdelucro'];
-  $lucroanterior = $_POST['lucroanterior'];
   $estoque = $_POST['estoque'];
   $validade = $_POST['validade'];
   $observacao = $_POST['observacao'];
   $imagem = $_FILES['imagem']['name'];
   // Atualize o funcionário no banco de dados
-  $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, margemdelucro = :margemdelucro, lucroanterior = :lucroanterior, estoque = :estoque, validade = :validade, observacao = :observacao,imagem = :imagem WHERE id = :id";
+  $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, estoque = :estoque, validade = :validade, observacao = :observacao,imagem = :imagem WHERE id = :id";
 
   $stmt_update = $conexao->prepare($sql_update);
 
@@ -50,8 +48,6 @@ if (isset($_POST['btnEditar'])) {
   $stmt_update->bindParam(':fornecedor', $fornecedor);
   $stmt_update->bindParam(':precodecompra', $precodecompra);
   $stmt_update->bindParam(':precodevenda', $precodevenda);
-  $stmt_update->bindParam(':margemdelucro', $margemdelucro);
-  $stmt_update->bindParam(':lucroanterior', $lucroanterior);
   $stmt_update->bindParam(':estoque', $estoque);
   $stmt_update->bindParam(':validade', $validade);
   $stmt_update->bindParam(':observacao', $observacao);
@@ -185,15 +181,6 @@ if (isset($_POST['pesquisar'])) {
                           <input type="text" class="form-control" id="venda" name="precodevenda" required>
                         </div>
 
-                        <div class="form-group col-md-3">
-                          <label for="margemdelucro">Margem de lucro[%]</label>
-                          <input type="texto" class="form-control" id="margemdelucro" name="margemdelucro">
-                        </div>
-
-                        <div class="form-group col-md-3">
-                          <label for="lucroanterior">Lucro anterior[%]</label>
-                          <input type="texto" class="form-control" id="lucroanterior" name="lucroanterior">
-                        </div>
 
                         <div class="form-group col-md-3">
                           <label for="estoque">Quantidade*</label>
@@ -325,16 +312,6 @@ if (isset($_POST['pesquisar'])) {
               </div>
 
               <div class="form-group col-md-3">
-                <label for="margemdelucro">Margem de lucro[%]</label>
-                <input type="texto" class="form-control" id="margemdelucro" name="margemdelucro">
-              </div>
-
-              <div class="form-group col-md-3">
-                <label for="lucroanterior">Lucro anterior[%]</label>
-                <input type="texto" class="form-control" id="lucroanterior" name="lucroanterior">
-              </div>
-
-              <div class="form-group col-md-3">
                 <label for="estoque">Quantidade*</label>
                 <input type="texto" class="form-control" id="estoque" name="estoque" required>
               </div>
@@ -442,8 +419,6 @@ if (isset($_POST['pesquisar'])) {
       const fornecedor = document.getElementById('fornecedor');
       const precodecompra = document.getElementById('precodecompra');
       const venda = document.getElementById('venda');
-      const margemdelucro = document.getElementById('margemdelucro');
-      const lucroanterior = document.getElementById('lucroanterior');
       const estoque = document.getElementById('estoque');
       const validade = document.getElementById('validade');
       const produtossalvos = document.getElementById('produtossalvos');
@@ -464,8 +439,6 @@ if (isset($_POST['pesquisar'])) {
           fornecedor.value = infoprodutos.fornecedor;
           precodecompra.value = infoprodutos.precodecompra;
           venda.value = infoprodutos.precodevenda;
-          margemdelucro.value = infoprodutos.margemdelucro;
-          lucroanterior.value = infoprodutos.lucroanterior;
           estoque.value = infoprodutos.estoque;
           validade.value = infoprodutos.validade;
           produtossalvos.value = infoprodutos.observacao;

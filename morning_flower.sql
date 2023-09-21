@@ -157,15 +157,6 @@ CREATE TABLE `itens_pedido` (
 --
 
 INSERT INTO `itens_pedido` (`id`, `pedido_id`, `produto`, `quantidade`, `preco_unitario`) VALUES
-(1, 4, '0', 10, 100),
-(2, 6, 'girassol', 10, 100),
-(3, 6, 'Rosa', 5, 100),
-(4, 7, 'girassol', 10, 100),
-(5, 7, 'Rosa', 4, 100),
-(6, 7, 'Bananeira', 10, 100),
-(7, 8, 'girassol', 10, 100),
-(8, 8, 'Rosa', 4, 100),
-(9, 8, 'Bananeira', 10, 100);
 
 -- --------------------------------------------------------
 
@@ -185,14 +176,8 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id`, `data`, `cliente`, `valorTotal`) VALUES
-(1, '0000-00-00', 'Vitor Hugo', 0),
-(2, '0000-00-00', 'Vitor Hugo', 0),
-(3, '2023-09-20', 'Vitor Hugo', 0),
-(4, '2023-09-20', 'Vitor Hugo', 1000),
-(5, '2023-09-20', 'Teste Pedido', 0),
-(6, '2023-09-20', 'Teste Pedido', 1500),
-(7, '2023-09-20', 'Vitor Hugo', 2400),
-(8, '2023-09-20', 'Vitor Hugo', 2400);
+
+
 
 -- --------------------------------------------------------
 
