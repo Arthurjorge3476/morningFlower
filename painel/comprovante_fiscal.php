@@ -1,10 +1,11 @@
-<?php 
+<?php
 include_once("../consultaSQL.php");
 $listaProdutos = select('produtos');
-if(isset($_POST['cadastrarPedido'])){
+
+if (isset($_POST['cadastrarPedido'])) {
     // COLETAR DADOS PARA O PEDIDO
 
-    $dataAtual = date("d/m/Y"); 
+    $dataAtual = date("d/m/Y");
     $dataAtualMySQL = date("Y-m-d");
     $nomeCliente = $_POST['cliente'];
     $produtosRetirados = $_POST["produto_retirado"];
@@ -24,24 +25,47 @@ if(isset($_POST['cadastrarPedido'])){
         $produtoRetirado = $produtosRetirados[$i];
         $quantidadeRetirada = $quantidadesRetiradas[$i];
 
-        $sqlPrecoProduto = "SELECT precodevenda FROM produtos WHERE produto = ?";
-        $stmtPrecoProduto = $conexao->prepare($sqlPrecoProduto);
-        $stmtPrecoProduto->execute([$produtoRetirado]);
-        $precoProduto = $stmtPrecoProduto->fetchColumn();
+        // Consultar o estoque atual do produto
+        $sqlEstoque = "SELECT estoque FROM produtos WHERE produto = ?";
+        $stmtEstoque = $conexao->prepare($sqlEstoque);
+        $stmtEstoque->execute([$produtoRetirado]);
+        $estoqueProduto = $stmtEstoque->fetchColumn();
 
-        if ($precoProduto !== false) {
-            $valorTotalItem = $quantidadeRetirada * $precoProduto;
-            $valorTotal += $valorTotalItem;
+        if ($estoqueProduto !== false) {
+            if ($estoqueProduto == 0) {
+                // Se o estoque for igual a zero, redirecione com um alerta
+                header("Location: index.php?alerta=estoque_zerado&produto=$produtoRetirado");
+                exit;
+            }
 
-            $sql = "INSERT INTO itens_pedido (pedido_id, produto, quantidade, preco_unitario) VALUES (?, ?, ?, ?)";
-            $stmt = $conexao->prepare($sql);
-            $stmt->execute([$pedidoId, $produtoRetirado, $quantidadeRetirada, $precoProduto]);
+            if ($estoqueProduto >= $quantidadeRetirada) {
+                // Consultar o preço do produto
+                $sqlPrecoProduto = "SELECT precodevenda FROM produtos WHERE produto = ?";
+                $stmtPrecoProduto = $conexao->prepare($sqlPrecoProduto);
+                $stmtPrecoProduto->execute([$produtoRetirado]);
+                $precoProduto = $stmtPrecoProduto->fetchColumn();
 
-            $sql = "UPDATE pedido SET valorTotal = ? WHERE id = ?";
-            $stmt = $conexao->prepare($sql);
-            $stmt->execute([$valorTotal, $pedidoId]);
+                if ($precoProduto !== false) {
+                    $valorTotalItem = $quantidadeRetirada * $precoProduto;
+                    $valorTotal += $valorTotalItem;
+
+                    $sql = "INSERT INTO itens_pedido (pedido_id, produto, quantidade, preco_unitario) VALUES (?, ?, ?, ?)";
+                    $stmt = $conexao->prepare($sql);
+                    $stmt->execute([$pedidoId, $produtoRetirado, $quantidadeRetirada, $precoProduto]);
+
+                    $novoEstoque = $estoqueProduto - $quantidadeRetirada;
+                    $sqlAtualizarEstoque = "UPDATE produtos SET estoque = ? WHERE produto = ?";
+                    $stmtAtualizarEstoque = $conexao->prepare($sqlAtualizarEstoque);
+                    $stmtAtualizarEstoque->execute([$novoEstoque, $produtoRetirado]);
+                } else {
+                    echo "Preço do produto não encontrado para: $produtoRetirado";
+                }
+            } else {
+                header("Location: index.php?alerta=estoque_insuficiente&produto=$produtoRetirado");
+                exit;
+            }
         } else {
-            echo "Preço do produto não encontrado para: $produtoRetirado";
+            echo "Estoque do produto não encontrado para: $produtoRetirado";
         }
     }
 
@@ -54,7 +78,6 @@ if(isset($_POST['cadastrarPedido'])){
     $stmtComprovante->execute([$pedidoId, $quantidadeTotal]);
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>

@@ -1,8 +1,28 @@
 <?php
 $listaComprovante = select('comprovante');
 $listaProdutos = select('produtos');
-?>
 
+if (isset($_GET['alerta'])) {
+    $tipoAlerta = $_GET['alerta'];
+
+    echo "<script>";
+    switch ($tipoAlerta) {
+        case "estoque_insuficiente":
+            if (isset($_GET['produto'])) {
+                $produto = $_GET['produto'];
+                echo "alert('Estoque insuficiente para o produto $produto')";
+            }
+            break;
+        case "estoque_zerado":
+            if (isset($_GET['produto'])) {
+                $produto = $_GET['produto'];
+                echo "alert('Estoque zerado para o produto $produto')";
+            }
+            break;
+    }
+    echo "</script>";
+}
+?>
 
 <form class="cadastro" method="POST" action="comprovante_fiscal.php" style="background-color: white;justify-content: center;width: 100%;  margin: auto;max-width: 1200px; padding: 5px;margin-bottom: 20px;  border-radius: 10px ;">
     <div class="modal-header ">
