@@ -167,6 +167,6 @@ if(isset($_POST['cadastrarPedido'])){
             }
         </script>
     </div>
-</body>
-
+        </body>
+        
 </html>
