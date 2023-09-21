@@ -2,7 +2,6 @@
 include_once("../consultaSQL.php");
 $listaProdutos = select('produtos');
 if(isset($_POST['cadastrarPedido'])){
-
     // COLETAR DADOS PARA O PEDIDO
 
     $dataAtual = date("d/m/Y"); 
@@ -10,7 +9,6 @@ if(isset($_POST['cadastrarPedido'])){
     $nomeCliente = $_POST['cliente'];
     $produtosRetirados = $_POST["produto_retirado"];
     $quantidadesRetiradas = $_POST["quantidade_retirada"];
-    $valores = $_POST["valor"];
 
     $valorTotal = 0;
 
@@ -25,19 +23,26 @@ if(isset($_POST['cadastrarPedido'])){
     for ($i = 0; $i < count($produtosRetirados); $i++) {
         $produtoRetirado = $produtosRetirados[$i];
         $quantidadeRetirada = $quantidadesRetiradas[$i];
-        $valor = $valores[$i];
 
-        $valorTotalItem = $quantidadeRetirada * $valor;
+        $sqlPrecoProduto = "SELECT precodevenda FROM produtos WHERE produto = ?";
+        $stmtPrecoProduto = $conexao->prepare($sqlPrecoProduto);
+        $stmtPrecoProduto->execute([$produtoRetirado]);
+        $precoProduto = $stmtPrecoProduto->fetchColumn();
 
-        $valorTotal += $valorTotalItem;
+        if ($precoProduto !== false) {
+            $valorTotalItem = $quantidadeRetirada * $precoProduto;
+            $valorTotal += $valorTotalItem;
 
-        $sql = "INSERT INTO itens_pedido (pedido_id, produto, quantidade, preco_unitario) VALUES (?, ?, ?, ?)";
-        $stmt = $conexao->prepare($sql);
-        $stmt->execute([$pedidoId, $produtoRetirado, $quantidadeRetirada, $valor]);
+            $sql = "INSERT INTO itens_pedido (pedido_id, produto, quantidade, preco_unitario) VALUES (?, ?, ?, ?)";
+            $stmt = $conexao->prepare($sql);
+            $stmt->execute([$pedidoId, $produtoRetirado, $quantidadeRetirada, $precoProduto]);
 
-        $sql = "UPDATE pedido SET valorTotal = ? WHERE id = ?";
-        $stmt = $conexao->prepare($sql);
-        $stmt->execute([$valorTotal, $pedidoId]);
+            $sql = "UPDATE pedido SET valorTotal = ? WHERE id = ?";
+            $stmt = $conexao->prepare($sql);
+            $stmt->execute([$valorTotal, $pedidoId]);
+        } else {
+            echo "Preço do produto não encontrado para: $produtoRetirado";
+        }
     }
 
     // COLETAR DADOS COMPROVANTE
@@ -49,6 +54,7 @@ if(isset($_POST['cadastrarPedido'])){
     $stmtComprovante->execute([$pedidoId, $quantidadeTotal]);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -128,19 +134,25 @@ if(isset($_POST['cadastrarPedido'])){
         if (isset($_POST['produto_retirado']) && is_array($_POST['produto_retirado'])) {
             for ($i = 0; $i < count($_POST['produto_retirado']); $i++) {
                 $produto = $_POST['produto_retirado'][$i];
-                $valor = floatval($_POST['valor'][$i]);
                 $quantidade = intval($_POST['quantidade_retirada'][$i]);
-                $totalProduto = $valor * $quantidade;
-
+        
+                $sqlPrecoProduto = "SELECT precodevenda FROM produtos WHERE produto = ?";
+                $stmtPrecoProduto = $conexao->prepare($sqlPrecoProduto);
+                $stmtPrecoProduto->execute([$produto]);
+                $precoProduto = $stmtPrecoProduto->fetchColumn();
+        
+                $totalProduto = $precoProduto * $quantidade;
+        
                 echo "<p><strong>Produto retirado:</strong> <span>$produto</span></p>";
-                echo "<p><strong>Valor Unitário:</strong> <span>R$ " . number_format($valor, 2, ',', '.') . "</span></p>";
+                echo "<p><strong>Valor Unitário:</strong> <span>R$ " . number_format($precoProduto, 2, ',', '.') . "</span></p>";
                 echo "<p><strong>Quantidade retirada:</strong> <span>$quantidade</span></p>";
                 echo "<p><strong>Total do Produto:</strong> <span>R$ " . number_format($totalProduto, 2, ',', '.') . "</span></p>";
                 echo "<hr>";
-
+        
                 $valorTotal += $totalProduto;
             }
         }
+        
 
         echo "<p><strong>Valor Total:</strong> <span>R$ " . number_format($valorTotal, 2, ',', '.') . "</span></p>";
         ?>

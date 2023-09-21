@@ -43,9 +43,6 @@ $listaProdutos = select('produtos');
                 <div class="col-md-3">
                     <input type="text" class="form-control" name="quantidade_retirada[]" placeholder="Quantidade" required>
                 </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" name="valor[]" placeholder="Valor" required>
-                </div>
             </div>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
@@ -57,9 +54,6 @@ $listaProdutos = select('produtos');
                             '</div>' +
                             '<div class="col-md-3">' +
                             '<input type="text" class="form-control" name="quantidade_retirada[]" placeholder="Quantidade" required>' +
-                            '</div>' +
-                            '<div class="col-md-3">' +
-                            '<input type="text" class="form-control" name="valor[]" placeholder="Valor" required>' +
                             '</div>' +
                             '</div>';
                         $(".product-row:last").after(productRow);
