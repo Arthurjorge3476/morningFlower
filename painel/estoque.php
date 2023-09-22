@@ -1,6 +1,11 @@
 <?php
 $listaProdutos = select('produtos');
 
+
+
+
+
+
 if (isset($_POST['pesquisar'])) {
     $termoPesquisa = $_POST['pesquisar'];
     $listaProdutos = array_filter($listaProdutos, function ($produto) use ($termoPesquisa) {
@@ -9,7 +14,7 @@ if (isset($_POST['pesquisar'])) {
 }
 ?>
 
-<form method="POST" action="index.php?acao=produtos">
+<form method="POST" action="index.php?acao=estoque">
     <div class="search-container">
         <div class="search-wrapper">
             <input type="text" id="searchInput" name="pesquisar" placeholder="Pesquisar...">
@@ -58,6 +63,7 @@ if (isset($_POST['pesquisar'])) {
                     </td>
                 </tr>
             <?php } ?>
+            
         </tbody>
     </table>
 </div>
@@ -81,6 +87,35 @@ if (isset($_POST['pesquisar'])) {
     if (<?php echo $estoqueBaixoEncontrado ? 'true' : 'false'; ?>) {
         document.getElementById('estoqueBaixoAlert').style.display = 'block';
     }
+</script>
+
+
+
+<script>
+  // Função para verificar a data de validade
+  function verificarDataValidade() {
+    // Data atual
+    var dataAtual = new Date();
+    
+    // Data de validade do produto (você pode obtê-la do seu formulário)
+    var dataValidadeProduto = new Date(document.getElementById('validade').value);
+    
+    // Calcula a diferença entre as datas em milissegundos
+    var diferenca = dataValidadeProduto - dataAtual;
+    
+    // Calcula os dias restantes
+    var diasRestantes = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+    
+    // Exibe um aviso se a data de validade estiver próxima ou expirada
+    if (diasRestantes <= 0) {
+      alert('A data de validade expirou!');
+    } else if (diasRestantes <= 7) {
+      alert('A data de validade está próxima! Faltam apenas ' + diasRestantes + ' dias.');
+    }
+  }
+  
+  // Chama a função quando a página é carregada (ou quando a data de validade for alterada)
+  window.addEventListener('load', verificarDataValidade);
 </script>
 
 

@@ -10,11 +10,11 @@ if (isset($_POST['btnEditar'])) {
 
 
   $imagens = $_FILES['imagem'];
-
+ 
 
   $imagensNova = explode('.', $imagens['name']);
 
-  if ($imagensNova[sizeof($imagensNova) - 1] != 'jpg') {
+  if ($imagensNova[sizeof($imagensNova) - 1] != "jpg,png") {
     die('Você não pode fazer upload desse tipo de arquivo');
   } else {
     echo 'Upload foi feito com sucesso!';
@@ -144,6 +144,7 @@ if (isset($_POST['pesquisar'])) {
                   <div class="modal-body">
                     <form class="cadastro" method="POST" action="index.php?acao=produtos" enctype="multipart/form-data">
                       <input type="hidden" id="idprodutosEditar" name="idprodutosEditar">
+                      <input type="hidden" name="imagem_atual" value="<?php echo $linha['imagem']; ?>">
                       <div class="form-row">
                         <div class="form-group col-md-2">
                           <label for="codigodoprodutos">Código*</label>
@@ -190,7 +191,7 @@ if (isset($_POST['pesquisar'])) {
                         <div class="form-group col-md-3">
                           <label for="validade">Validade</label>
 
-                          <input type="date" class="form-control" id="validade" name="validade">
+                          <input type="date" class="form-control" id="validade" name="validade" onchange="verificarDataValidade()">
 
                         </div>
 
@@ -319,7 +320,7 @@ if (isset($_POST['pesquisar'])) {
               <div class="form-group col-md-3">
                 <label for="validade">Validade</label>
 
-                <input type="date" class="form-control" id="validade" name="validade">
+                <input type="date" class="form-control" id="validade" name="validade" onchange="verificarDataValidade()">
 
               </div>
 
@@ -471,3 +472,4 @@ if (isset($_POST['pesquisar'])) {
       window.location = 'index.php?acao=fornecedores&search=' + search.value;
     }
   </script>
+

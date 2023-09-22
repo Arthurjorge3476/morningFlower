@@ -116,9 +116,9 @@ if (isset($_POST['pesquisar'])) {
           <td><?php echo $linha['cidade']; ?></td>
           <td>
             <div>
-              <a href="index.php?acao=clientes&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm " data-info='<?php echo json_encode($linha); ?>' data-toggle="modal" data-target="#editarClienteModal" name="editar">Editar</a>
+              <a href="index.php?acao=clientes&editar=<?php echo $linha['id']; ?>" class="btn btn-outline-warning btn-sm editar-cliente" data-info='<?php echo json_encode($linha); ?>' data-toggle="modal" data-target="#editarClientesModal" name="editar">Editar</a>
 
-              <div class="modal fade" id="editarClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="editarClientesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -379,9 +379,10 @@ if (isset($_POST['pesquisar'])) {
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const editarLinks = document.querySelectorAll('.editar-Cliente');
+    const editarLinks = document.querySelectorAll('.editar-cliente');
+    const idClienteEditar = document.getElementById('idClienteEditar');
     const nomeClienteEditar = document.getElementById('nomeClienteEditar');
-    const cpfClienteEditar = document.getElementById('cpfCliente'); // Campo CPF
+    const cpfCliente = document.getElementById('cpfCliente'); // Campo CPF
     const cidadeClienteEditar = document.getElementById('cidadeClienteEditar');
     const enderecoClienteEditar = document.getElementById('enderecoClienteEditar');
     const cepClienteEditar = document.getElementById('cepClienteEditar');
@@ -394,22 +395,22 @@ if (isset($_POST['pesquisar'])) {
         event.preventDefault();
 
         // Obtenha as informações do funcionário a partir do atributo 'data-info'
-        const infoCliente = JSON.parse(this.getAttribute('data-info'));
+        const infoclientes = JSON.parse(this.getAttribute('data-info'));
 
         // Preencha os campos da modal com as informações do funcionário
-        idClienteEditar.value = infoCliente.id;
-        nomeClienteEditar.value = infoCliente.nome;
-        cpfClienteEditar.value = infoCliente.cpf;
-        cidadeClienteEditar.value = infoCliente.cidade;
-        enderecoClienteEditar.value = infoCliente.endereco;
-        cepClienteEditar.value = infoCliente.cep;
-        emailClienteEditar.value = infoCliente.email;
-        telefoneClienteEditar.value = infoCliente.telefone;
-
+        idClienteEditar .value = infoclientes.id;
+        nomeClienteEditar.value = infoclientes.nome;
+        cpfCliente.value = infoclientes.cpf;
+        cidadeClienteEditar.value = infoclientes.cidade;
+        enderecoClienteEditar.value = infoclientes.endereco;
+        cepClienteEditar.value = infoclientes.cep;
+        emailClienteEditar.value = infoclientes.email;
+        telefoneClienteEditar.value = infoclientes.telefone;
+        
         // Preencha outros campos de edição conforme necessário
 
         // Abra a modal de edição
-        $('#editarClienteModal').modal('show');
+        $('#editarClientesModal').modal('show');
       });
     });
 
