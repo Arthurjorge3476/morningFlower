@@ -21,7 +21,7 @@ if (isset($_POST['btnEditar'])) {
     move_uploaded_file($imagens['tmp_name'], '../uploads/' . $imagens['name']);
   }
 
-  // Certifique-se de definir $id com o ID do funcionário que está sendo editado
+  // Certifique-se de definir $id com o ID do funcionário que está sendo editados
   $id = $_POST['idprodutosEditar'];
 
   $conexao = conectar();
