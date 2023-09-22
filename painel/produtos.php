@@ -8,7 +8,7 @@ $listaFornecedores = select('fornecedores');
 
 if (isset($_POST['btnEditar'])) {
 
-
+/*
   $imagens = $_FILES['imagem'];
  
 
@@ -20,7 +20,7 @@ if (isset($_POST['btnEditar'])) {
     echo 'Upload foi feito com sucesso!';
     move_uploaded_file($imagens['tmp_name'], '../uploads/' . $imagens['name']);
   }
-
+*/
   // Certifique-se de definir $id com o ID do funcionário que está sendo editados
   $id = $_POST['idprodutosEditar'];
 
@@ -35,9 +35,9 @@ if (isset($_POST['btnEditar'])) {
   $estoque = $_POST['estoque'];
   $validade = $_POST['validade'];
   $observacao = $_POST['observacao'];
-  $imagem = $_FILES['imagem']['name'];
+  //$imagem = $_FILES['imagem']['name'];
   // Atualize o funcionário no banco de dados
-  $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, estoque = :estoque, validade = :validade, observacao = :observacao,imagem = :imagem WHERE id = :id";
+  $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, estoque = :estoque, validade = :validade, observacao = :observacao WHERE id = :id";
 
   $stmt_update = $conexao->prepare($sql_update);
 
@@ -51,7 +51,7 @@ if (isset($_POST['btnEditar'])) {
   $stmt_update->bindParam(':estoque', $estoque);
   $stmt_update->bindParam(':validade', $validade);
   $stmt_update->bindParam(':observacao', $observacao);
-  $stmt_update->bindParam(':imagem', $imagem);
+
 
 
   $result_update = $stmt_update->execute();
@@ -69,6 +69,8 @@ if (isset($_POST['btnEditar'])) {
 
 if (isset($_GET['excluir'])) {
   $idParaExcluir = $_GET['excluir'];
+ $dados = select('produtos',"id = $idParaExcluir");
+ unlink($dados[0]['imagem']);
   deletar('produtos', $idParaExcluir);
 
   // Redirecionar para a página após a exclusão
@@ -143,7 +145,7 @@ if (isset($_POST['pesquisar'])) {
                   </div>
                   <div class="modal-body">
                     <form class="cadastro" method="POST" action="index.php?acao=produtos" enctype="multipart/form-data">
-                      <input type="hidden" id="idprodutosEditar" name="idprodutosEditar">
+                      <input  type="hidden" id="idprodutosEditar" name="idprodutosEditar">
                       <input type="hidden" name="imagem_atual" value="<?php echo $linha['imagem']; ?>">
                       <div class="form-row">
                         <div class="form-group col-md-2">
@@ -196,7 +198,7 @@ if (isset($_POST['pesquisar'])) {
                         </div>
 
                         <div class="form-group col-md-6" style="margin-top: 3px;border-radius: 20px;font-size: 17px;">
-                          <label>Imagem do Produto</label>
+                          <label>Alterar Imagem</label>
                           <input type="file" name="imagem" id="imagem" accept="image/*">
                         </div>
 
