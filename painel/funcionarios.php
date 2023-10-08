@@ -142,7 +142,7 @@ if (isset($_POST['pesquisar'])) {
                       <!-- Formulário de Edição de Funcionário -->
                       <form id="formEditarFuncionario" method="POST" action="index.php?acao=funcionarios">
                         <!-- Campos de edição de funcionário -->
-                        <input type="hidden" id="idFuncionarioEditar" name="idFuncionarioEditar">
+                        <input type="hidden" id="idFuncionarioEditar" name="idFuncionarioEditar"  require>
                         <div class="form-row">
                           <div class="form-group col-md-9">
                             <label for="nomeFuncionarioEditar">Nome*</label>
@@ -150,11 +150,11 @@ if (isset($_POST['pesquisar'])) {
                           </div>
                           <div class="form-group col-md-3">
                             <label for="datadenascimentoEditar">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="datadenascimentoEditar" name="data_de_nascimento">
+                            <input type="date" class="form-control" id="datadenascimentoEditar" name="data_de_nascimento"  require>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="rgdoFuncionarioEditar">RG</label>
-                            <input type="text" class="form-control" id="rgdoFuncionarioEditar" name="rg" oninput="this.value = formatarRG(this.value);" maxlength="9">
+                            <input type="text" class="form-control" id="rgdoFuncionarioEditar" name="rg" oninput="this.value = formatarRG(this.value);" maxlength="9"  require>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="cpfFuncionario">CPF*</label>
@@ -162,19 +162,19 @@ if (isset($_POST['pesquisar'])) {
                           </div>
                           <div class="form-group col-md-4">
                             <label for="ctpsFuncionarioEditar">CTPS</label>
-                            <input type="text" class="form-control" id="ctpsFuncionarioEditar" name="ctps" oninput="this.value = formatarCTPS(this.value);">
+                            <input type="text" class="form-control" id="ctpsFuncionarioEditar" name="ctps" oninput="this.value = formatarCTPS(this.value);"  require>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="cidadeFuncionarioEditar">Cidade</label>
-                            <input type="text" class="form-control" id="cidadeFuncionarioEditar" name="cidade" oninput="this.value = formatarCidade(this.value);">
+                            <input type="text" class="form-control" id="cidadeFuncionarioEditar" name="cidade" oninput="this.value = formatarCidade(this.value);"  require>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="enderecoFuncionarioEditar">Endereço</label>
-                            <input type="text" class="form-control" id="enderecoFuncionarioEditar" name="endereco" oninput="this.value = formatarEndereco(this.value);">
+                            <input type="text" class="form-control" id="enderecoFuncionarioEditar" name="endereco" oninput="this.value = formatarEndereco(this.value);"  require>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="cepFuncionarioEditar">CEP</label>
-                            <input type="text" class="form-control" id="cepFuncionarioEditar" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9">
+                            <input type="text" class="form-control" id="cepFuncionarioEditar" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9"  require>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="emailFuncionarioEditar">Email*</label>

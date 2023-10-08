@@ -138,7 +138,7 @@ if (isset($_POST['pesquisar'])) {
                     <div class="modal-body">
                       <form id="formEditarFornecedor" method="POST" action="index.php?acao=fornecedores">
                         <!-- Campos de edição de funcionário -->
-                        <input type="hidden" id="idFornecedoresEditar" name="idFornecedoresEditar">
+                        <input type="hidden" id="idFornecedoresEditar" name="idFornecedoresEditar" required>
                         <div class="form-row">
                           <div class="form-group col-md-2">
                             <label for="codigodofornecedor">Código*</label>
@@ -152,17 +152,17 @@ if (isset($_POST['pesquisar'])) {
 
                           <div class="form-group col-md-6">
                             <label for="enderecodofornecedor">Endereço</label>
-                            <input type="texto" class="form-control" id="enderecodofornecedor" name="endereco">
+                            <input type="texto" class="form-control" id="enderecodofornecedor" name="endereco" required>
                           </div>
 
                           <div class="form-group col-md-6">
                             <label for="cidadedofornecedor">Cidade</label>
-                            <input type="texto" class="form-control" id="cidadedofornecedor" name="cidade">
+                            <input type="texto" class="form-control" id="cidadedofornecedor" name="cidade" required>
                           </div>
 
                           <div class="form-group col-md-2">
                             <label for="bairrodofornecedor">Bairro</label>
-                            <input type="texto" class="form-control" id="bairrodofornecedor" name="bairro">
+                            <input type="texto" class="form-control" id="bairrodofornecedor" name="bairro" required>
                           </div>
 
                           <div class="form-group col-md-2">
@@ -203,7 +203,7 @@ if (isset($_POST['pesquisar'])) {
 
                           <div class="form-group col-md-2">
                             <label for="cepdofornecedor">CEP</label>
-                            <input type="texto" class="form-control" id="cepdofornecedor" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9">
+                            <input type="texto" class="form-control" id="cepdofornecedor" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9" required>
                           </div>
 
                           <div class="form-group col-md-3">
@@ -213,12 +213,12 @@ if (isset($_POST['pesquisar'])) {
 
                           <div class="form-group col-md-3">
                             <label for="telefone2dofornecedor">Telefone 2</label>
-                            <input type="texto" class="form-control" id="telefone2dofornecedor" name="telefone2" oninput="this.value = formatarTelefone2(this.value);" maxlength="15">
+                            <input type="texto" class="form-control" id="telefone2dofornecedor" name="telefone2" oninput="this.value = formatarTelefone2(this.value);" maxlength="15" required>
                           </div>
 
                           <div class="form-group col-md-6">
                             <label for="emaildofornecedor">Email*</label>
-                            <input type="email" class="form-control" id="emaildofornecedor" name="email">
+                            <input type="email" class="form-control" id="emaildofornecedor" name="email" required>
                           </div>
 
                           <div class="form-group col-md-6">
@@ -228,28 +228,28 @@ if (isset($_POST['pesquisar'])) {
 
                           <div class="form-group col-md-6">
                             <label for="vendedordofornecedor">Vendedor</label>
-                            <input type="text" class="form-control" id="vendedordofornecedor" name="vendedor">
+                            <input type="text" class="form-control" id="vendedordofornecedor" name="vendedor" required>
                           </div>
 
                           <div class="form-group col-md-3">
                             <label for="telefonedofornecedor">Telefone 1*</label>
-                            <input type="text" class="form-control" id="telefonedofornecedor" name="telefonevendedor1" oninput="this.value = formatarTelefonevendedor(this.value);" maxlength="15">
+                            <input type="text" class="form-control" id="telefonedofornecedor" name="telefonevendedor1" oninput="this.value = formatarTelefonevendedor(this.value);" maxlength="15" required>
                           </div>
 
                           <div class="form-group col-md-3">
                             <label for="telefonedovendedor">Telefone 2</label>
-                            <input type="text" class="form-control" id="telefonedovendedor" name="telefonevendedor2" oninput="this.value = formatarTelefonevendedor2(this.value);" maxlength="15">
+                            <input type="text" class="form-control" id="telefonedovendedor" name="telefonevendedor2" oninput="this.value = formatarTelefonevendedor2(this.value);" maxlength="15" required>
                           </div>
 
                           <div class="form-group col-md-6">
                             <label for="codicaodavenda">Condição da venda</label>
-                            <input type="text" class="form-control" id="codicaodavenda" name="condicaodavenda">
+                            <input type="text" class="form-control" id="codicaodavenda" name="condicaodavenda" required>
                           </div>
 
 
                           <div class="form-group col-md-6">
                             <label for="atividadedavenda">Atividade</label>
-                            <input type="text" class="form-control" id="atividadedavenda" name="atividade">
+                            <input type="text" class="form-control" id="atividadedavenda" name="atividade" required>
                           </div>
 
 

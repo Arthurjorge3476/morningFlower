@@ -145,7 +145,7 @@ if (isset($_POST['pesquisar'])) {
                   </div>
                   <div class="modal-body">
                     <form class="cadastro" method="POST" action="index.php?acao=produtos" enctype="multipart/form-data">
-                      <input  type="hidden" id="idprodutosEditar" name="idprodutosEditar">
+                      <input  type="hidden" id="idprodutosEditar" name="idprodutosEditar" required>
                       <input type="hidden" name="imagem_atual" value="<?php echo $linha['imagem']; ?>">
                       <div class="form-row">
                         <div class="form-group col-md-2">
@@ -160,7 +160,7 @@ if (isset($_POST['pesquisar'])) {
 
                         <div class="form-group col-md-6">
                           <label for="categoria">Categoria</label>
-                          <input type="texto" class="form-control" id="categoria" name="categoria">
+                          <input type="texto" class="form-control" id="categoria" name="categoria" required>
                         </div>
 
                         <div class="form-group col-md-6">

@@ -143,15 +143,15 @@ if (isset($_POST['pesquisar'])) {
                           </div>
                           <div class="form-group col-md-4">
                             <label for="cidadeClienteEditar">Cidade</label>
-                            <input type="text" class="form-control" id="cidadeClienteEditar" name="cidade" oninput="this.value = formatarCidade(this.value);">
+                            <input type="text" class="form-control" id="cidadeClienteEditar" name="cidade" oninput="this.value = formatarCidade(this.value);" required>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="enderecoClienteEditar">Endereço</label>
-                            <input type="text" class="form-control" id="enderecoClienteEditar" name="endereco" oninput="this.value = formatarEndereco(this.value);">
+                            <input type="text" class="form-control" id="enderecoClienteEditar" name="endereco" oninput="this.value = formatarEndereco(this.value);" required>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="cepClienteEditar">CEP</label>
-                            <input type="text" class="form-control" id="cepClienteEditar" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9">
+                            <input type="text" class="form-control" id="cepClienteEditar" name="cep" oninput="this.value = formatarCEP(this.value);" maxlength="9" required>
                           </div>
                           <div class="form-group col-md-4">
                             <label for="emailClienteEditar">Email*</label>
