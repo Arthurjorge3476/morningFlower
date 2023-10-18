@@ -7,23 +7,7 @@ $listaFornecedores = select('fornecedores');
 
 
 if (isset($_POST['btnEditar'])) {
-
-/*
-  $imagens = $_FILES['imagem'];
- 
-
-  $imagensNova = explode('.', $imagens['name']);
-
-  if ($imagensNova[sizeof($imagensNova) - 1] != "jpg,png") {
-    die('Você não pode fazer upload desse tipo de arquivo');
-  } else {
-    echo 'Upload foi feito com sucesso!';
-    move_uploaded_file($imagens['tmp_name'], '../uploads/' . $imagens['name']);
-  }
-*/
-  // Certifique-se de definir $id com o ID do funcionário que está sendo editados
   $id = $_POST['idprodutosEditar'];
-
   $conexao = conectar();
 
   $codigo = $_POST['codigo'];
@@ -35,34 +19,87 @@ if (isset($_POST['btnEditar'])) {
   $estoque = $_POST['estoque'];
   $validade = $_POST['validade'];
   $observacao = $_POST['observacao'];
-  //$imagem = $_FILES['imagem']['name'];
-  // Atualize o funcionário no banco de dados
-  $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, estoque = :estoque, validade = :validade, observacao = :observacao WHERE id = :id";
 
-  $stmt_update = $conexao->prepare($sql_update);
+  // Verifique se um novo arquivo de imagem foi enviado
+  if (!empty($_FILES['imagem']['name'])) {
+    $imagens = $_FILES['imagem'];
+    $imagensNova = explode('.', $imagens['name']);
+    $extensao = strtolower(end($imagensNova)); // Obtém a extensão do arquivo
 
-  $stmt_update->bindParam(':id', $id);
-  $stmt_update->bindParam(':codigo', $codigo);
-  $stmt_update->bindParam(':produto', $produto);
-  $stmt_update->bindParam(':categoria', $categoria);
-  $stmt_update->bindParam(':fornecedor', $fornecedor);
-  $stmt_update->bindParam(':precodecompra', $precodecompra);
-  $stmt_update->bindParam(':precodevenda', $precodevenda);
-  $stmt_update->bindParam(':estoque', $estoque);
-  $stmt_update->bindParam(':validade', $validade);
-  $stmt_update->bindParam(':observacao', $observacao);
+    // Verifique se a extensão é permitida (por exemplo, jpg e png)
+    $extensoesPermitidas = array('jpg', 'png');
+    if (in_array($extensao, $extensoesPermitidas)) {
+      // Especifique a pasta de destino para salvar a imagem
+      $pastaDestino = '../uploads/';
+      $nomeArquivo = uniqid() . '.' . $extensao; // Nome único para evitar colisões
 
+      if (move_uploaded_file($imagens['tmp_name'], $pastaDestino . $nomeArquivo)) {
+        // Atualize o campo de imagem no banco de dados
+        $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, estoque = :estoque, validade = :validade, observacao = :observacao, imagem = :imagem WHERE id = :id";
+        
+        $stmt_update = $conexao->prepare($sql_update);
+        
+        $stmt_update->bindParam(':id', $id);
+        $stmt_update->bindParam(':codigo', $codigo);
+        $stmt_update->bindParam(':produto', $produto);
+        $stmt_update->bindParam(':categoria', $categoria);
+        $stmt_update->bindParam(':fornecedor', $fornecedor);
+        $stmt_update->bindParam(':precodecompra', $precodecompra);
+        $stmt_update->bindParam(':precodevenda', $precodevenda);
+        $stmt_update->bindParam(':estoque', $estoque);
+        $stmt_update->bindParam(':validade', $validade);
+        $stmt_update->bindParam(':observacao', $observacao);
+        $stmt_update->bindParam(':imagem', $pastaDestino . $nomeArquivo); // Caminho da imagem
+        
+        $result_update = $stmt_update->execute();
 
+        if (!$result_update) {
+          var_dump($stmt_update->errorInfo());
+          exit;
+        } else {
+          // Remova a imagem anterior, se aplicável
+          $dados = select('produtos', "id = $id");
+          if (!empty($dados[0]['imagem'])) {
+            unlink($dados[0]['imagem']);
+          }
 
-  $result_update = $stmt_update->execute();
-
-  if (!$result_update) {
-    var_dump($stmt_update->errorInfo());
-    exit;
+          echo $stmt_update->rowCount() . " Linha atualizada";
+          header("Location: index.php?acao=produtos");
+          exit;
+        }
+      } else {
+        echo 'Falha no upload do arquivo.';
+      }
+    } else {
+      echo 'Você não pode fazer upload desse tipo de arquivo. Apenas arquivos jpg e png são permitidos.';
+    }
   } else {
-    echo $stmt_update->rowCount() . " Linha atualizada";
-    header("Location: index.php?acao=produtos");
-    exit;
+    // Não há nova imagem, apenas atualize os outros campos no banco de dados
+    $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, estoque = :estoque, validade = :validade, observacao = :observacao WHERE id = :id";
+    
+    $stmt_update = $conexao->prepare($sql_update);
+    
+    $stmt_update->bindParam(':id', $id);
+    $stmt_update->bindParam(':codigo', $codigo);
+    $stmt_update->bindParam(':produto', $produto);
+    $stmt_update->bindParam(':categoria', $categoria);
+    $stmt_update->bindParam(':fornecedor', $fornecedor);
+    $stmt_update->bindParam(':precodecompra', $precodecompra);
+    $stmt_update->bindParam(':precodevenda', $precodevenda);
+    $stmt_update->bindParam(':estoque', $estoque);
+    $stmt_update->bindParam(':validade', $validade);
+    $stmt_update->bindParam(':observacao', $observacao);
+
+    $result_update = $stmt_update->execute();
+
+    if (!$result_update) {
+      var_dump($stmt_update->errorInfo());
+      exit;
+    } else {
+      echo $stmt_update->rowCount() . " Linha atualizada";
+      header("Location: index.php?acao=produtos");
+      exit;
+    }
   }
 }
 
