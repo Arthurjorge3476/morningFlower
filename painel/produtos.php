@@ -1,12 +1,10 @@
 <?php
+include_once("../consultaSQL.php");
 
 $listaProdutos = select('produtos');
 $listaFornecedores = select('fornecedores');
 
-
-
-
-if (isset($_POST['btnEditar'])) {
+if (isset($_POST['btnEditar'])) {        // IMPORTANTE
   $id = $_POST['idprodutosEditar'];
   $conexao = conectar();
 
@@ -20,8 +18,10 @@ if (isset($_POST['btnEditar'])) {
   $validade = $_POST['validade'];
   $observacao = $_POST['observacao'];
 
+  $imagemAtual = ''; 
+
   // Verifique se um novo arquivo de imagem foi enviado
-  if (!empty($_FILES['imagem']['name'])) {
+  if (!empty($_FILES['imagem']['name'])) {                //IMPORTANTE 
     $imagens = $_FILES['imagem'];
     $imagensNova = explode('.', $imagens['name']);
     $extensao = strtolower(end($imagensNova)); // Obtém a extensão do arquivo
@@ -34,6 +34,9 @@ if (isset($_POST['btnEditar'])) {
       $nomeArquivo = uniqid() . '.' . $extensao; // Nome único para evitar colisões
 
       if (move_uploaded_file($imagens['tmp_name'], $pastaDestino . $nomeArquivo)) {
+
+        $imagemPath = $pastaDestino . $nomeArquivo;
+
         // Atualize o campo de imagem no banco de dados
         $sql_update = "UPDATE produtos SET codigo = :codigo, produto = :produto, categoria = :categoria, fornecedor = :fornecedor, precodecompra = :precodecompra, precodevenda = :precodevenda, estoque = :estoque, validade = :validade, observacao = :observacao, imagem = :imagem WHERE id = :id";
         
@@ -49,7 +52,7 @@ if (isset($_POST['btnEditar'])) {
         $stmt_update->bindParam(':estoque', $estoque);
         $stmt_update->bindParam(':validade', $validade);
         $stmt_update->bindParam(':observacao', $observacao);
-        $stmt_update->bindParam(':imagem', $pastaDestino . $nomeArquivo); // Caminho da imagem
+        $stmt_update->bindParam(':imagem', $imagemPath); // Caminho da imagem
         
         $result_update = $stmt_update->execute();
 
@@ -59,8 +62,8 @@ if (isset($_POST['btnEditar'])) {
         } else {
           // Remova a imagem anterior, se aplicável
           $dados = select('produtos', "id = $id");
-          if (!empty($dados[0]['imagem'])) {
-            unlink($dados[0]['imagem']);
+          if (!empty($dados[9]['imagem'])) {
+            unlink($dados[9]['imagem']);
           }
 
           echo $stmt_update->rowCount() . " Linha atualizada";
@@ -284,8 +287,7 @@ if (isset($_POST['pesquisar'])) {
         </tr>
       <?php };
       ?>
-
-
+      
       <td scope="row">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter ">+ Novo </button>
       </td>
@@ -294,9 +296,6 @@ if (isset($_POST['pesquisar'])) {
 </div>
 <div class="tabela">
   <!--modal de cadastro para produtos -->
-
-
-
   <script>
     function funcao1() {
       alert("Você tem certeza?");
@@ -373,8 +372,6 @@ if (isset($_POST['pesquisar'])) {
                 <textarea id="produtossalvos" name="observacao" class="form-control" rows="8" cols="50"></textarea>
               </div>
 
-
-
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary" name="cadastrarProdutos">Cadastrar</button>
               </div>
@@ -384,9 +381,6 @@ if (isset($_POST['pesquisar'])) {
       </div>
     </div>
   </div>
-
-
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Adicionar um evento de clique a todos os links com a classe 'excluir-funcionario'
@@ -415,7 +409,6 @@ if (isset($_POST['pesquisar'])) {
       });
     });
   </script>
-
 
   <script>
     $(document).ready(function() {
@@ -447,7 +440,6 @@ if (isset($_POST['pesquisar'])) {
       });
     });
   </script>
-
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -493,8 +485,6 @@ if (isset($_POST['pesquisar'])) {
     });
   </script>
 
-
-
   <script>
     var search = document.getElementById('searchInput');
 
@@ -503,12 +493,7 @@ if (isset($_POST['pesquisar'])) {
         searchDate();
       }
     });
-
-
-
-
     function searchDate() {
       window.location = 'index.php?acao=fornecedores&search=' + search.value;
     }
   </script>
-

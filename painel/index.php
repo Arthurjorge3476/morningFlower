@@ -106,7 +106,7 @@ if (isset($_POST['cadastrarProdutos'])) {
         // Move o arquivo de imagem para o diretório correto
         move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem);
       } else {
-        $imagem = null;
+        $imagem = "../uploads/images.jpg";
       }
     $codigo = $_POST['codigo'];
     $produto = $_POST['produto'];
