@@ -100,6 +100,14 @@ if (isset($_POST['cadastrarFornecedores'])) {
 
 
 if (isset($_POST['cadastrarProdutos'])) {
+
+    $hostname = 'localhost'; // Host do banco de dados
+    $database = 'morning flower'; // Nome do banco de dados
+    $username = 'root'; // Nome do usuário do banco de dados
+    $password = ''; // Senha do usuário do banco de dados
+
+    $conn = new mysqli($hostname, $username, $password, $database);
+
     if (isset($_FILES['imagem']) && !empty($_FILES['imagem']['name'])) {
         $imagem = "../uploads/" . $_FILES['imagem']['name'];
     
@@ -118,15 +126,23 @@ if (isset($_POST['cadastrarProdutos'])) {
     $validade = $_POST['validade'];
     $observacao = $_POST['observacao'];
 
+    // BUSCAR TODOS OS CÓDIGOS JÁ ADICIONADOS PRODUTOS
 
-    $campos = array('codigo', 'produto', 'categoria', 'fornecedor', 'precodecompra', 'precodevenda', 'estoque', 'validade', 'observacao', 'imagem');
-    $valores = array($codigo, $produto, $categoria, $fornecedor, $precodecompra, $precodevenda, $estoque, $validade, $observacao, $imagem);
+    $sqlProduto = "SELECT * FROM produtos WHERE codigo='$codigo'";
+    $resultProduto = $conn->query($sqlProduto);
+    $totalPro = $resultProduto->num_rows;
 
-    inserir('produtos', $campos, $valores);
+    if ($resultProduto->num_rows > 0) {
+
+        echo "<script>alert('Código de produto já cadastrado!')</script>";
+    } else {
+
+        $campos = array('codigo', 'produto', 'categoria', 'fornecedor', 'precodecompra', 'precodevenda', 'estoque', 'validade', 'observacao', 'imagem');
+        $valores = array($codigo, $produto, $categoria, $fornecedor, $precodecompra, $precodevenda, $estoque, $validade, $observacao, $imagem);
+    
+        inserir('produtos', $campos, $valores);
+    }
 }
-
-
-
 
 ?>
 
